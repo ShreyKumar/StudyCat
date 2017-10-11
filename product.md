@@ -5,30 +5,26 @@
 
 #### Q1: What are you planning to build?
 
-An extended version of the Coursography where students can plan their courses for any program they input.
+Raise a cartoon cat, based on how much productivity you do. The more you procrastinate the less healthy the cat gets.
 
 #### Q2: Who are your target users?
 
-University of Toronto students, we will extend it to other universities if there is popular demand.
-
+Anyone who wants to be productive with their computer. (i.e. Students, office workers)
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
-It allows users to plan out their course structure for every course instead of just Computer Science and Statistics. It saves a lot of time instead of scanning through each program and course to plan out your schedule.  It allows users to discover if the program will be doable for them before they apply to the program. 
+The product gets instant feedback in a "cute" way so the cat will feel an emotional drive to keep the cat healthy.
+This would also attract people who love playing video games as it would "gamify" productivity.
+Possible Expansion: has affection for each group member based on how much work they do.
 
-YOUR ANSWER GOES HERE ...
-
- * Short (1 - 2 min' read max)
- * We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
- * Explain the benefits of your product explicitly & clearly. For example:
-    * Save users time (how much?)
-    * Allow users to discover new information (which information? And, why couldn't they discover it before?)
-    * Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
 
 
 ----
 
 ### Highlights
+
+- We went through different iterations of our original idea.
+- For each idea,
 
 YOUR ANSWER GOES HERE ...
 
