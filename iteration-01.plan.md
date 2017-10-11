@@ -1,17 +1,17 @@
-# YOUR PRODUCT/TEAM NAME
+# StudyCat
 
  > _Note:_ This document is meant to be written during (or shortly after) your initial planning meeting.     
  > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
 
 
-## Iteration XX
+## Iteration 01
 
- * Start date: FILL IN THE DATE WHEN YOU HAD YOUR FIRST TEAM PLANNING MEETING
- * End date: FILL IN THE DATE WHEN YOU ARE PLANNING TO HAVE YOUR REVIEW MEETING
+ * Start date: 2nd October 2018
+ * End date: 10th October 2018
 
 ## Process
 
-(Optional:) Quick introduction
+Quick introduction and brief overview of potential project ideas.
 
 #### Roles & responsibilities
 
@@ -19,11 +19,8 @@ Describe the different roles on the team and the responsibilities associated wit
 
 #### Events
 
-Describe meetings (and other events) you are planning to have:
+Online meeting - Very productive meeting discussing potential ideas with team members.
 
- * When and where? In-person or online?
- * What's the purpose of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
 
 #### Artifacts
 
@@ -40,15 +37,12 @@ List/describe the artifacts you will produce in order to organize your team.
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+ * Narrow down our idea pool by presenting potential flaws
+ * Getting to know group members.  
+ * Finding which languages we are most comfortable in.   
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
-
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+"product.md" file which shows
+"ideas.txt" file that shows meeting notes and our original 6 ideas compiled
+when we met earlier

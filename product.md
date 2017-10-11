@@ -1,4 +1,4 @@
-# CourseVisualizer
+# StudyCat
 
  > _Note:_ This document is meant to evolve throughout the planning phase of your project.    
  > That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section).
@@ -24,16 +24,7 @@ Possible Expansion: has affection for each group member based on how much work t
 ### Highlights
 
 - We went through different iterations of our original idea.
-- For each idea,
-
-YOUR ANSWER GOES HERE ...
-
-Specify 3 - 5 key decisions and/or insights that came up during your meetings
-and/or collaborative process.
-
- * Short (5 min' read max)
- * Decisions can be related to the product and/or the team process.
-    * Mention which alternatives you were considering.
-    * Present the arguments for each alternative.
-    * Explain why the option you decided on makes the most sense for your team/product/users.
- * Essentially, we want to understand how (and why) you ended up with your current product plan.
+- For each idea, we identified potential problems and ideas which have already been implemented, which allowed us to eliminate majority of the ideas on our list.
+- We finally decided to "gamify" our productivity idea that we had earlier and
+think that it would be a fun project to do since most of us like playing games
+and find it difficult to stay productive. So there would be a target audience for it.
