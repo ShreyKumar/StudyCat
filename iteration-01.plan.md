@@ -1,7 +1,5 @@
 # StudyCat
 
- > _Note:_ This document is meant to be written during (or shortly after) your initial planning meeting.     
- > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
 
 
 ## Iteration 01
@@ -24,13 +22,7 @@ Online meeting - Very productive meeting discussing potential ideas with team me
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to organize your team.       
-
- * Artifacts can be To-do lists, Task boards, schedule(s), etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
+(No specific team organizational details as of now, since our main goal was to decide on which idea to implement to meet the deliverable deadline). In the future, we may potentially use Github Projects to organize our workflow.
 
 
 ## Product
