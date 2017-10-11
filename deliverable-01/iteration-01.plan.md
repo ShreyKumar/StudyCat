@@ -1,7 +1,5 @@
 # StudyCat
 
-
-
 ## Iteration 01
 
  * Start date: 2nd October 2018
@@ -13,11 +11,11 @@ Quick introduction and brief overview of potential project ideas.
 
 #### Roles & responsibilities
 
-Describe the different roles on the team and the responsibilities associated with each role.
+No specific roles and responsibilities assigned for this stage.
 
 #### Events
 
-Online meeting - Very productive meeting discussing potential ideas with team members.
+Online meeting - Discussing potential ideas with team members.
 
 
 #### Artifacts
@@ -35,6 +33,6 @@ Online meeting - Very productive meeting discussing potential ideas with team me
 
 #### Artifacts
 
-"product.md" file which shows
-"ideas.txt" file that shows meeting notes and our original 6 ideas compiled
-when we met earlier
+"product.md" - our final project idea
+"ideas.txt" - shows meeting notes and our original 6 ideas compiled
+of when we met earlier
