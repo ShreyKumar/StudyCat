@@ -5,17 +5,17 @@
 
 #### Q1: What are you planning to build?
 
-Raise a cartoon cat, based on how much productivity you do. The more you procrastinate the less healthy the cat gets.
+An app to help increase productivity by gamifying productive work. The idea is that you raise a cartoon cat, based on how much productivity you do. We will categorize programs and websites as productive or unproductive. The more you use or visit something categorized as unproductive, the cat will lose affection for you and become sad. On the other hand when there is a lot of productive work done, the reward will be the increased affection and happiness of the cat. 
 
 #### Q2: Who are your target users?
 
-Anyone who wants to be productive with their computer. (i.e. Students, office workers)
+The target user would be anyone who wants to be productive with their at their computer and would benefit from having a fun way to help track of their productivity. (i.e. Students, office workers). 
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
 The product gets instant feedback in a "cute" way so the cat will feel an emotional drive to keep the cat healthy.
 This would also attract people who love playing video games as it would "gamify" productivity.
-Possible Expansion: has affection for each group member based on how much work they do.
+Possible Expansion: Allow for teams to raise a cat which will have different levels of affection to each team member depending on how much work they have done.
 
 
 
@@ -28,3 +28,6 @@ Possible Expansion: has affection for each group member based on how much work t
 - We finally decided to "gamify" our productivity idea that we had earlier and
 think that it would be a fun project to do since most of us like playing games
 and find it difficult to stay productive. So there would be a target audience for it.
+
+----
+![](blep.png)
