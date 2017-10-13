@@ -34,5 +34,5 @@ Online meeting - Discussing potential ideas with team members.
 #### Artifacts
 
 "product.md" - our final project idea
-"ideas.txt" - shows meeting notes and our original 6 ideas compiled
-of when we met earlier
+"ideas.txt" - our original 6 ideas compiled
+"meeting_notes.txt" - shows meeting notes of our brainstorming session for ideas

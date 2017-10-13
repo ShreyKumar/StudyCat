@@ -1,0 +1,31 @@
+Potential Ideas:
+	Mobile App:
+		Course path calculator
+Plans the best lecture slots of courses with the least downtime or least walk time
+
+Courseography App
+Breadth planner
+Based on the breadths they need in the future, gives them potential breadth sources
+Like the existing Courseography website but for every program
+
+Resume Planner
+Feature based
+Parser
+Resume builder
+		
+		Nutrition Planner App
+			Input your groceries
+				-output what you can cook, 
+				-what you’re missing
+				-and shit
+				-calories
+
+Ebay for Artists
+Commissions for artists
+Secure place
+
+		Job Helper
+		Pinyin expander
+		
+
+		Get started v2
