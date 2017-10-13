@@ -7,7 +7,7 @@
 
 ## Process
 
-Quick introduction and brief overview of potential project ideas.
+Quick introduction and brief overview of potential project ideas. A vote took place to decide on the final idea.
 
 #### Roles & responsibilities
 
@@ -16,6 +16,7 @@ No specific roles and responsibilities assigned for this stage.
 #### Events
 
 Online meeting - Discussing potential ideas with team members.
+Vote - Ranking vote to discuss and decide on the final idea for the project. Each member ranks the ideas they like from 1 to 6, then we take the most popular ranking as the final idea.
 
 
 #### Artifacts
@@ -34,5 +35,5 @@ Online meeting - Discussing potential ideas with team members.
 #### Artifacts
 
 "product.md" - our final project idea
-"ideas.txt" - shows meeting notes and our original 6 ideas compiled
-of when we met earlier
+"ideas.txt" - our original 6 ideas compiled
+"meeting_notes.txt" - shows meeting notes of our brainstorming session for ideas
