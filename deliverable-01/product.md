@@ -15,6 +15,7 @@ The target user would be anyone who wants to be productive with their at their c
 
 The product gets instant feedback in a "cute" way so the cat will feel an emotional drive to keep the cat healthy.
 This would also attract people who love playing video games as it would "gamify" productivity.
+Currently there are a lot of apps geared towards improving productivity, which range from todo lists to full fledged games. One such application is RescueTime, which tracks how much time is spent using productive / unproductive programs and gives a "productivity pulse" which is a rating out of 100. 
 Possible Expansion: Allow for teams to raise a cat which will have different levels of affection to each team member depending on how much work they have done.
 
 
