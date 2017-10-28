@@ -11,6 +11,6 @@
     "activeTab"
   ],
   "background": {
-    "scripts": ["main.js"]
+    "scripts": ["monitor.js"]
   }
 }
