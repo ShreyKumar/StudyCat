@@ -1,0 +1,16 @@
+DesktopApp
+	Super structure application which handles communication between our many other processes.
+
+	Must update our application's information and display it.
+		f1 = update Gui
+		f2 = update Cat
+	
+	Must set up server endpoints in the future to communicate with extension and server.
+
+Cat
+	Must store all relevant information in regards to our pet.
+
+	- cat productivity state.
+	- cat type
+	- cat level?
+
