@@ -10,11 +10,13 @@ app.use(body_parser.json());
 
 app.post('/get_data', function(req, res) {
 	if (!app.cnt) app.cnt = 0
+	
 	var user_name = req.body.user
+	
 	if (!user_name)
 		res.status(400).send("no_username")
-
-  	res.status(200).send("" + app.cnt++%5);
+	else
+  		res.status(200).send("" + app.cnt++%5);
 });
 
 
