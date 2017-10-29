@@ -3,12 +3,18 @@ const express = require('express');
 const body_parser = require("body-parser");
 const app = express();
 
+
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 
 
-app.post('/send_data', function(req, res) {
-  	res.send('{"Test": "Test"}\n');
+app.post('/get_data', function(req, res) {
+	if (!app.cnt) app.cnt = 0
+	var user_name = req.body.user
+	if (!user_name)
+		res.status(400).send("no_username")
+
+  	res.status(200).send("" + app.cnt++%5);
 });
 
 
