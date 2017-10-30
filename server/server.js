@@ -44,20 +44,20 @@ app.get('/get_data', function(req, res) {
 app.post('/input_data', function(req, res) {
 	var user_name = req.body.user
 
-	var processes = req.body.processes
+	var proc = req.body.proc
 	if (!has_user(user_name)){
 		res.status(400).send("no_such_username")
 		return
 	}
-	app.user_to_data.user_name = processes
-	console.log(user_name, processes)
+	app.user_to_data.user_name = proc
+	console.log(user_name, proc)
 
 	var response_string = ""
 	if (!user_name)
 		response_string += "no user name"
 
-	if (!processes)
-		response_string += "\nprocesses invalid"
+	if (!proc)
+		response_string += "\nproc invalid"
 	
 	if (response_string != "")
 		res.status(400).send(response_string)
