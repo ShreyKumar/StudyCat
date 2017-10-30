@@ -48,7 +48,9 @@ app.get('/get_data', function(req, res) {
   		res.status(200).send(app.user_to_data.user_name)
 })
 
-
+app.get("/currentuser", function(req, res){
+	res.send(app.users);
+})
 
 app.post('/input_data', function(req, res) {
 	var user_name = req.body.user
