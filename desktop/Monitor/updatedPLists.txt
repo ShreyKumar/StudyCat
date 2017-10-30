@@ -1,0 +1,5 @@
+firefox.exe
+Discord.exe
+chrome.exe
+notepad++.exe,notepad.exe
+pycharm.exe
