@@ -56,3 +56,9 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Ignores python compiled files.
+*.pyc
+
+# Ignores idea folder.
+.idea/*
