@@ -13,6 +13,9 @@ class DesktopApp():
         self.panel = Label(self.root, image=img)
         self.panel.pack(side="bottom", fill="both", expand="yes")
 
+        self.label = Label(self.root, text="Happiness: " + str(self.cat.getState()))
+        self.label.pack(side="bottom", fill="both", expand="yes")
+
         self.update()
         self.updateLoop(-1)
         self.root.mainloop()
@@ -20,9 +23,13 @@ class DesktopApp():
 
     def update(self):
         img = ImageTk.PhotoImage(self.cat.getImage().resize((250, 250), Image.ANTIALIAS))
+        text = "Happiness: " + str(self.cat.getState())
 
         self.panel.configure(image = img)
         self.panel.image = img
+
+        self.label.configure(text = text)
+        self.label.text = text
 
         self.root.after(1000, self.update)
 
