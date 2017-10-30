@@ -10,9 +10,9 @@ app.use(body_parser.json());
 
 app.post('/get_data', function(req, res) {
 	if (!app.cnt) app.cnt = 0
-	
+
 	var user_name = req.body.user
-	
+
 	if (!user_name)
 		res.status(400).send("no_username")
 	else
@@ -35,11 +35,12 @@ app.post('/input_data', function(req, res) {
 
 	if (!processes)
 		response_string += "processes invalid"
-	
-	if (response_string != "")
+
+	if (response_string != "") {
 		res.status(400).send(response_string)
-	else
+	} else {
 		res.status(200).send("successful")
+	}
 });
 
 
