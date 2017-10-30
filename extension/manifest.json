@@ -11,6 +11,6 @@
     "activeTab"
   ],
   "background": {
-    "scripts": ["monitor.js"]
+    "scripts": ["import/jquery.min.js", "monitor.js"]
   }
 }
