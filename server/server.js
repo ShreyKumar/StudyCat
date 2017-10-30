@@ -1,48 +1,70 @@
-const port = 3000;
-const express = require('express');
-const body_parser = require("body-parser");
-const app = express();
+const PORT = 3000
+const express = require('express')
+const body_parser = require("body-parser")
+const app = express()
 
 
-app.use(body_parser.urlencoded({ extended: false }));
-app.use(body_parser.json());
+app.use(body_parser.urlencoded({ extended: false }))
+app.use(body_parser.json())
+app.users = []
+app.user_to_data = {}
 
-
-app.post('/get_data', function(req, res) {
-	if (!app.cnt) app.cnt = 0
-
+app.post('/login', function(req, res){
 	var user_name = req.body.user
+	if (user_name && !has_user(user_name)){
+		app.users.push(user_name)
+		res.status(200).send("Success")
+	} else {
+		var str = !user_name ? "argument: user=string" : "user exists"
+		res.status(400).send(str)
+	}
 
-	if (!user_name)
-		res.status(400).send("no_username")
+	console.log(app.users)
+
+})
+
+
+function has_user(user_name){
+	return app.users.indexOf(user_name) != -1
+}
+
+app.get('/get_data', function(req, res) {
+
+	var user_name = req.headers.user
+	if (!has_user(user_name))
+		res.status(400).send("argument: user=string")
+	else if (!app.user_to_data.user_name)
+		res.status(400).send("no user data")
 	else
-  		res.status(200).send("" + app.cnt++%5);
-});
+  		res.status(200).send(app.user_to_data.user_name)
+})
 
 
 
 app.post('/input_data', function(req, res) {
 	var user_name = req.body.user
 
-	var processes = req.body.processes
+	var proc = req.body.proc
+	if (!has_user(user_name)){
+		res.status(400).send("no_such_username")
+		return
+	}
+	app.user_to_data.user_name = proc
+	console.log(user_name, proc)
 
-	console.log(user_name)
-
-	console.log(processes)
 	var response_string = ""
 	if (!user_name)
 		response_string += "no user name"
 
-	if (!processes)
-		response_string += "processes invalid"
+	if (!proc)
+		response_string += "\nproc invalid"
 
-	if (response_string != "") {
+	if (response_string != "")
 		res.status(400).send(response_string)
-	} else {
+	else
 		res.status(200).send("successful")
-	}
-});
+})
 
 
-app.listen(port);
-console.log('Listening on port '+port);
+app.listen(PORT)
+console.log('Listening on port '+PORT)
