@@ -1,7 +1,8 @@
 from Tkinter import *           # Importing the Tkinter (tool box) library
+
 from PIL import ImageTk, Image
 
-from desktop.Cat import Cat
+from Cat import Cat
 
 
 class DesktopApp():
@@ -9,11 +10,13 @@ class DesktopApp():
         self.root = Tk()
         self.cat = Cat()
 
+        self.root.overrideredirect(1)
+
         img = ImageTk.PhotoImage(self.cat.getImage().resize((250, 250), Image.ANTIALIAS))
         self.panel = Label(self.root, image=img)
         self.panel.pack(side="bottom", fill="both", expand="yes")
 
-        self.label = Label(self.root, text="Happiness: " + str(self.cat.getState()))
+        self.label = Label(self.root, text="Happiness: " + str(self.cat.getState()), fg=self.cat.getText())
         self.label.pack(side="bottom", fill="both", expand="yes")
 
         self.update()
@@ -28,7 +31,7 @@ class DesktopApp():
         self.panel.configure(image = img)
         self.panel.image = img
 
-        self.label.configure(text = text)
+        self.label.configure(text = text, fg = self.cat.getText())
         self.label.text = text
 
         self.root.after(1000, self.update)
@@ -53,4 +56,5 @@ class DesktopApp():
 
         self.root.after(100, self.updateLoop, change)
 
-
+if __name__ == '__main__':
+    app = DesktopApp()
