@@ -1,6 +1,6 @@
 var admin = require("firebase-admin");
 
-var serviceAccount = require("serviceAccountKey.json");
+var serviceAccount = require("config.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -9,3 +9,5 @@ admin.initializeApp({
 
 // Get a reference to the database service
 var database = admin.database();
+
+module.exports = database;
