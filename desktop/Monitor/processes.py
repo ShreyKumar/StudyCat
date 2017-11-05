@@ -1,4 +1,4 @@
-import wmi, time, datetime
+	import wmi, time, datetime
 from enum import Enum
 c = wmi.WMI ()
 
