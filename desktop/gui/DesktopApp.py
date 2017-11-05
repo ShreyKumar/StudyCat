@@ -23,7 +23,6 @@ class DesktopApp():
         self.updateLoop(-1)
         self.root.mainloop()
 
-
     def update(self):
         img = ImageTk.PhotoImage(self.cat.getImage().resize((250, 250), Image.ANTIALIAS))
         text = "Happiness: " + str(self.cat.getState())
