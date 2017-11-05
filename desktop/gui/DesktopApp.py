@@ -1,4 +1,4 @@
-from Tkinter import *           # Importing the Tkinter (tool box) library
+from tkinter import *           # Importing the Tkinter (tool box) library
 
 from PIL import ImageTk, Image
 

@@ -14,13 +14,13 @@ class Cat:
         self.state = newState
 
     def getText(self):
-        index = self.state / (100 / len(self.catStates))
+        index = int(self.state / (100 / len(self.catStates)))
         return self.catText[index]
 
     def getImage(self):
-        index = self.state/(100 / len(self.catStates))
-        print self.state
-        print index
+        index = int(self.state/(100 / len(self.catStates)))
+        print(self.state)
+        print(index)
         path = self.catStates[index]
         image = Image.open(path)
         return image
