@@ -1,8 +1,5 @@
-     
-var firebase = require("firebase");
-
-function signUp(email, password) {
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+function sign_up(firebase, email, password) {
+  var user = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -13,10 +10,11 @@ function signUp(email, password) {
     }
     console.log(error);
   });
+  return user;
 }
 
-function signIn(email, password) {
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+function sign_in(firebase, email, password) {
+  var user = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -28,9 +26,10 @@ function signIn(email, password) {
   }
   console.log(error);
   });
+  return user;
 }
 
-function signOut() {
+function sign_out(firebase) {
   firebase.auth().signOut().then(function() {
   // Sign-out successful.
   }).catch(function(error) {
@@ -38,7 +37,7 @@ function signOut() {
   });
 }
 
-//Update App
+//dont need atm i think
 function signInListener() {
   // Listening for auth state changes.
   firebase.auth().onAuthStateChanged(function(user) {
@@ -59,3 +58,7 @@ function signInListener() {
   });
 
 }
+
+exports.sign_up = sign_up
+exports.sign_out = sign_out
+exports.sign_in = sign_in
