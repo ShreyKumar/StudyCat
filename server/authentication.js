@@ -1,6 +1,6 @@
     
 var firebase = require("firebase");
- 
+
 function signUp(email, password) {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
@@ -15,18 +15,18 @@ function signUp(email, password) {
   });
 }
 
-function signIn(femail, password) {
+function signIn(email, password) {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
   
   if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
-          } else {
-            alert(errorMessage);
-          }
-          console.log(error);
+    alert('Wrong password.');
+  } else {
+    alert(errorMessage);
+  }
+  console.log(error);
   });
 }
 

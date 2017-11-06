@@ -6,20 +6,13 @@ const app = express()
 
 app.use(body_parser.urlencoded({ extended: false }))
 app.use(body_parser.json())
-app.users = []
-app.user_to_data = {}
 
 app.post('/login', function(req, res){
-	var user_name = req.body.user
-	if (user_name && !has_user(user_name)){
-		app.users.push(user_name)
-		res.status(200).send("Success")
-	} else {
-		var str = !user_name ? "argument: user=string" : "user exists"
-		res.status(400).send(str)
-	}
+	var username = req.body.user
+	var password = req.body.password
 
-	console.log(app.users)
+
+
 	
 })
 
