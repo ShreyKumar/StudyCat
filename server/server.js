@@ -6,8 +6,11 @@ const app = express()
 
 app.use(body_parser.urlencoded({ extended: false }))
 app.use(body_parser.json())
+
+//This section are basic live data fields.
 app.users = []
 app.user_to_data = {}
+
 
 app.post('/login', function(req, res){
 	var user_name = req.body.user
