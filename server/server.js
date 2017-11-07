@@ -35,8 +35,9 @@ firebase.initializeApp(config);
 //---------------------------------------------
 
 
-
-//Signup endpoint
+//---------------------------------------------
+//Login endpoints
+//---------------------------------------------
 app.post('/sign_up', function(req, res){
 	var username = req.headers.user
 	var password = req.headers.password
@@ -139,5 +140,49 @@ app.post('/input_data', function(req, res) {
 
 
 })
+
+//---------------------------------------------
+
+//---------------------------------------------
+//Database endpoints
+//---------------------------------------------
+
+var database = firebase.database();
+
+
+app.post("/write_database", function(req, res) {
+	var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+	var data = req.body.data;
+
+	if (user_name && data) { // assume valid
+		database.ref("users").child(user_name).set(data).then(function() {
+			res.status(200).send("data sent");
+		});
+	} else {
+		res.status(400).send("null username and data")
+	}
+
+});
+
+app.get("/read_database", function(req, res) {
+	var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+	var data;
+
+	if (user_name) {
+		firebase.database().ref("/users/" + user_name).once("value").then(function(snapshot) {
+			if (snapshot == null) {
+				res.status(404).send("no data to read")
+			} else {
+				data = snapshot.val();
+				res.status(200).send(data);
+			}
+		})
+	} else {
+		res.status(400).send("null username")
+	}
+	
+})
+
+//---------------------------------------------
 
 
