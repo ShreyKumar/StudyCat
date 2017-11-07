@@ -2,24 +2,45 @@ import requests
 import datetime
 base_url = 'http://localhost:3000/'
 
-class User():
+class Client():
 
-	# model : DesktopModel
-	def __init__(self, model):
-		self._model = model
+	# model : UserModel
+	# data : TODO determine what data to send to server.. (probably a combination of Cat and Process)
+	def __init__(self, usermodel):
+		self._model = usermodel
 
 	def postDataToServer(self):
-		r = requests.post(base_url + '/input_data', data={ 'user': self._model.user(), 
+
+		if (self._model.auth() is None):
+			print("YOU MUST GET AN AUTH KEY BEFORE USING postDataToServer")
+			return
+
+		r = requests.post(base_url + '/input_data', data={ 'user': self._model.user(), 'auth': self._model.auth()
 			'process': self._model.active() })
+
 		print(r.status_code)
 		print(r.body)	
 
+	# TODO: find out what we should expect from the server
 	def getDataFromServer(self):
-		r = request.get(base_url + '/get_data', headers={ 'user': self.model.user() })
+
+		if (self._model.auth() is None):
+			print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
+			return
+
+		r = request.get(base_url + '/get_data', headers={ 'user': self.model.user(), 'auth': self._model.auth() })
+
 		print(r.status_code)
 		print(r.body)
 
+	# Recieve a code to use as authentication
 	def login(self):
-		r = request.post(base_url + '/login', headers={ 'user': self.model.user() })
+
+		if (self._model.auth() is not None): 
+			print("YOU CANT LOGIN TWICE STUPID")
+			return
+
+		r = request.post(base_url + '/login', headers={ 'user': self.model.user(), 'pass': self.user.password() })
 		print(r.status_code)
 		print(r.body)
+		self._model.setAuth(r.body.auth)
