@@ -10,8 +10,9 @@ from time import sleep
 
 from threading import Thread
 
-class CatDisplay:
+class CatDisplay(Frame):
     def __init__(self, master, cat):
+        Frame.__init__(self, master)
         self.root = master
         self.cat = cat
         img = ImageTk.PhotoImage(self.cat.getImage().resize((250, 250), Image.ANTIALIAS))

@@ -6,7 +6,7 @@ from alt_processes import *
 
 class Application(Frame):
 
-    def __init__(self, productivityList, master=None):
+    def __init__(self, productivityList, master):
         super().__init__(master)
         self.pack()
         self.currEXE = StringVar()
