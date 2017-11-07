@@ -11,7 +11,7 @@ function generate_auth_key(){
 		str += this.fixedstr[n]
 	}
 
-	return "1"
+	return str
 }
 
 
