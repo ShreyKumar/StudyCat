@@ -18,6 +18,8 @@ $(function(){
   var isLoggedIn = false;
 
   var loggedInUser;
+  /*
+
   setInterval(function(){
     $.get("/currentuser", function(data){
       if(data.users.length != 0){
@@ -39,6 +41,7 @@ $(function(){
     }
   }, 60 * 1000);
 
+  */
 
 
 
