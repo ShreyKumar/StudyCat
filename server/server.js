@@ -26,7 +26,7 @@ app.use(body_parser.json())
 app.post('/sign_up', function(req, res){
 	var username = req.body.user
 	var password = req.body.password
-
+	
 	if (username && password) {
 		try {
 			var firebase_data = auth.sign_up(firebase, username, password)

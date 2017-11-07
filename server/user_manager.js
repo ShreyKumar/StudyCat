@@ -24,7 +24,8 @@ function user(username, firebase_data){
 		username: username
 		chrome_data: null,
 		process_data: null,
-		current_cat_state: null
+		current_cat_state: null,
+		database_updated: true
 	}
 
 	this.update_data = function(chrome_data, process_data, current_cat_state){
@@ -46,8 +47,8 @@ module.exports = {
 	data_container: {},
 	
 	get_user: function(username, firebase_data){
-		if (data_container[username] === undefined){
-			if (firebase_data === undefined)
+		if (!data_container[username]){
+			if (!firebase_data)
 				throw "no user found"
 			data_container[username] = new user(username, firebase_data)
 		}
