@@ -1,8 +1,10 @@
-from win32gui import GetWindowText, GetForegroundWindow
-from win32process import GetWindowThreadProcessId
+import datetime
 from time import sleep
+
 from psutil import Process
-import wmi, time, datetime
+from win32gui import GetForegroundWindow
+from win32process import GetWindowThreadProcessId
+
 sleeptime = 3
 
 #veryUnproductive["LeagueClient.exe"]#0

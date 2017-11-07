@@ -1,7 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from tkinter.filedialog import *
-from alt_processes import *
 
 
 class Application(Frame):
