@@ -65,10 +65,12 @@ app.get('/get_data', function(req, res) {
 	var authkey = req.headers.authkey
 	try {
 		var user = user_manager.get_user(user_name)
-		if (user.authkey == authkey)
+		if (user.authkey == authkey){
 			return user.get_data()
-		else
+		}
+		else{
 			res.status(400).send("wrong or missing authkey")
+		}
 	} catch (e){
 		res.status(400).send("error")
 	}
@@ -93,7 +95,7 @@ app.post('/input_data', function(req, res) {
 	try {
 		var user = user_manager.get_user(user_name)
 		if (user.authkey == authkey){
-			user_manager.update_data()
+			user_manager.update_data(chrome_data, process_data, current_cat_state)
 		}
 		else{
 			res.status(400).send("wrong authkey for username")
