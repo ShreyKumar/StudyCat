@@ -4,29 +4,22 @@ base_url = 'http://localhost:3000/'
 
 class User():
 
-	_record = []
-	active = None
-
-	def __init__(self, user_id):
-		record = [-1] * 5
-		self.user_id = user_id
-
-	def getActive(self):
-		return active
-	
-	def updateRecord(self, index, timestamp):
-		if record[index] == -1:
-			record[index] = datetime.datetime.now - timestamp
-		else:
-			record[index] += datetime.datetime.now - timestamp
-
-	def getRecord(self):
-		return _record
+	# model : DesktopModel
+	def __init__(self, model):
+		self._model = model
 
 	def postDataToServer(self):
-		r = requests.post(base_url + '/input_data', data={ 'user': self.user_id })
-		print(r.status_code)	
+		r = requests.post(base_url + '/input_data', data={ 'user': self._model.user(), 
+			'process': self._model.active() })
+		print(r.status_code)
+		print(r.body)	
 
 	def getDataFromServer(self):
-		pass
+		r = request.get(base_url + '/get_data', headers={ 'user': self.model.user() })
+		print(r.status_code)
+		print(r.body)
 
+	def login(self):
+		r = request.post(base_url + '/login', headers={ 'user': self.model.user() })
+		print(r.status_code)
+		print(r.body)

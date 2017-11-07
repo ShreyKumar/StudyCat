@@ -1,6 +1,6 @@
 """
 This recipe describes how to handle asynchronous I/O in an environment where
-you are running Tkinter as the graphical user interface. Tkinter is safe
+you are running tkinter as the graphical user interface. tkinter is safe
 to use as long as all the graphics commands are handled in a single thread.
 Since it is more efficient to make I/O channels to block and wait for something
 to happen rather than poll at regular intervals, we want I/O to be handled
@@ -12,11 +12,11 @@ but they add a lot of complexity to the application.
 
 Created by Jacob Hallen, AB Strakt, Sweden. 2001-10-17
 """
-import Tkinter
+import tkinter
 import time
 import threading
 import random
-import Queue
+import queue
 
 from PIL import ImageTk, Image
 
@@ -32,10 +32,10 @@ class GuiPart:
         master.overrideredirect(1)
 
         # Set up the GUI
-        console = Tkinter.Button(master, text='Done', command=endCommand)
+        console = tkinter.Button(master, text='Done', command=endCommand)
         img = self.cat.getImage()
-        self.panel = Tkinter.Label(master, image=img)
-        self.label = Tkinter.Label(master, text="Happiness: " + str(self.cat.getState()), fg=self.cat.getText())
+        self.panel = tkinter.Label(master, image=img)
+        self.label = tkinter.Label(master, text="Happiness: " + str(self.cat.getState()), fg=self.cat.getText())
 
         # Pack.
         self.panel.pack(side="top", fill="both", expand="yes")
@@ -61,8 +61,8 @@ class GuiPart:
                 msg = self.queue.get(0)
                 # Check contents of message and do what it says
                 # As a test, we simply print it
-                print msg
-            except Queue.Empty:
+                print(msg)
+            except queue.Empty:
                 pass
 
         self.update()
@@ -83,7 +83,7 @@ class ThreadedClient:
         self.master = master
 
         # Create the queue
-        self.queue = Queue.Queue()
+        self.queue = queue.Queue()
 
         # Set up the GUI part
         self.gui = GuiPart(master, self.queue, self.endApplication)
@@ -91,7 +91,7 @@ class ThreadedClient:
         # Set up the thread to do asynchronous I/O
         # More can be made if necessary
         self.running = 1
-    	self.thread1 = threading.Thread(target=self.workerThread1)
+        self.thread1 = threading.Thread(target=self.workerThread1)
         self.thread1.start()
 
         # Start the periodic call in the GUI to check if the queue contains
@@ -129,7 +129,7 @@ class ThreadedClient:
         self.running = 0
 
 rand = random.Random()
-root = Tkinter.Tk()
+root = tkinter.Tk()
 
 client = ThreadedClient(root)
 root.mainloop()
