@@ -36,7 +36,7 @@ firebase.initializeApp(config);
 
 
 //---------------------------------------------
-//Login endpoints
+//User
 //---------------------------------------------
 app.post('/sign_up', function(req, res){
 	var username = req.headers.user
