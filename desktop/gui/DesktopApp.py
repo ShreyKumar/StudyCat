@@ -10,6 +10,11 @@ from threading import Thread
 
 from Monitor import display
 
+from Monitor import UserModel
+
+from Monitor.client import Client
+
+
 class Cat:
     def __init__(self):
         self.state = 50
@@ -31,12 +36,12 @@ class Cat:
         index = int(self.state/(100 / len(self.catStates)))
         return self.catStates[index]
 
-
 class CatDisplay(Frame):
     def __init__(self, master, cat):
         Frame.__init__(self, master)
         self.root = master
         self.cat = cat
+
         img = self.cat.getImage()
         self.panel = Label(self, image=img)
         self.panel.pack(side="bottom", fill="both", expand="yes")
@@ -62,6 +67,7 @@ class DesktopApp:
     def __init__(self):
         self.root = Tk()
         self.cat = Cat()
+        self.user = None;
 
         container = Frame(self.root)
         container.pack(side="top", fill="both", expand=True)
@@ -73,7 +79,6 @@ class DesktopApp:
 
         self.GUI.grid(row=0,column=0,stick="nsew");
         #self.display.grid(row=0,column=0,stick="nsew");
-
         #self.display.tkraise()
         #self.root.overrideredirect(1)
 
@@ -81,6 +86,10 @@ class DesktopApp:
         self.running = 1
         self.thread1 = Thread(target=self.monitorProcesses)
         self.thread1.start()
+
+        # Client thread
+        self.thread2 = Thread(target=self.syncWithServer)
+        self.thread2.start()
 
         self.updateAffection()
         self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
@@ -95,6 +104,21 @@ class DesktopApp:
             self.monitor.initVars()
             sleep(2)
             print(self.monitor.pollLatestProcess())
+
+    # PLAINTEXT PASSWORD
+    def login(self, user, password):
+        self.user = UserModel(user, password)
+        self.client = Client(self.user)
+        self.loggedIn = True
+
+    def syncWithServer(self):
+        while self.running:
+            if (loggedIn):
+                # TODO update server
+                print("UPDATING WITH SERVER")
+            else:
+                print("PLEASE LOG IN FIRST")
+            sleep(60)        
 
     def updateAffection(self):
         self.cat.setState(self.monitor.getAffection())
