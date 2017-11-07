@@ -88,7 +88,6 @@ app.get('/get_data', function(req, res) {
 app.post('/input_data', function(req, res) {
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
-	console.log(req.body)
 	var chrome_data = req.body.chrome_data
 	var process_data = req.body.process_data
 	var current_cat_state = req.body.current_cat_state
