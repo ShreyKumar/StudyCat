@@ -23,7 +23,7 @@ app.post('/login', function(req, res){
 	var username = req.body.user
 	var password = req.body.password
 
-	if ((username && password) && (!has_user(username))) {
+	if (username && password) && (!has_user(username)) {
 		var user = auth.sign_up(firebase, username, password)
 		// Do what you want with user i guess
 		res.status(200).send(username)

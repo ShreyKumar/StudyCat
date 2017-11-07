@@ -18,7 +18,7 @@ function sign_in(firebase, email, password) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
-  
+
   if (errorCode === 'auth/wrong-password') {
     alert('Wrong password.');
   } else {
@@ -52,13 +52,17 @@ function signInListener() {
       var providerData = user.providerData;
 
       } else {
-      
+
       }
 
   });
 
 }
 
-exports.sign_up = sign_up
-exports.sign_out = sign_out
-exports.sign_in = sign_in
+function has_user(user_name){
+	return app.users.indexOf(user_name) != -1
+}
+
+module.exports.sign_up = sign_up
+module.exports.sign_out = sign_out
+module.exports.sign_in = sign_in
