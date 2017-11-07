@@ -1,5 +1,6 @@
 import requests
 import datetime
+
 base_url = 'http://localhost:3000/'
 
 class Client():

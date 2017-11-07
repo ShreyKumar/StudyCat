@@ -12,6 +12,10 @@ from threading import Thread
 
 from Monitor import display
 
+from Monitor import Client
+
+from Monitor import UserModel
+
 class CatDisplay(Frame):
     def __init__(self, master, cat):
         Frame.__init__(self, master)
@@ -42,6 +46,7 @@ class DesktopApp:
     def __init__(self):
         self.root = Tk()
         self.cat = Cat()
+        self.user = None;
 
         container = Frame(self.root)
         container.pack(side="top", fill="both", expand=True)
@@ -62,6 +67,10 @@ class DesktopApp:
         self.thread1 = Thread(target=self.monitorProcesses)
         self.thread1.start()
 
+        # Client thread
+        self.thread2 = Thread(target=self.syncWithServer)
+        self.thread2.start()
+
         self.updateAffection()
         self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
         self.root.mainloop()
@@ -75,6 +84,21 @@ class DesktopApp:
             self.monitor.initVars()
             sleep(2)
             print(self.monitor.pollLatestProcess())
+
+    # PLAINTEXT PASSWORD
+    def login(self, user, password):
+        self.user = UserModel(user, password)
+        self.client = Client(self.user)
+        self.loggedIn = True
+
+    def syncWithServer(self):
+        while self.running:
+            if (loggedIn):
+                # TODO update server
+                print("UPDATING WITH SERVER")
+            else:
+                print("PLEASE LOG IN FIRST")
+            sleep(60)        
 
     def updateAffection(self):
         self.cat.setState(self.monitor.getAffection())
