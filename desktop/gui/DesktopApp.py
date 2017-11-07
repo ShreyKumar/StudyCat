@@ -63,14 +63,18 @@ class DesktopApp:
         self.thread1.start()
 
         self.updateAffection()
-
+        self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
         self.root.mainloop()
+
+    def onClosing(self):
+        self.running = 0
+        self.root.destroy()
 
     def monitorProcesses(self):
         while self.running:
             self.monitor.initVars()
             sleep(2)
-            self.GUI.tkraise()
+            print(self.monitor.pollLatestProcess())
 
     def updateAffection(self):
         self.cat.setState(self.monitor.getAffection())
