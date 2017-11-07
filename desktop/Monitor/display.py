@@ -1,14 +1,14 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from tkinter.filedialog import *
-from alt_processes import *
+#from alt_processes import *
 
 
 class Application(Frame):
 
     def __init__(self, productivityList, master):
-        super().__init__(master)
-        self.pack()
+        Frame.__init__(self, master)
+        #self.pack()
         self.currEXE = StringVar()
         self.currEXE.set("")
         self.productivityList = []
@@ -59,7 +59,7 @@ class Application(Frame):
             for list in self.productivityList:
                 f.write(",".join(str(x) for x in list))
 
-        startMonitoring(self.productivityList)
+        #startMonitoring(self.productivityList)
 
 
 if __name__ == "__main__":
