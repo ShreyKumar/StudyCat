@@ -11,17 +11,16 @@ function generate_auth_key(){
 		str += this.fixedstr[n]
 	}
 
-	return str
+	return "1"
 }
 
 
 //Our user class
-function user(username, firebase_data){
+function user(username){
 	
-	this.firebase_data = firebase_data
 	this.authkey = generate_auth_key()
 	this.data = {
-		username: username
+		username: username,
 		chrome_data: null,
 		process_data: null,
 		current_cat_state: null,
@@ -29,11 +28,20 @@ function user(username, firebase_data){
 	}
 
 	this.update_data = function(chrome_data, process_data, current_cat_state){
-		if (chrome_data)
+		cnt = 0
+		if (chrome_data){
 			this.data.chrome_data = chrome_data
-		if (process_data)
+			cnt ++
+		}
+		if (process_data){
 			this.data.process_data = process_data
-		this.data.current_cat_state = current_cat_state
+			cnt ++
+		}
+		if (current_cat_state){
+			this.data.current_cat_state = current_cat_state
+			cnt ++
+		}
+		return cnt
 	}
 
 	this.get_data = function(){
@@ -44,16 +52,17 @@ function user(username, firebase_data){
 
 
 module.exports = {
-	data_container: {},
 	
-	get_user: function(username, firebase_data){
-		if (!data_container[username]){
-			if (!firebase_data)
-				throw "no user found"
-			data_container[username] = new user(username, firebase_data)
+	get_user: function(username){
+		if (!this.data_container)
+			this.data_container = {}
+
+		if (!this.data_container[username]){
+
+			this.data_container[username] = new user(username)
 		}
 
-		return data_container[username]
+		return this.data_container[username]
 	}
 }
 
