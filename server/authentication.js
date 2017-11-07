@@ -3,12 +3,10 @@ function sign_up(firebase, email, password) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    if (errorCode == 'auth/weak-password') {
-      alert('The password is too weak.');
-    } else {
-      alert(errorMessage);
-    }
+    
     console.log(error);
+    throw errorCode
+
   });
   return user;
 }
@@ -16,15 +14,10 @@ function sign_up(firebase, email, password) {
 function sign_in(firebase, email, password) {
   var user = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  
-  if (errorCode === 'auth/wrong-password') {
-    alert('Wrong password.');
-  } else {
-    alert(errorMessage);
-  }
-  console.log(error);
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    
+    throw errorCode
   });
   return user;
 }
