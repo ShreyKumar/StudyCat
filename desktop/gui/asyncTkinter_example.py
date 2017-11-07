@@ -10,7 +10,7 @@ still has to make a poll at a reasonable interval, to check if there is
 something in the queue that needs processing. Other solutions are possible,
 but they add a lot of complexity to the application.
 
-Created by Jacob Hallén, AB Strakt, Sweden. 2001-10-17
+Created by Jacob Hallen, AB Strakt, Sweden. 2001-10-17
 """
 import Tkinter
 import time
@@ -18,13 +18,39 @@ import threading
 import random
 import Queue
 
+from PIL import ImageTk, Image
+
+from Cat import Cat
+
+
 class GuiPart:
     def __init__(self, master, queue, endCommand):
         self.queue = queue
+        self.cat = Cat()
+
+        # Windowless Mode.
+        master.overrideredirect(1)
+
         # Set up the GUI
         console = Tkinter.Button(master, text='Done', command=endCommand)
+        img = self.cat.getImage()
+        self.panel = Tkinter.Label(master, image=img)
+        self.label = Tkinter.Label(master, text="Happiness: " + str(self.cat.getState()), fg=self.cat.getText())
+
+        # Pack.
+        self.panel.pack(side="top", fill="both", expand="yes")
+        self.label.pack(side="top", fill="both", expand="yes")
         console.pack()
-        # Add more GUI stuff here
+
+    def update(self):
+        img = self.cat.getImage()
+        text = "Happiness: " + str(self.cat.getState())
+
+        self.panel.configure(image = img)
+        self.panel.image = img
+
+        self.label.configure(text = text, fg = self.cat.getText())
+        self.label.text = text
 
     def processIncoming(self):
         """
@@ -38,6 +64,9 @@ class GuiPart:
                 print msg
             except Queue.Empty:
                 pass
+
+        self.update()
+
 
 class ThreadedClient:
     """

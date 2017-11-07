@@ -23,7 +23,6 @@ class DesktopApp():
         self.updateLoop(-1)
         self.root.mainloop()
 
-
     def update(self):
         img = ImageTk.PhotoImage(self.cat.getImage().resize((250, 250), Image.ANTIALIAS))
         text = "Happiness: " + str(self.cat.getState())
@@ -33,8 +32,6 @@ class DesktopApp():
 
         self.label.configure(text = text, fg = self.cat.getText())
         self.label.text = text
-
-        self.root.after(1000, self.update)
 
     # temp function for updating the cat's state
     def updateCat(self, change):
