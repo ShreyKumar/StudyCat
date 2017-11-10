@@ -83,7 +83,7 @@ class DesktopApp:
         self.GUI.grid(row=0,column=0,stick="nsew")
         self.mainFrame.grid(row=0,column=0,stick="nsew");
         self.mainFrame.tkraise()
-        #self.root.overrideredirect(1)
+        self.root.overrideredirect(1)
 
         self.monitor = monitor.Monitor(self.productivityList)
         self.running = 0
@@ -96,7 +96,22 @@ class DesktopApp:
 
 
         self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
+        self.root.wm_attributes("-topmost", 1)
+        self.xoffset = 0
+        self.yoffset = 0
+        self.root.bind('<Button-1>',self.clickWindow)
+        self.root.bind('<B1-Motion>',self.dragWindow)
         self.root.mainloop()
+
+
+    def dragWindow(self, event):
+        x = self.root.winfo_pointerx() - self.xoffset
+        y = self.root.winfo_pointery() - self.yoffset
+        self.root.geometry('+{x}+{y}'.format(x=x, y=y))
+
+    def clickWindow(self, event):
+        self.xoffset = event.x
+        self.yoffset = event.y
 
     def startMonitoring(self):
         self.running = 1

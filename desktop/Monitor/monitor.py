@@ -49,7 +49,7 @@ class Monitor:
             self.procName = Process(processID)
         except NoSuchProcess:
             pass
-        
+
     def readList(self, file):
         with open(file) as f:
             lines = f.readlines()
