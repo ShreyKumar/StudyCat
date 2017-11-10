@@ -25,7 +25,7 @@ $(function(){
   })
 
   $("#whitelist .unmark").click(function(){
-
+    //remove this site
   })
 
 
