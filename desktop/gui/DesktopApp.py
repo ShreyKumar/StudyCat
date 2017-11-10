@@ -72,7 +72,7 @@ class DesktopApp:
         self.productivityList = []
         self.readList("./../Monitor/pList.txt")
 
-        container = Frame(self.root)
+        container = Frame(self.root, bd=5, relief=RAISED)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
