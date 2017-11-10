@@ -1,4 +1,4 @@
-firefox.exe
+firefox.exe,DDLC.exe
 Discord.exe
 chrome.exe
 notepad++.exe,notepad.exe

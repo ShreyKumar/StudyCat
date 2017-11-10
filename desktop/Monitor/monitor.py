@@ -14,7 +14,8 @@ class Monitor:
         self.procName = None
         self.prevStamp = None
         self.processLists = []
-        self.readList(listFile)
+        self.processLists = listFile
+        #self.readList(listFile)
         self.modifier = [-5, -2, 1, 2, 5]
         self.affection = 50
 
@@ -43,9 +44,12 @@ class Monitor:
     def initVars(self):
         self.active = GetForegroundWindow()
         self.threadID, processID = GetWindowThreadProcessId(self.active)
-        self.procName = Process(processID)
         self.prevStamp = datetime.datetime.now()
-
+        try:
+            self.procName = Process(processID)
+        except NoSuchProcess:
+            pass
+        
     def readList(self, file):
         with open(file) as f:
             lines = f.readlines()

@@ -16,11 +16,11 @@ class Client:
 			print("YOU MUST GET AN AUTH KEY BEFORE USING postDataToServer")
 			return
 
-		r = requests.post(base_url + '/input_data', data={ 'user': self._model.user(), 'auth': self._model.auth()
+		r = requests.post(base_url + '/input_data', data={ 'user': self._model.user(), 'auth': self._model.auth(),
 			'process': self._model.active() })
 
 		print(r.status_code)
-		print(r.body)	
+		print(r.body)
 
 	# TODO: find out what we should expect from the server
 	def getDataFromServer(self):
@@ -37,7 +37,7 @@ class Client:
 	# Recieve a code to use as authentication
 	def login(self):
 
-		if (self._model.auth() is not None): 
+		if (self._model.auth() is not None):
 			print("YOU CANT LOGIN TWICE STUPID")
 			return
 

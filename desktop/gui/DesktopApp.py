@@ -67,7 +67,10 @@ class DesktopApp:
     def __init__(self):
         self.root = Tk()
         self.cat = Cat()
-        self.user = None;
+        self.user = None
+
+        self.productivityList = []
+        self.readList("./../Monitor/pList.txt")
 
         container = Frame(self.root)
         container.pack(side="top", fill="both", expand=True)
@@ -75,25 +78,33 @@ class DesktopApp:
         container.grid_columnconfigure(0, weight=1)
 
         self.GUI = CatDisplay(container, self.cat)
-        #self.display = display.Application("./../Monitor/pList.txt", container)
+        self.mainFrame = display.MainFrame(container, self.productivityList, self.startMonitoring)
 
-        self.GUI.grid(row=0,column=0,stick="nsew");
-        #self.display.grid(row=0,column=0,stick="nsew");
-        #self.display.tkraise()
+        self.GUI.grid(row=0,column=0,stick="nsew")
+        self.mainFrame.grid(row=0,column=0,stick="nsew");
+        self.mainFrame.tkraise()
         #self.root.overrideredirect(1)
 
-        self.monitor = monitor.Monitor("./../Monitor/pList.txt")
-        self.running = 1
+        self.monitor = monitor.Monitor(self.productivityList)
+        self.running = 0
         self.thread1 = Thread(target=self.monitorProcesses)
-        self.thread1.start()
+
 
         # Client thread
         self.thread2 = Thread(target=self.syncWithServer)
         self.thread2.start()
 
-        self.updateAffection()
+
         self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
         self.root.mainloop()
+
+    def startMonitoring(self):
+        self.running = 1
+        self.updateAffection()
+        self.saveList()
+        self.monitor.processLists = self.productivityList
+        self.thread1.start()
+        self.GUI.tkraise()
 
     def onClosing(self):
         self.running = 0
@@ -118,11 +129,25 @@ class DesktopApp:
                 print("UPDATING WITH SERVER")
             else:
                 print("PLEASE LOG IN FIRST")
-            sleep(60)        
+            sleep(60)
 
     def updateAffection(self):
         self.cat.setState(self.monitor.getAffection())
         self.root.after(5000, self.updateAffection)
+
+    def readList(self, file):
+        with open(file) as f:
+            lines = f.readlines()
+
+        for line in lines:
+            self.productivityList.append(line.strip("\n").split(","))
+        print(self.productivityList)
+
+    def saveList(self):
+        with open("./../Monitor/pList.txt", "w") as f:
+            for processes in self.productivityList:
+                f.write(",".join(processes) + "\n")
+
 
 
 if __name__ == '__main__':
