@@ -1,17 +1,51 @@
 $(function(){
   var whitelist = [];
+  var loggedIn = false;
+  var prefix = "http://localhost:3000";
+  var currentUser = null;
 
-  //check if user is logged in
-  $.get("/user", function(data){
-    if(data.user){
-      $("#signup, #signin").hide();
-      $("#whitelist").show();
-
-    } else {
-      $("#signup, #signin").show();
+  function changeViews(user){
+    console.log(user);
+    if(!user){
+      //not logged in
+      console.log("not logged in");
+      $("#signup, #login").show();
       $("#whitelist").hide();
+    } else {
+      $("#whitelist").show();
+      $("#signup, #login").hide();
+      $("#signup #email, #signup #password, #signup #confirm").val("");
     }
+  }
+
+  changeViews(currentUser);
+
+
+  //signout
+  $("#whitelist #signout").click(function(){
+    $.ajax({
+        url : prefix + '/sign_out',
+        type: 'POST',
+        dataType : "json",
+        success: function(data){
+          currentUser = null;
+          changeViews(currentUser);
+          console.log("Signed out");
+        },
+        error: function(err){
+          if(err.responseText == "Signed out successfully"){
+            currentUser = null;
+            changeViews(currentUser);
+            console.log("Signed out");
+          } else {
+            alert("An error occurred! Check console");
+            console.log(err);
+          }
+        }
+
+      })
   })
+
 
   //get request on current white list here
 
@@ -29,23 +63,56 @@ $(function(){
   })
 
 
-  var email = $("#signup #email");
-  var password = $("#signup #password");
-  var confirm = $("#signup #confirm");
+  var same = false;
+  $("#signup #password, #signup #confirm").keyup(function(){
+    same = $("#signup #password").val() == $("#signup #confirm").val();
+    if(!same){
+      $("#signup #error").text("Passwords do not match!");
+    } else {
+      $("#signup #error").text("");
+    }
 
-  var prefix = "http://localhost:3000"; // change this later when on a live server
+  })
 
-  var msg = $("#signup #error");
+  $("#signup #register").click(function(){
+    var email = $("#signup #email").val();
+    var password = $("#signup #password").val();
 
-  if(password != confirm){
-    msg.text("Passwords do not match");
-  } else {
-    $.post(prefix + "/input_data", {
+    if(same){
+      //send to server
+      $.ajax({
+          url : prefix + '/sign_up',
+          type: 'POST',
+          dataType : "json",
+          headers: {
+            "user": email,
+            "password": password
+          },
+          success: function(data){
+            currentUser = {
+              user: data.user,
+              authkey: data.authkey
+            }
+            changeViews(currentUser);
+            console.log(currentUser);
+          },
+          error: function(err){
+            var msg = err.responseText;
+            console.log(msg);
+            if(msg == "auth/email-already-in-use"){
+              $("#signup #error").text("This email is already taken");
+            } else if(msg == "auth/invalid-email"){
+              $("#signup #error").text("Invalid email");
+            } else if(msg == "auth/weak-password"){
+              $("#signup #error").text("Password must be at least 6 alpha-numeric characters long");
+            } else {
+              $("#signup #error").text("Some other error occurred");
+            }
+          }
 
-    }, function(data){
-      console.log(data);
-    })
-  }
+        })
+    }
+  })
 
 
   var userName = $("#login #email");

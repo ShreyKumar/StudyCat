@@ -32,6 +32,16 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
+//enable cors
+app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type,user,password");
+  next();
+})
+
+
 //---------------------------------------------
 
 
@@ -46,7 +56,11 @@ app.post('/sign_up', function(req, res){
 	if (username && password) { //Assert that these are valid.
 		firebase.auth().createUserWithEmailAndPassword(username, password).then(function (fdata){
 			var person = user_manager.get_user(username, true) //auth promise for person
-			res.status(200).send("sign_up successful " + username)
+			res.status(200).send({
+        msg: "Sign up sucessful",
+        user: username,
+        authkey: person.authkey
+      })
 		}).catch(function(error) {
 		    // Handle Errors here.
 		    var errorCode = error.code;
@@ -88,6 +102,14 @@ app.post('/login', function(req, res){
 	} else {
 		res.status(400).send("null username or password") //error
 	}
+})
+
+app.post("/sign_out", function(req, res){
+  firebase.auth().signOut().then(function(){
+    res.status(200).send("Signed out successfully");
+  }, function(){
+    res.status(400).send(error);
+  })
 })
 
 app.get('/get_data', function(req, res) {
