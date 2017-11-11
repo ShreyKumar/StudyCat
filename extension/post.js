@@ -15,7 +15,31 @@ $(function(){
     } else {
       $("#whitelist").show();
       $("#signup, #login").hide();
+      populateWhiteList();
     }
+  }
+
+  function populateWhiteList(){
+    //read whitelist from server
+    var user = getUser();
+
+    $.ajax({
+        url : prefix + '/get_whitelist',
+        type: 'GET',
+        dataType : "json",
+        headers: {
+          user: user.email
+        },
+        success: function(data){
+          whitelist = data;
+          updateList(whitelist);
+        },
+        error: function(err){
+          console.log(err);
+          console.log("error");
+        }
+
+      })
   }
 
   function setUser(email, key){
@@ -92,6 +116,8 @@ $(function(){
   //get request on current white list here
 
   function updateList(lst){
+    //clear list
+    $("#whitelist .list").text("");
     for(var i = 0; i < lst.length; i++){
       var item = "";
       item += "<div class='list-item'>";
@@ -108,28 +134,23 @@ $(function(){
     //get currently signed in user
     var user = getUser();
 
-    var toSend = {
-      whitelist: lst
-    }
-
     $.ajax({
-        url : prefix + '/write_database',
+        url : prefix + '/update_whitelist',
         type: 'POST',
         dataType : "json",
         headers: {
           "user": user.email
         },
         data: {
-          data: {
-            "whitelist": lst
-          }
+          "whitelist": lst
         },
         success: function(data){
           console.log(data);
         },
         error: function(err){
-          console.log("server error");
-          console.log(err);
+          if(err.responseText == "done"){
+            console.log("finished");
+          }
         }
 
       })

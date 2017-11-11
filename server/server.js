@@ -164,6 +164,38 @@ app.post('/input_data', function(req, res) {
 })
 
 //---------------------------------------------
+// EXTENSION ONLY
+// white list
+app.post("/update_whitelist", function(req, res){
+  var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+  var whitelist = req.body["whitelist[]"];
+
+  console.log(whitelist);
+  firebase.database().ref("users/" + user_name).set({
+    "whitelist": whitelist
+  }).then(function(){
+    res.status(200).send("done");
+  }).catch(function(error){
+    res.status(400).send(error);
+  })
+})
+
+app.get("/get_whitelist", function(req, res){
+  var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+
+  firebase.database().ref("/users/" + user_name).once("value").then(function(snapshot) {
+    if (snapshot == null) {
+      res.status(404).send("no data to read")
+    } else {
+      data = snapshot.val().whitelist;
+      res.status(200).send(data);
+    }
+  })
+
+})
+
+
+//---------------------------------------------
 
 //---------------------------------------------
 //Database endpoints
@@ -182,7 +214,6 @@ app.post("/write_database", function(req, res) {
 		});
 	} else {
 		res.status(400).send("null username and data")
-    console.log(req.body);
 	}
 
 });
