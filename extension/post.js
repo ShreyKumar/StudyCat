@@ -55,7 +55,8 @@ $(function(){
           } else if(err.responseText != "no data to read" && err.status == 200){
             //1 item found
             console.log("1 item");
-            updateList([err.responseText]);
+            whitelist = [err.responseText];
+            updateList(whitelist);
           } else {
             console.log(err);
             console.log("error");
@@ -158,8 +159,31 @@ $(function(){
         $("#whitelist .list").append(item);
 
       }
+
+      //properly add unmark listeners
+      listeners = document.getElementsByClassName("unmark");
+
+      for(var i = 0; i < listeners.length; i++){
+        listeners[i].addEventListener("click", unMark);
+      }
+
+
     }
 
+  }
+
+  function unMark(){
+    var thisItem = $(this).parent().children(".text").text();
+
+    for(var i = 0; i < whitelist.length; i++){
+      if(whitelist[i] == thisItem){
+        whitelist.splice(i, 1);
+        updateList(whitelist);
+        sendServer(whitelist);
+      }
+    }
+
+    //alert("clicked me");
   }
 
   function sendServer(lst){
@@ -206,6 +230,8 @@ $(function(){
 
   $("#whitelist .unmark").click(function(){
     //remove this site
+    console.log("clicked this site");
+    console.log($(this));
   })
 
 
