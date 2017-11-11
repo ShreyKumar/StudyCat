@@ -3,18 +3,36 @@ from PIL import ImageTk, Image
 from tkinter.filedialog import *
 
 white = "#ffffff"
+
+
+class programDisplay(Frame):
+
+    def __init__(self, master):
+        Frame.__init__(self, master, bg=white)
+        self. productivityList = []
+        self.textBox = Label(master, bg=white)
+
+
+
+
+
 class MainFrame(Frame):
 
     def __init__(self, master, productivityList, startCommand):
         Frame.__init__(self, master,bg="#FFB6C1")
         self.startCommand = startCommand
         self.currEXE = StringVar()
-        self.currEXE.set("")
+        self.currEXE.set("No Program Selected")
         self.productivityList = productivityList
         #self.readList(productivityList)
         self.category = StringVar(master)
+
         self.category.set("Neutral")
         self.categories = ["Very Unproductive", "Unproductive", "Neutral", "Productive", "Very Productive"]
+
+        self.programDisplayText = StringVar(master)
+        self.programDisplayText.set("\n".join(self.productivityList[self.categories.index(self.category.get())]))
+
         self.create_widgets()
 
     def readList(self, file):
@@ -36,7 +54,7 @@ class MainFrame(Frame):
         self.selectProgram = Button(self, text="Select Program", command=self.openFile,bg=white)
         self.selectProgram.pack(side="top")
 
-        self.selectCategory = OptionMenu(self, self.category, *self.categories)
+        self.selectCategory = OptionMenu(self, self.category, *self.categories, command=self.updateDisplayedPrograms)
         self.selectCategory.config(bg=white)
         self.selectCategory.pack(side="top")
 
@@ -47,11 +65,19 @@ class MainFrame(Frame):
                                       command=self.startCommand,bg=white)
         self.startMonitoring.pack(side="top")
 
+        self.programDisplay = Label(self, textvariable=self.programDisplayText,bg=white,highlightbackground="#000000",pady=20)
+        self.programDisplay.pack()
+
+    def updateDisplayedPrograms(self, event):
+        self.programDisplayText.set("\n".join(self.productivityList[self.categories.index(self.category.get())]))
+
     def addProgram(self):
 
-        self.productivityList[self.categories.index(self.category.get())].append(self.currEXE.get())
-        print(self.productivityList)
-        self.currEXE.set("No Program Selected")
+        if self.currEXE.get() != "No Program Selected":
+            self.productivityList[self.categories.index(self.category.get())].append(self.currEXE.get())
+            print(self.productivityList)
+            self.currEXE.set("No Program Selected")
+            self.updateDisplayedPrograms(None)
 
     def openFile(self):
         exe = askopenfilename().split("/")

@@ -6,7 +6,7 @@ from Monitor import monitor
 
 from time import sleep
 
-from threading import Thread
+from threading import Thread, Lock
 
 from Monitor import display
 
@@ -37,7 +37,7 @@ class Cat:
         return self.catStates[index]
 
 class CatDisplay(Frame):
-    def __init__(self, master, cat):
+    def __init__(self, master, cat, pauseCommand):
         Frame.__init__(self, master)
         self.root = master
         self.cat = cat
@@ -48,16 +48,20 @@ class CatDisplay(Frame):
 
         self.label = Label(self, text="Happiness: " + str(self.cat.getState()), fg=self.cat.getText())
         self.label.pack(side="bottom", fill="both", expand="yes")
+
+        self.stop = Button(self, text="Stop", command=pauseCommand)
+        self.stop.pack(side="bottom")
+
         self.update()
 
     def update(self):
         img = self.cat.getImage()
-        text = "Happiness: " + str(self.cat.getState())
+        text = "Happiness: " + str(int(self.cat.getState()))
 
-        self.panel.configure(image = img)
+        self.panel.configure(image=img)
         self.panel.image = img
 
-        self.label.configure(text = text, fg = self.cat.getText())
+        self.label.configure(text=text, fg=self.cat.getText())
         self.label.text = text
 
         self.root.after(1000, self.update)
@@ -69,6 +73,9 @@ class DesktopApp:
         self.cat = Cat()
         self.user = None
 
+        self.processLock = Lock()
+        self.processLock.acquire()
+
         self.productivityList = []
         self.readList("./../Monitor/pList.txt")
 
@@ -77,7 +84,7 @@ class DesktopApp:
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        self.GUI = CatDisplay(container, self.cat)
+        self.GUI = CatDisplay(container, self.cat, self.pauseMonitoring)
         self.mainFrame = display.MainFrame(container, self.productivityList, self.startMonitoring)
 
         self.GUI.grid(row=0,column=0,stick="nsew")
@@ -86,13 +93,17 @@ class DesktopApp:
         self.root.overrideredirect(1)
 
         self.monitor = monitor.Monitor(self.productivityList)
-        self.running = 0
+        self.running = 1
+
         self.thread1 = Thread(target=self.monitorProcesses)
+        self.thread1.start()
+
+
 
 
         # Client thread
         self.thread2 = Thread(target=self.syncWithServer)
-        self.thread2.start()
+        #self.thread2.start()
 
 
         self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
@@ -101,6 +112,7 @@ class DesktopApp:
         self.yoffset = 0
         self.root.bind('<Button-1>',self.clickWindow)
         self.root.bind('<B1-Motion>',self.dragWindow)
+
         self.root.mainloop()
 
 
@@ -118,8 +130,14 @@ class DesktopApp:
         self.updateAffection()
         self.saveList()
         self.monitor.processLists = self.productivityList
-        self.thread1.start()
         self.GUI.tkraise()
+        self.processLock.release()
+
+    def pauseMonitoring(self):
+        print("pausing")
+        self.processLock.acquire()
+        #self.running = 0
+        self.mainFrame.tkraise()
 
     def onClosing(self):
         self.running = 0
@@ -127,9 +145,12 @@ class DesktopApp:
 
     def monitorProcesses(self):
         while self.running:
+            self.processLock.acquire()
             self.monitor.initVars()
+            self.processLock.release()
             sleep(2)
             print(self.monitor.pollLatestProcess())
+
 
     # PLAINTEXT PASSWORD
     def login(self, user, password):
@@ -147,8 +168,9 @@ class DesktopApp:
             sleep(60)
 
     def updateAffection(self):
-        self.cat.setState(self.monitor.getAffection())
-        self.root.after(5000, self.updateAffection)
+        if self.running:
+            self.cat.setState(self.monitor.getAffection())
+            self.root.after(5000, self.updateAffection)
 
     def readList(self, file):
         with open(file) as f:
