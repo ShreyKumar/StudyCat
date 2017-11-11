@@ -2,11 +2,9 @@ $(function(){
   var whitelist = [];
   var loggedIn = false;
   var prefix = "http://localhost:3000";
-  //var currentUser = null;
 
-  function changeViews(user){
-    console.log(user);
-    if(!user){
+  function changeViews(){
+    if(localStorage.getItem("user") === null && localStorage.getItem("authkey") === null){
       //not logged in
       console.log("not logged in");
       $("#signup #email, #signup #password, #signup #confirm").val("");
@@ -20,12 +18,48 @@ $(function(){
     }
   }
 
-  //check for localStorage
-  if(typeof(Storage) === "undefined"){
-    alert("Sorry you need to use a more updated version of chrome");
+  function setUser(email, key){
+    //shh, don't tell anyone
+    var encryptedEmail = CryptoJS.AES.encrypt(email, "studycat");
+    var encryptedAuthKey = CryptoJS.AES.encrypt(key, "studycat");
+
+    currentUser = {
+      user: encryptedEmail,
+      authkey: encryptedAuthKey
+    }
+    //change local storage of the user
+
+    localStorage.setItem("user", encryptedEmail);
+    localStorage.setItem("authkey", encryptedAuthKey);
+
+    changeViews();
+    console.log(currentUser);
   }
 
-  changeViews(currentUser);
+  function getUser(){
+    var name = localStorage.getItem("user");
+    var authkey = localStorage.getItem("authkey");
+
+    var decryptedName = CryptoJS.AES.decrypt(name, "studycat");
+    var decryptedKey = CryptoJS.AES.decrypt(authkey, "studycat");
+
+    var userName = decryptedName.toString(CryptoJS.enc.Utf8);
+    var finalKey = decryptedKey.toString(CryptoJS.enc.Utf8);
+
+    var ret = {
+      email: userName,
+      authkey: finalKey
+    }
+
+    return ret;
+  }
+
+  //check for localStorage
+  if(typeof(Storage) === "undefined"){
+    alert("Sorry you need to use a more updated version of chrome to use this extension");
+  }
+
+  changeViews();
 
   //signout
   $("#whitelist #signout").click(function(){
@@ -34,14 +68,16 @@ $(function(){
         type: 'POST',
         dataType : "json",
         success: function(data){
-          currentUser = null;
-          changeViews(currentUser);
+          localStorage.removeItem("user");
+          localStorage.removeItem("authkey");
+          changeViews();
           console.log("Signed out");
         },
         error: function(err){
           if(err.responseText == "Signed out successfully"){
-            currentUser = null;
-            changeViews(currentUser);
+            localStorage.removeItem("user");
+            localStorage.removeItem("authkey");
+            changeViews();
             console.log("Signed out");
           } else {
             alert("An error occurred! Check console");
@@ -68,9 +104,9 @@ $(function(){
     }
   }
 
-  function sendServer(user, lst){
-    var name = user.user;
-    var authkey = user.authkey;
+  function sendServer(lst){
+    //get currently signed in user
+    var user = getUser();
 
     var toSend = {
       whitelist: lst
@@ -81,7 +117,7 @@ $(function(){
         type: 'POST',
         dataType : "json",
         headers: {
-          "user": name
+          "user": user.email
         },
         data: {
           data: {
@@ -107,7 +143,7 @@ $(function(){
       //update list
       updateList(whitelist);
       //send to server
-      sendServer(currentUser, whitelist);
+      sendServer(whitelist);
 
     }
 
@@ -144,12 +180,7 @@ $(function(){
             "password": password
           },
           success: function(data){
-            currentUser = {
-              user: data.user,
-              authkey: data.authkey
-            }
-            changeViews(currentUser);
-            console.log(currentUser);
+            setUser(data.user, data.authkey);
           },
           error: function(err){
             var msg = err.responseText;
@@ -193,12 +224,7 @@ $(function(){
             "password": loginPwd
           },
           success: function(authkey){
-            currentUser = {
-              user: loginEmail,
-              authkey: authkey
-            }
-            changeViews(currentUser);
-            console.log(currentUser);
+            setUser(loginEmail, msg);
           },
           error: function(err){
             var msg = err.responseText;
@@ -210,15 +236,7 @@ $(function(){
             } else if(msg == "auth/weak-password"){
               $("#login .error").text("Password must be at least 6 alpha-numeric characters long");
             } else if(!msg.includes("/")){ //success case
-              currentUser = {
-                user: loginEmail,
-                authkey: msg
-              }
-              //change local storage of the user
-              
-
-              changeViews(currentUser);
-              console.log(currentUser);
+              setUser(loginEmail, msg);
             } else if(msg == "auth/wrong-password"){
               $("#login .error").text("The password you entered is wrong");
             } else {
