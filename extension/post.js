@@ -2,7 +2,7 @@ $(function(){
   var whitelist = [];
   var loggedIn = false;
   var prefix = "http://localhost:3000";
-  var currentUser = null;
+  //var currentUser = null;
 
   function changeViews(user){
     console.log(user);
@@ -20,8 +20,12 @@ $(function(){
     }
   }
 
-  changeViews(currentUser);
+  //check for localStorage
+  if(typeof(Storage) === "undefined"){
+    alert("Sorry you need to use a more updated version of chrome");
+  }
 
+  changeViews(currentUser);
 
   //signout
   $("#whitelist #signout").click(function(){
@@ -51,11 +55,60 @@ $(function(){
 
   //get request on current white list here
 
+  function updateList(lst){
+    for(var i = 0; i < lst.length; i++){
+      var item = "";
+      item += "<div class='list-item'>";
+      item += "<span class='text'>" + lst[i] + "</span>";
+      item += "<a href='#' class='unmark'>Unmark</a>"
+      item += "</div>"
+
+      $("#whitelist .list").append(item);
+
+    }
+  }
+
+  function sendServer(user, lst){
+    var name = user.user;
+    var authkey = user.authkey;
+
+    var toSend = {
+      whitelist: lst
+    }
+
+    $.ajax({
+        url : prefix + '/write_database',
+        type: 'POST',
+        dataType : "json",
+        headers: {
+          "user": name
+        },
+        data: {
+          data: {
+            "whitelist": lst
+          }
+        },
+        success: function(data){
+          console.log(data);
+        },
+        error: function(err){
+          console.log("server error");
+          console.log(err);
+        }
+
+      })
+  }
+
   $("#whitelist .mark").click(function(){
     var site = prompt("Enter your site");
     if(site != ""){
+      //add to whitelist
       whitelist.push(site);
-      //do a post request to the server
+      //update list
+      updateList(whitelist);
+      //send to server
+      sendServer(currentUser, whitelist);
+
     }
 
   })
@@ -161,6 +214,9 @@ $(function(){
                 user: loginEmail,
                 authkey: msg
               }
+              //change local storage of the user
+              
+
               changeViews(currentUser);
               console.log(currentUser);
             } else if(msg == "auth/wrong-password"){

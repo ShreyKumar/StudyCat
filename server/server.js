@@ -182,6 +182,7 @@ app.post("/write_database", function(req, res) {
 		});
 	} else {
 		res.status(400).send("null username and data")
+    console.log(req.body);
 	}
 
 });
