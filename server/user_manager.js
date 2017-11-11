@@ -20,7 +20,7 @@ function generate_auth_key(){
 function user(username){
 	//The auth key
 	this.authkey = generate_auth_key()
-	
+
 	//The data object.
 	this.data = {
 		username: username,
@@ -36,6 +36,8 @@ function user(username){
 		var process_data = data_json.process_data
 		var current_cat_state = data_json.current_cat_state
 		cnt = 0
+		console.log("what user manager recieved");
+		console.log(data_json);
 		if (chrome_data){
 			this.data.chrome_data = chrome_data
 			cnt ++
@@ -60,7 +62,7 @@ function user(username){
 
 
 module.exports = {
-	
+
 	get_user: function(username, init){
 		if (!this.data_container)
 			this.data_container = {}
@@ -76,4 +78,3 @@ module.exports = {
 		return this.data_container[username]
 	}
 }
-

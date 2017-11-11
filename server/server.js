@@ -37,7 +37,7 @@ firebase.initializeApp(config);
 app.use(function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type,user,password");
+  res.header("Access-Control-Allow-Headers", "Content-Type,user,password,authkey");
   next();
 })
 
@@ -144,9 +144,12 @@ app.post('/input_data', function(req, res) {
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
 
-
+  console.log("recieved this from client body:");
+  console.log(req.body);
 	if (user_name && authkey){
 		var user = user_manager.get_user(user_name)
+    console.log("Got user!");
+    console.log(user);
 		if (!user)
 			res.status(400).send("Invalid username")
 		//Assert that the username exists in our list.
