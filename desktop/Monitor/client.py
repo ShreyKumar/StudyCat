@@ -3,45 +3,45 @@ import datetime
 
 base_url = 'http://localhost:3000/'
 
+
 class Client:
+    # model : UserModel
+    # data : TODO determine what data to send to server.. (probably a combination of Cat and Process)
+    def __init__(self, usermodel):
+        self._model = usermodel
 
-	# model : UserModel
-	# data : TODO determine what data to send to server.. (probably a combination of Cat and Process)
-	def __init__(self, usermodel):
-		self._model = usermodel
+    def postDataToServer(self):
 
-	def postDataToServer(self):
+        if (self._model.auth() is None):
+            print("YOU MUST GET AN AUTH KEY BEFORE USING postDataToServer")
+            return
 
-		if (self._model.auth() is None):
-			print("YOU MUST GET AN AUTH KEY BEFORE USING postDataToServer")
-			return
+        r = requests.post(base_url + '/input_data', data={'user': self._model.user(), 'auth': self._model.auth(),
+                                                          'process': self._model.active()})
 
-		r = requests.post(base_url + '/input_data', data={ 'user': self._model.user(), 'auth': self._model.auth(),
-			'process': self._model.active() })
+        print(r.status_code)
+        print(r.body)
 
-		print(r.status_code)
-		print(r.body)
+    # TODO: find out what we should expect from the server
+    def getDataFromServer(self):
 
-	# TODO: find out what we should expect from the server
-	def getDataFromServer(self):
+        if (self._model.auth() is None):
+            print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
+            return
 
-		if (self._model.auth() is None):
-			print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
-			return
+        r = requests.get(base_url + '/get_data', headers={'user': self.model.user(), 'auth': self._model.auth()})
 
-		r = requests.get(base_url + '/get_data', headers={ 'user': self.model.user(), 'auth': self._model.auth() })
+        print(r.status_code)
+        print(r.body)
 
-		print(r.status_code)
-		print(r.body)
+    # Recieve a code to use as authentication
+    def login(self):
 
-	# Recieve a code to use as authentication
-	def login(self):
+        if (self._model.auth() is not None):
+            print("YOU CANT LOGIN TWICE STUPID")
+            return
 
-		if (self._model.auth() is not None):
-			print("YOU CANT LOGIN TWICE STUPID")
-			return
-
-		r = requests.post(base_url + '/login', headers={ 'user': self.model.user(), 'pass': self.user.password() })
-		print(r.status_code)
-		print(r.body)
-		self._model.setAuth(r.body.auth)
+        r = requests.post(base_url + '/login', headers={'user': self.model.user(), 'pass': self.user.password()})
+        print(r.status_code)
+        print(r.body)
+        self._model.setAuth(r.body.auth)
