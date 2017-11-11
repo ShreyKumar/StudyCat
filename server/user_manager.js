@@ -32,15 +32,18 @@ function user(username){
 
 	//Setup update_data
 	this.update_data = function(data_json){
-		var chrome_data = data_json.chrome_data
+		var chrome_data = data_json["chrome_data[]"]
 		var process_data = data_json.process_data
 		var current_cat_state = data_json.current_cat_state
 		cnt = 0
 		console.log("what user manager recieved");
 		console.log(data_json);
 		if (chrome_data){
+			console.log("chrome data is not null");
 			this.data.chrome_data = chrome_data
 			cnt ++
+		} else {
+			console.log("chrome data is null");
 		}
 		if (process_data){
 			this.data.process_data = process_data
