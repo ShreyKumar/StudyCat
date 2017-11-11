@@ -153,8 +153,9 @@ $(function(){
         var item = "";
         item += "<div class='list-item'>";
         item += "<span class='text'>" + lst[i] + "</span>";
-        item += "<a href='#' class='unmark'>Unmark</a>"
-        item += "</div>"
+        item += "<a href='#' class='unmark'>Unmark</a>";
+        item += "<a href='#' class='edit-site'>Edit</a>";
+        item += "</div>";
 
         $("#whitelist .list").append(item);
 
@@ -167,6 +168,12 @@ $(function(){
         listeners[i].addEventListener("click", unMark);
       }
 
+      //properly add edit listeners
+      var editlisteners = document.getElementsByClassName("edit-site");
+
+      for(var i = 0; i < editlisteners.length; i++){
+        editlisteners[i].addEventListener("click", editSite);
+      }
 
     }
 
@@ -212,18 +219,64 @@ $(function(){
       })
   }
 
+  function isURL(url){
+    var isURL = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    var regex = new RegExp(isURL);
+
+    return url.match(regex);
+  }
+
+  function editSite(){
+    var originalSite = $(this).parent().children(".text").text();
+    var site = prompt("Enter your site", originalSite);
+
+    if(site){
+      if(isURL(site)){
+        $("#whitelist .error").text("");
+        
+        //change in whitelist
+        for(var i = 0; i < whitelist.length; i++){
+          if(whitelist[i] == originalSite){
+            whitelist[i] = site;
+          }
+        }
+
+        //update list
+        console.log("update array");
+        console.log(whitelist);
+        updateList(whitelist);
+        //send to server
+        sendServer(whitelist);
+      } else {
+        $("#whitelist .error").text("Invalid Site");
+      }
+
+    } else {
+      $("#whitelist .error").text("Please enter a site name");
+    }
+
+  }
+
   $("#whitelist .mark").click(function(){
     var site = prompt("Enter your site");
-    if(site != ""){
-      //add to whitelist
-      whitelist.push(site);
-      //update list
-      console.log("update array");
-      console.log(whitelist);
-      updateList(whitelist);
-      //send to server
-      sendServer(whitelist);
+    if(site){
+      if(isURL(site)){
+        $("#whitelist .error").text("");
 
+        //add to whitelist
+        whitelist.push(site);
+        //update list
+        console.log("update array");
+        console.log(whitelist);
+        updateList(whitelist);
+        //send to server
+        sendServer(whitelist);
+      } else {
+        $("#whitelist .error").text("Invalid Site");
+      }
+
+    } else {
+      $("#whitelist .error").text("Please enter a site name");
     }
 
   })
