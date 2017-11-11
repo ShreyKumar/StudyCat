@@ -88,6 +88,7 @@ app.post('/login', function(req, res){
 
 		firebase.auth().signInWithEmailAndPassword(username, password).then(function (fdata){
 			var person = user_manager.get_user(username, true) //Get the user (but create if null)
+      console.log("Signed in as " + person.data.username);
 			res.status(200).send(person.authkey) //Send the auth key
 		}).catch(function(error) {
 		    // Handle Errors here.
@@ -184,10 +185,14 @@ app.get("/get_whitelist", function(req, res){
   var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
 
   firebase.database().ref("/users/" + user_name).once("value").then(function(snapshot) {
-    if (snapshot == null) {
+    console.log("finished reading data");
+    console.log(snapshot.val());
+    if (snapshot == null || snapshot.val() == null) {
       res.status(404).send("no data to read")
     } else {
       data = snapshot.val().whitelist;
+      console.log("reading data for " + user_name);
+      console.log(data);
       res.status(200).send(data);
     }
   })

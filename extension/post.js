@@ -15,13 +15,24 @@ $(function(){
     } else {
       $("#whitelist").show();
       $("#signup, #login").hide();
+      console.log("changing to whitelist view");
       populateWhiteList();
     }
+  }
+
+  function clearWhiteList(hardUpdate){
+    if(hardUpdate){
+      console.log("hard update");
+      whitelist = [];
+    }
+    $("#whitelist .list").text("");
   }
 
   function populateWhiteList(){
     //read whitelist from server
     var user = getUser();
+    console.log("whitelist");
+    $("#whitelist .list").text("Retrieving your whitelist...");
 
     $.ajax({
         url : prefix + '/get_whitelist',
@@ -33,10 +44,23 @@ $(function(){
         success: function(data){
           whitelist = data;
           updateList(whitelist);
+          console.log(data);
+          console.log("updated list");
         },
         error: function(err){
-          console.log(err);
-          console.log("error");
+          //if response text is nothing still try to update list
+          if(err.responseText == "no data to read" && err.status == 200){
+            console.log("empty list");
+            updateList([]);
+          } else if(err.responseText != "no data to read" && err.status == 200){
+            //1 item found
+            console.log("1 item");
+            updateList([err.responseText]);
+          } else {
+            console.log(err);
+            console.log("error");
+          }
+
         }
 
       })
@@ -95,6 +119,7 @@ $(function(){
           localStorage.removeItem("user");
           localStorage.removeItem("authkey");
           changeViews();
+          clearWhiteList(true);
           console.log("Signed out");
         },
         error: function(err){
@@ -102,6 +127,7 @@ $(function(){
             localStorage.removeItem("user");
             localStorage.removeItem("authkey");
             changeViews();
+            clearWhiteList(true);
             console.log("Signed out");
           } else {
             alert("An error occurred! Check console");
@@ -117,17 +143,23 @@ $(function(){
 
   function updateList(lst){
     //clear list
-    $("#whitelist .list").text("");
-    for(var i = 0; i < lst.length; i++){
-      var item = "";
-      item += "<div class='list-item'>";
-      item += "<span class='text'>" + lst[i] + "</span>";
-      item += "<a href='#' class='unmark'>Unmark</a>"
-      item += "</div>"
+    clearWhiteList(false);
 
-      $("#whitelist .list").append(item);
+    if(lst.length == 0){
+      $("#whitelist .list").text("Nothing to show");
+    } else {
+      for(var i = 0; i < lst.length; i++){
+        var item = "";
+        item += "<div class='list-item'>";
+        item += "<span class='text'>" + lst[i] + "</span>";
+        item += "<a href='#' class='unmark'>Unmark</a>"
+        item += "</div>"
 
+        $("#whitelist .list").append(item);
+
+      }
     }
+
   }
 
   function sendServer(lst){
@@ -162,6 +194,8 @@ $(function(){
       //add to whitelist
       whitelist.push(site);
       //update list
+      console.log("update array");
+      console.log(whitelist);
       updateList(whitelist);
       //send to server
       sendServer(whitelist);
@@ -202,6 +236,7 @@ $(function(){
           },
           success: function(data){
             setUser(data.user, data.authkey);
+            changeViews();
           },
           error: function(err){
             var msg = err.responseText;
@@ -245,7 +280,8 @@ $(function(){
             "password": loginPwd
           },
           success: function(authkey){
-            setUser(loginEmail, msg);
+            setUser(loginEmail, authkey);
+            changeViews();
           },
           error: function(err){
             var msg = err.responseText;
@@ -258,6 +294,7 @@ $(function(){
               $("#login .error").text("Password must be at least 6 alpha-numeric characters long");
             } else if(!msg.includes("/")){ //success case
               setUser(loginEmail, msg);
+              changeViews();
             } else if(msg == "auth/wrong-password"){
               $("#login .error").text("The password you entered is wrong");
             } else {
