@@ -156,15 +156,14 @@ class DesktopApp:
     def login(self, user, password):
         self.user = UserModel(user, password)
         self.client = Client(self.user)
-        self.loggedIn = True
+        self.client.login()
 
     def syncWithServer(self):
         while self.running:
-            if (loggedIn):
+            if (self.client and self.client.auth()):
                 # TODO update server
                 print("UPDATING WITH SERVER")
-            else:
-                print("PLEASE LOG IN FIRST")
+                self.client.postDataToServer()
             sleep(60)
 
     def updateAffection(self):
