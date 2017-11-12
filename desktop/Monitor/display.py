@@ -58,7 +58,7 @@ class MainFrame(Frame):
         self.addProgram = Button(self, text="Add Program", command=self.addProgram,bg=white)
         self.addProgram.pack(side="top")
 
-        self.startMonitoring = Button(self,text="Start Monitoring",
+        self.startMonitoring = Button(self,text="Start",
                                       command=self.startCommand,bg=white)
         self.startMonitoring.pack(side="top")
 
