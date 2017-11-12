@@ -13,9 +13,6 @@ class programDisplay(Frame):
         self.textBox = Label(master, bg=white)
 
 
-
-
-
 class MainFrame(Frame):
 
     def __init__(self, master, productivityList, startCommand):
