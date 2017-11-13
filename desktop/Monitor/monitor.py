@@ -2,6 +2,7 @@ from win32gui import GetForegroundWindow
 from win32process import GetWindowThreadProcessId
 from psutil import Process, NoSuchProcess
 import datetime
+import operator
 
 
 class Monitor:
@@ -15,6 +16,7 @@ class Monitor:
         self.prevStamp = None
         self.processLists = []
         self.processLists = listFile
+        self.usageInfo = {}
         #self.readList(listFile)
         self.modifier = [-5, -2, 1, 2, 5]
         self.affection = 50
@@ -28,6 +30,11 @@ class Monitor:
         self.record = [None] * 5
         return self.affection
 
+    def pollMostUsed(self):
+        mostUsed = max(self.usageInfo.iteritems(), key=operator.itemgetter(1))[0]
+        self.usageInfo = {}
+        return mostUsed
+
     def pollLatestProcess(self):
 
         for processes in self.processLists:
@@ -39,6 +46,10 @@ class Monitor:
                         self.record[self.processLists.index(processes)] += \
                             datetime.datetime.now() - self.prevStamp
         self.initVars()
+        if self.procName in self.usageInfo:
+            self.usageInfo[self.procName] += 1
+        else:
+            self.usageInfo[self.procName] = 1
         return self.procName
 
     def initVars(self):

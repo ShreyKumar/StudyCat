@@ -99,7 +99,7 @@ class DesktopApp:
             self.monitor.initVars()
             self.processLock.release()
             sleep(2)
-            print(self.monitor.pollLatestProcess())
+            self.monitor.pollLatestProcess()
 
     def loginPage(self, user, password):
         self.login(user, password)
@@ -116,6 +116,7 @@ class DesktopApp:
             if (self.client and self.client.auth()):
                 # TODO update server
                 print("UPDATING WITH SERVER")
+                self.user.setActive(self.monitor.pollMostUsed())
                 self.client.postDataToServer()
             sleep(60)
 
