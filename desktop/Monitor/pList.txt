@@ -2,4 +2,4 @@ firefox.exe,DDLC.exe
 Discord.exe
 chrome.exe
 notepad++.exe,notepad.exe
-pycharm.exe
+pycharm.exe,pycharm64.exe

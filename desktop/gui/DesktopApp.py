@@ -18,7 +18,6 @@ from cat import Cat, CatDisplay
 
 from login import LoginScreen
 
-
 class DesktopApp:
     def __init__(self):
         self.root = Tk()
@@ -30,7 +29,7 @@ class DesktopApp:
         self.processLock = Lock()
         self.processLock.acquire()
 
-        self.root.overrideredirect(1)
+        #self.root.overrideredirect(1)
 
         self.productivityList = []
         self.readList("./../Monitor/pList.txt")
@@ -48,6 +47,7 @@ class DesktopApp:
         self.mainFrame.grid(row=0, column=0, stick="nsew")
         self.loginFrame.grid(row=0, column=0, stick="nsew")
         self.loginFrame.tkraise()
+        #self.mainFrame.tkraise()
 
         self.monitor = monitor.Monitor(self.productivityList)
         self.running = 1
@@ -78,15 +78,15 @@ class DesktopApp:
         self.yoffset = event.y
 
     def startMonitoring(self):
-        self.running = 1
+        #self.running = 1
         self.updateAffection()
         self.saveList()
         self.monitor.processLists = self.productivityList
+        self.monitor.initVars()
         self.GUI.tkraise()
         self.processLock.release()
 
     def pauseMonitoring(self):
-        print("pausing")
         self.processLock.acquire()
         # self.running = 0
         self.mainFrame.tkraise()
@@ -98,10 +98,11 @@ class DesktopApp:
     def monitorProcesses(self):
         while self.running:
             self.processLock.acquire()
-            self.monitor.initVars()
+            #self.monitor.initVars()
+            print(self.monitor.pollLatestProcess())
             self.processLock.release()
             sleep(2)
-            self.monitor.pollLatestProcess()
+
 
     def register(self, user, password):
         signup(user, password)
