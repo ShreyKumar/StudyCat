@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-base_url = 'http://localhost:3000/'
+base_url = 'http://localhost:3000'
 
 
 class Client:
@@ -20,7 +20,7 @@ class Client:
                                                           'process': self._model.active()})
 
         print(r.status_code)
-        print(r.body)
+        print(r)
 
     # TODO: find out what we should expect from the server
     def getDataFromServer(self):
@@ -32,7 +32,7 @@ class Client:
         r = requests.get(base_url + '/get_data', headers={'user': self.model.user(), 'auth': self._model.auth()})
 
         print(r.status_code)
-        print(r.body)
+        print(r)
 
     # Recieve a code to use as authentication
     def login(self):
@@ -49,7 +49,7 @@ class Client:
 # TODO: test this
 def register(user, password):
 
-    r = requests.post(base_url + '/sign_up', data={'user': user, 'pass': password})
+    r = requests.post(base_url + '/sign_up', headers={'user': user, 'password': password})
 
     print(r.status_code)
-    print(r.body)
+    print(r.text)

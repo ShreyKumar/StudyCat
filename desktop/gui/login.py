@@ -22,7 +22,6 @@ class LoginScreen(Frame):
         self.loginButton = Button(self, text="Login", width=10, command=self.login)
         self.loginButton.pack()
 
-        self.signupButton = Button(self, text="Login", width=10, command=self.register())
         self.signupButton.pack()
 
     def register(self):
