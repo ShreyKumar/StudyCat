@@ -31,7 +31,11 @@ class Monitor:
         return self.affection
 
     def pollMostUsed(self):
-        mostUsed = max(self.usageInfo.iteritems(), key=operator.itemgetter(1))[0]
+
+        if len(self.usageInfo) == 0:
+            return ""
+
+        mostUsed = max(self.usageInfo, key=self.usageInfo.get)
         self.usageInfo = {}
         return mostUsed
 
@@ -47,9 +51,9 @@ class Monitor:
                             datetime.datetime.now() - self.prevStamp
         self.initVars()
         if self.procName in self.usageInfo:
-            self.usageInfo[self.procName] += 1
+            self.usageInfo[self.procName.name()] += 1
         else:
-            self.usageInfo[self.procName] = 1
+            self.usageInfo[self.procName.name()] = 1
         return self.procName
 
     def initVars(self):

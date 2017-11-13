@@ -15,7 +15,7 @@ class UserModel():
         self._record = [-1] * 5
 
     def setActive(self, proc):
-        self.active = proc
+        self._active = proc
 
     def updateRecord(self, index, timestamp):
         if self._record[index] == -1:

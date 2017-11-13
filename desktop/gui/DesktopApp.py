@@ -57,7 +57,7 @@ class DesktopApp:
 
         # Client thread
         self.thread2 = Thread(target=self.syncWithServer)
-        # self.thread2.start()
+        self.thread2.start()
 
         self.root.protocol("WM_DELETE_WINDOW", self.onClosing)
         self.root.wm_attributes("-topmost", 1)
@@ -124,7 +124,7 @@ class DesktopApp:
                 print("UPDATING WITH SERVER")
                 self.user.setActive(self.monitor.pollMostUsed())
                 self.client.postDataToServer()
-            sleep(60)
+            sleep(5)
 
     def updateAffection(self):
         if self.running:

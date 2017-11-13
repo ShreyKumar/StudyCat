@@ -1,6 +1,6 @@
 import requests
 import datetime
-from UserModel import UserModel
+# from UserModel import UserModel
 
 base_url = 'http://localhost:3000'
 
@@ -11,17 +11,22 @@ class Client:
     def __init__(self, usermodel):
         self._model = usermodel
 
+    def auth(self):
+        return self._model.auth()
+
     def postDataToServer(self):
 
         if (self._model.auth() is None):
             print("YOU MUST GET AN AUTH KEY BEFORE USING postDataToServer")
             return
 
-        r = requests.post(base_url + '/input_data', data={'user': self._model.user(), 'auth': self._model.auth(),
-                                                          'process': self._model.active()})
+
+        r = requests.post(base_url + '/input_data', headers={'user': self._model.user(), 'authkey': self._model.auth()},
+                                                    data={'process_data': self._model.active()})
+
 
         print(r.status_code)
-        print(r)
+        print(r.text)
 
     # TODO: find out what we should expect from the server
     def getDataFromServer(self, cb):
@@ -46,7 +51,7 @@ class Client:
         r = requests.post(base_url + '/login', headers={'user': self._model.user(), 'password': self._model.password()})
         print(r.status_code)
         print(r.text)
-
+        self._model.setAuth(r.text)
 
 # TODO: test this
 def register(user, password):
