@@ -1,5 +1,6 @@
 import requests
 import datetime
+from UserModel import UserModel
 
 base_url = 'http://localhost:3000'
 
@@ -29,7 +30,7 @@ class Client:
             print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
             return
 
-        r = requests.get(base_url + '/get_data', headers={'user': self.model.user(), 'auth': self._model.auth()})
+        r = requests.get(base_url + '/get_data', headers={'user': self._model.user(), 'auth': self._model.auth()})
 
         cb()
         print(r.status_code)
@@ -42,10 +43,10 @@ class Client:
             print("YOU CANT LOGIN TWICE STUPID")
             return
 
-        r = requests.post(base_url + '/login', headers={'user': self.model.user(), 'pass': self.user.password()})
+        r = requests.post(base_url + '/login', headers={'user': self._model.user(), 'password': self._model.password()})
         print(r.status_code)
-        print(r.body)
-        self._model.setAuth(r.body.auth)
+        print(r.text)
+
 
 # TODO: test this
 def register(user, password):
@@ -54,3 +55,10 @@ def register(user, password):
 
     print(r.status_code)
     print(r.text)
+
+
+# if __name__ == '__main__':
+#     user = UserModel("lamr@dodabiz.com", "kaiismynigga2017")
+#     #register("lamr@dodabiz.com", "kaiismynigga2017")
+#     client = Client(user)
+#     client.login()
