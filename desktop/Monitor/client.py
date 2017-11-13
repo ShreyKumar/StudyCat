@@ -23,7 +23,7 @@ class Client:
         print(r.body)
 
     # TODO: find out what we should expect from the server
-    def getDataFromServer(self):
+    def getDataFromServer(self, cb):
 
         if (self._model.auth() is None):
             print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
@@ -31,6 +31,7 @@ class Client:
 
         r = requests.get(base_url + '/get_data', headers={'user': self.model.user(), 'auth': self._model.auth()})
 
+        cb()
         print(r.status_code)
         print(r.body)
 
