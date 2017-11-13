@@ -12,6 +12,8 @@ from Monitor import UserModel
 
 from Monitor.client import Client
 
+from Monitor.client import register as signup
+
 from cat import Cat, CatDisplay
 
 from login import LoginScreen
@@ -40,7 +42,7 @@ class DesktopApp:
 
         self.GUI = CatDisplay(container, self.cat, self.pauseMonitoring)
         self.mainFrame = display.MainFrame(container, self.productivityList, self.startMonitoring)
-        self.loginFrame = LoginScreen(container, self.loginPage)
+        self.loginFrame = LoginScreen(container, self.loginPage, self.register)
 
         self.GUI.grid(row=0, column=0, stick="nsew")
         self.mainFrame.grid(row=0, column=0, stick="nsew")
@@ -102,7 +104,7 @@ class DesktopApp:
             self.monitor.pollLatestProcess()
 
     def register(self, user, password):
-        Monitor.Client.register(user, password)
+        signup(user, password)
 
     def loginPage(self, user, password):
         self.login(user, password)
