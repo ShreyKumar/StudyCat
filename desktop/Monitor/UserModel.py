@@ -34,3 +34,6 @@ class UserModel():
 
     def password(self):
         return self._password
+
+    def auth(self):
+        return self._auth

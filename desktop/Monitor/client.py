@@ -10,19 +10,6 @@ class Client:
     def __init__(self, usermodel):
         self._model = usermodel
 
-    # TODO: test this
-    def register(self, user, password):
-
-        if (self._model.auth() is not None):
-            print("YOU CANT REGISTER WHEN LOGGED IN STUPID")
-            return
-
-        r = requests.post(base_url + '/sign_up', data={'user': user, 'pass': password})
-
-        print(r.status_code)
-        print(r.body)
-
-
     def postDataToServer(self):
 
         if (self._model.auth() is None):
@@ -58,3 +45,11 @@ class Client:
         print(r.status_code)
         print(r.body)
         self._model.setAuth(r.body.auth)
+
+# TODO: test this
+def register(user, password):
+
+    r = requests.post(base_url + '/sign_up', data={'user': user, 'pass': password})
+
+    print(r.status_code)
+    print(r.body)

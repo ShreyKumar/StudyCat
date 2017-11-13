@@ -101,6 +101,9 @@ class DesktopApp:
             sleep(2)
             print(self.monitor.pollLatestProcess())
 
+    def register(self, user, password):
+        Monitor.Client.register(user, password)
+
     def loginPage(self, user, password):
         self.login(user, password)
         self.mainFrame.tkraise()
