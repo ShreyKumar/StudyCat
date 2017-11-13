@@ -1,7 +1,8 @@
 import requests
 import datetime
+from UserModel import UserModel
 
-base_url = 'http://localhost:3000/'
+base_url = 'http://localhost:3000'
 
 
 class Client:
@@ -20,19 +21,20 @@ class Client:
                                                           'process': self._model.active()})
 
         print(r.status_code)
-        print(r.body)
+        print(r)
 
     # TODO: find out what we should expect from the server
-    def getDataFromServer(self):
+    def getDataFromServer(self, cb):
 
         if (self._model.auth() is None):
             print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
             return
 
-        r = requests.get(base_url + '/get_data', headers={'user': self.model.user(), 'auth': self._model.auth()})
+        r = requests.get(base_url + '/get_data', headers={'user': self._model.user(), 'auth': self._model.auth()})
 
+        cb()
         print(r.status_code)
-        print(r.body)
+        print(r)
 
     # Recieve a code to use as authentication
     def login(self):
@@ -41,15 +43,22 @@ class Client:
             print("YOU CANT LOGIN TWICE STUPID")
             return
 
-        r = requests.post(base_url + '/login', headers={'user': self.model.user(), 'pass': self.user.password()})
+        r = requests.post(base_url + '/login', headers={'user': self._model.user(), 'password': self._model.password()})
         print(r.status_code)
-        print(r.body)
-        self._model.setAuth(r.body.auth)
+        print(r.text)
+
 
 # TODO: test this
 def register(user, password):
 
-    r = requests.post(base_url + '/sign_up', data={'user': user, 'pass': password})
+    r = requests.post(base_url + '/sign_up', headers={'user': user, 'password': password})
 
     print(r.status_code)
-    print(r.body)
+    print(r.text)
+
+
+# if __name__ == '__main__':
+#     user = UserModel("lamr@dodabiz.com", "kaiismynigga2017")
+#     #register("lamr@dodabiz.com", "kaiismynigga2017")
+#     client = Client(user)
+#     client.login()
