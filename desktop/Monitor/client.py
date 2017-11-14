@@ -22,7 +22,8 @@ class Client:
 
 
         r = requests.post(base_url + '/input_data', headers={'user': self._model.user(), 'authkey': self._model.auth()},
-                                                    data={'process_data': self._model.active()})
+                                                    data={'process_data': self._model.active(),
+                                                          'affection' : self._model.affection()})
 
 
         print(r.status_code)

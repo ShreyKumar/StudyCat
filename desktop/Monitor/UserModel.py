@@ -13,6 +13,10 @@ class UserModel():
         self._auth = None
         self._active = None
         self._record = [-1] * 5
+        self._affection = 50
+
+    def setAffection(self, affection):
+        self._affection = affection
 
     def setActive(self, proc):
         self._active = proc
@@ -37,3 +41,6 @@ class UserModel():
 
     def auth(self):
         return self._auth
+
+    def affection(self):
+        return self._affection
