@@ -108,8 +108,12 @@ class DesktopApp:
         signup(user, password)
 
     def loginPage(self, user, password):
-        self.login(user, password)
-        self.mainFrame.tkraise()
+        loginThread = Thread(target=self.login, args=[user, password, self.mainFrame.tkraise])
+        loginThread.start()
+        #self.mainFrame.tkraise()
+
+    def loginCallback(self):
+        pass
 
     # PLAINTEXT PASSWORD
     def login(self, user, password):

@@ -43,13 +43,15 @@ class Client:
         print(r)
 
     # Recieve a code to use as authentication
-    def login(self):
+    def login(self, cb):
 
         if (self._model.auth() is not None):
             print("YOU CANT LOGIN TWICE STUPID")
             return
 
         r = requests.post(base_url + '/login', headers={'user': self._model.user(), 'password': self._model.password()})
+
+        cb()
         print(r.status_code)
         print(r.text)
         self._model.setAuth(r.text)
