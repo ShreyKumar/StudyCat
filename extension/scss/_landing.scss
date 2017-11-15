@@ -26,38 +26,5 @@ html {
       text-align: center;
       color: $txtcolor;
     }
-    form {
-      input {
-        font-family: $font;
-        height: 25px;
-      }
-      input:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0 30px white inset;
-        border-width: 2px;
-      }
-      input[type="email"], input[type="password"] {
-        margin-top: 3px;
-        margin-bottom: 3px;
-        width: 100%;
-        font-size: 16px;
-        padding-left: 6px;
-      }
-      input[type="button"] {
-        width: 105%;
-        margin-top: 12px;
-        margin-bottom: 10px;
-        background-color: $btcolor;
-        color: $bttext;
-        font-weight: 100;
-        border: 0;
-        height: 30px;
-        font-size: 16px;
-      }
-      input[type="button"]:hover {
-        background-color: $bthover;
-        cursor: pointer;
-      }
-
-    }
   }
 }
