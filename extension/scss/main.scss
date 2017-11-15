@@ -1,8 +1,17 @@
-html, body {
-  width: 250px;
-  height: 500px;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-  h1 {
-    color: red;
+$font: 'Roboto', sans-serif;
+$btcolor: #ff6262;
+$bthover: #ff1d1d;
+$txtcolor: #ff1d1d;
+$bttext: #fff;
+
+@import "landing";
+@import "whitelist";
+
+html {
+  box-sizing: border-box;
+  *:focus {
+    outline: none;
   }
 }
