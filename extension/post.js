@@ -17,6 +17,13 @@ $(function(){
       $("#signup, #login").hide();
       console.log("changing to whitelist view");
       populateWhiteList();
+
+      //show current tab
+      var currentTab;
+      chrome.tabs.getSelected(null, function(tab){
+        currentTab = tab.url;
+        $("#site-data .site-url").text(currentTab);
+      });
     }
   }
 

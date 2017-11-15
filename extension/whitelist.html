@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/main.css" rel="stylesheet" media="screen" />
+  </head>
+  <body>
+    <h1 id="header">
+      <div class="first">Study</div>
+      <div class="second">Cat</div>
+    </h1>
+
+    <section id="whitelist">
+      <!-- Perform get on white list -->
+      <!-- After each url, add a remove button -->
+      <a href="#" id="signout">Sign out</a>
+
+      <p>Welcome <span class="name"></span>!</p>
+      <p>Your blacklist:</p>
+      <div class="list"></div>
+
+      <button class="mark">New site</button><br />
+      <span class="error"></span>
+    </section>
+
+
+    <!-- imported scripts -->
+    <script type="text/javascript" src="import/jquery.min.js"></script>
+    <!-- https://cdnjs.com/libraries/crypto-js -->
+    <script type="text/javascript" src="import/crypto.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script type="text/javascript" src="post.js"></script>
+  </body>
+</html>

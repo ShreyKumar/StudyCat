@@ -4,5 +4,29 @@ html {
   .list {
     background-color: $listbg;
     border-radius: 5px;
+    .list-item {
+      height: 30px;
+      padding: 5px;
+      margin-top: 3px;
+      border-bottom: 1px #383838 solid;
+    }
+  }
+
+  #whitelist {
+    #site-data {
+      .slider {
+        border: 2px solid #000;
+        height: 50px;
+        .slide {
+          display: block;
+          width: 20%;
+          height: 50px;
+          float: left;
+        }
+        .slide.active, .slide:hover {
+          background-color: #000;
+        }
+      }
+    }
   }
 }
