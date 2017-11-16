@@ -13,16 +13,39 @@ html .list {
     padding: 5px;
     margin-top: 3px;
     border-bottom: 1px #383838 solid; }
-html #whitelist #site-data .slider {
-  border: 2px solid #000;
-  height: 50px; }
-  html #whitelist #site-data .slider .slide {
-    display: block;
-    width: 20%;
-    height: 50px;
-    float: left; }
-  html #whitelist #site-data .slider .slide.active, html #whitelist #site-data .slider .slide:hover {
-    background-color: #000; }
+html #whitelist #welcome {
+  float: left; }
+html #whitelist #welcome, html #whitelist #signout {
+  display: inline-block; }
+html #whitelist #signout {
+  float: right; }
+html #whitelist #site-data {
+  display: inline-block;
+  width: 100%; }
+  html #whitelist #site-data .label {
+    color: #ff1d1d; }
+  html #whitelist #site-data .slider {
+    border: 1px solid #000;
+    height: 20px;
+    border-radius: 20px; }
+    html #whitelist #site-data .slider .slide {
+      display: block;
+      width: 20%;
+      height: 100%;
+      float: left;
+      border-right: 1px #000 solid; }
+    html #whitelist #site-data .slider .slide:first-child {
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px; }
+    html #whitelist #site-data .slider .slide:last-child {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-right-style: none;
+      border-right-width: 1px;
+      border-right-color: none; }
+    html #whitelist #site-data .slider .slide.active, html #whitelist #site-data .slider .slide:hover {
+      background-color: #000;
+      cursor: pointer; }
 
 /* Global styles */
 html {

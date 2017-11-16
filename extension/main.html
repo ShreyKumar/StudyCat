@@ -34,16 +34,18 @@
     <section id="whitelist">
       <!-- Perform get on white list -->
       <!-- After each url, add a remove button -->
-      <a href="#" id="signout">Sign out</a>
 
-      <p>Welcome <span class="name"></span>!</p>
+      <div class="header">
+        <p id="welcome">Welcome <span class="name"></span>!</p>
+        <a href="#" id="signout">Sign out</a>
+      </div>
       <div id="site-data">
-        <div class="url-label">
+        <div class="label">
           <h4>URL:</h4>
         </div>
         <span class="site-url"></span>
         <span class="rating"></span>
-        <div class="slider-label">
+        <div class="label">
           <h4>Rating:</h4>
         </div>
         <div class="slider">
@@ -73,6 +75,7 @@
     <!--[if lt IE 9]>
       <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="js/extension.js"></script>
     <script type="text/javascript" src="post.js"></script>
   </body>
 </html>
