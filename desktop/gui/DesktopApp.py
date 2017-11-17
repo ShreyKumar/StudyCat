@@ -116,10 +116,10 @@ class DesktopApp:
         pass
 
     # PLAINTEXT PASSWORD
-    def login(self, user, password):
+    def login(self, user, password, cb):
         self.user = UserModel.UserModel(user, password)
         self.client = Client(self.user)
-        self.client.login()
+        self.client.login(cb)
 
     def syncWithServer(self):
         while self.running:
