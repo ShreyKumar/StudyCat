@@ -1,6 +1,10 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
+myFont = "Roboto 10"
+buttonStyle = {"font":myFont,"relief":"flat", "bg":"#ff6262", "fg":"#ffffff"}
+textStyle = {"font":myFont,"relief" : "groove", "bg":"white", "fg": "black"}
+
 class Cat:
     def __init__(self):
         self.state = 50
@@ -29,14 +33,18 @@ class CatDisplay(Frame):
         self.root = master
         self.cat = cat
 
-        img = self.cat.getImage()
-        self.panel = Label(self, image=img)
-        self.panel.pack(side="bottom", fill="both", expand="yes")
+        self.configure(bg="white")
 
         self.label = Label(self, text="Happiness: " + str(self.cat.getState()), fg=self.cat.getText())
-        self.label.pack(side="bottom", fill="both", expand="yes")
+        self.label.configure(textStyle)
+        self.label.pack(side="top", fill="both", expand="yes")
+
+        img = self.cat.getImage()
+        self.panel = Label(self, image=img)
+        self.panel.pack(side="top", fill="both", expand="yes")
 
         self.stop = Button(self, text="Stop", command=pauseCommand)
+        self.stop.configure(buttonStyle)
         self.stop.pack(side="bottom")
 
         self.update()
