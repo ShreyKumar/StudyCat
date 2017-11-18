@@ -16,9 +16,24 @@ Where: Online via. Discord
     - This allowed us to break the project down even more into small managable tasks, for example for the desktop client, we broke it down further into process monitoring, UI, and client-server interactions. Allowing for much more organized development. 
     - It also let us mark the status of each task, i.e completed, needs more info, in progress, etc. Which also
 
-![Example of Taiga.io taskboard](taigamain.png)
-![Example of Taiga.io breakdown](extensiontaskboard.png)
-![Tasks](taskexample.png) \
+<img src="taigamain.png" width="640" height="480">
+
+<br /> 
+<br /> 
+<img src="extensiontaskboard.png" width="640" height="320">
+
+
+
+<br /> 
+<br /> 
+
+<img src="taskexample.png" width="640" height="600">
+
+
+<br /> 
+<br /> 
+
+
 [Link to some of our team notes.](https://drive.google.com/drive/folders/0B2HiDj_0mhzYZktXVWxpaUdUZW8)
 
 #### Decisions that did not turn out as well as hoped
@@ -47,8 +62,12 @@ Where: Online via. Discord
 * Server that uses Firebase for user authentication
 * Having a Chrome extension to monitor active browser tabs
 
-![](app.png)
-![](artifact1.PNG)
+<img src="app.png" width="300" height="600">
+
+<br />
+
+<img src="artifact1.png" width="300" height="600">
+
 #### Goals and/or tasks that were planned but not met/completed:
 
 * Having the User's data persist across devices
