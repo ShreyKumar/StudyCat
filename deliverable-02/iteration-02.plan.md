@@ -117,6 +117,23 @@ The reason why we did this was to make sure that each branch wouldn't conflict w
  * Order the items from most to least important.
  * Feel free (but not obligated) to specify some/all tasks as user stories.
 
+Goals:
+
+Art:
+
+- Find an artist to draw the required art assets for the project
+    + Gifs of Cats
+    + Additional DLC
+
+Server:
+
+- Create Server endpoints in order to handle 
+    + Login endpoint
+    + Get current user data endpoint
+    + Signup endpoint
+    + Update data endpoint
+    + Database endpoints
+
 #### Artifacts
 
 List/describe the artifacts you will produce in order to present your project idea.
