@@ -103,15 +103,6 @@ The main workflow we chose was to have group work on their own branch, and then 
 
 ## Product
 
-Goals and tasks:
-
- * Fully Threaded Client - Will use structure of tutorial file to implement threaded structure.
- * Login/Signup Page - Will create opening page for app, allowing the user to login or signup to the application.
- * Program Selection Page - Will create page to allow users to customize and mark programs to varying levels of productivity, to be tracked by the app when it begins to run.
- * App Side Client - Creating app side endpoints to retreive and push data to the server, allowing for sign-in and communication with the chrome extension.
- * Server Endpoints - Will implement endpoints for backend server.
- * Chrome Extension - Will complete implementation of chrome extention so that chrome tabs may be monitored. Also allows transferring of data to the main app.
-
 Art:
 
 - Find an artist to draw the required art assets for the project
@@ -128,6 +119,11 @@ Server:
     + Database endpoints
 
 Front end:
+ 
+ * Fully Threaded Client - Will use structure of tutorial file to implement threaded structure.
+ * Login/Signup Page - Will create opening page for app, allowing the user to login or signup to the application.
+ * Program Selection Page - Will create page to allow users to customize and mark programs to varying levels of productivity, to be tracked by the app when it begins to run.
+ * App Side Client - Creating app side endpoints to retreive and push data to the server, allowing for sign-in and communication with the chrome extension.
 
 #### Artifacts
 
