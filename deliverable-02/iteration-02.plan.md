@@ -23,7 +23,7 @@ Team 1 (Main Application):
 Kevin Kang
 
 - Responsible for process monitoring
-- Facilitate discussion in meetings
+- Faciliate discussion in meetings
 
 
 Darwin Truong
@@ -33,7 +33,7 @@ Darwin Truong
 
 Kevin Zheng
 
-- Responsible for overall UI appearance and integrating Kevin Kang and Darwin Truong's tasks
+- Responsible for overall UI appearance and integrating Kevin kang and Darwin Truong's tasks
 
 Team 2 (Server): 
 
@@ -59,25 +59,15 @@ Describe meetings (and other events) you are planning to have:
 
  * When and where? In-person or online?
 
-Online meetings will be held on Thursdays and Sunday evenings, while in-person meetings will be held in person after tutorial on Mondays.
+ We are planning to have meetings online once per week on Sunday.
+
  * What's the purpose of each meeting?
 
     - You state the current progress you have on your portion of the code, if there are any problems with your portion.
     - Reassign and redistrubute new tasks that come up
-    
-Monday evening meetings directly after tutorial are held to determine tasks for the next week. The group facilitates discussion to focus on our goals for the application as a whole - sample questions being "what's the most important thing for the next week", or questions about the infrastructure of our application and how each team's products should communicate with the other (ie, local server vs one online server.)
-They will be held directly after tutorial meetings so that the feedback from the TA is fresh in our minds, so we can incorporate it into our goals for the next sprint.
-
-Thursday meetings act as a mid-week checkup. Everyone will give an update on the work they've done so far during the week, and then we'll revise our tasks as seen (if some tasks are seen to be harder than others, or require more manpower), or reallocate people to different tasks to make sure it's going to be done.
-These meetings will be shorter than the other two for the most part; they serve mainly to update the group on progress, and less so about the overall structure of the app.
-
-Sunday meetings will act as a buffer to the tutorial; tasks are expected to be completed by this time, and everyone will report what's been done and we'll figure out our stategy for the tutorial - mainly what we'll talk about, and what we'll present. As well, since all tasks are complete, another group discussion is held to figure out possible takss for the next week, and based on the progress/ difficulty of the tasks completed, to re-prioritize the most important part of the app, and whether certain tasks were worth the effort or not.
 
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
-     
-Coding sessions, code reviews, and syncing will be done during the Thursday meetings. Since they act as a checkup meeting, it's also a good opportunity to both get everyone on the same page, and to catchup on any work that's lagging behind.
- 
 
 #### Artifacts
 
@@ -101,11 +91,7 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Don't forget to **explain why** you chose this workflow.
 
-The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The pull request will be looked over by each member of their own respective team before it is pushed onto the master branch by any member of that team. 
-
-The reason why we did this was to make sure that each branch wouldn't conflict with other branches. It would also promote more freedom between each team as we have working versions of the product protected on master. Another benefit of this is to make sure that we would always have working code on the master branch ready. This meant that during presentations on Mondays, we could be sure that we had something working and someone didn't push any code that broke our display product.
-
-
+The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The reason why we did this was to make sure that each branch wouldn't conflict with other branches. It would also promote more freedom between each user 
 
 ## Product
 
@@ -116,6 +102,12 @@ The reason why we did this was to make sure that each branch wouldn't conflict w
  * Feel free (but not obligated) to specify some/all tasks as user stories.
 
 #### Artifacts
+
+ * Fully Threaded Client - Will use structure of tutorial file to implement threaded structure.
+ - See in desktop folder: asyncTkinter_example.py, DesktopApp.py
+ * Server Endpoints - Will implement endpoints for backend server.
+ - See in server folder: endpoints.txt, server.js
+ * 
 
 List/describe the artifacts you will produce in order to present your project idea.
 
