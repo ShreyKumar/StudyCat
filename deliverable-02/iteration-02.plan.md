@@ -148,11 +148,12 @@ Server:
 - `user_manager.js`: File that contains User class, as well as the dictionary that stores currently logged on users. <br>
 
 Extension: 
-`post.js` - posts data to the server based on user input and handles UI update upon recieving result <br>
-`monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
-`import/*` - all imported libraries <br>
-`main.html`- the page to display if the user clicks on the extension <br>
-`main.css` - the main css file to style the extension
+- `post.js` - posts data to the server based on user input and handles UI update upon recieving result <br>
+- `monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
+- `import/*` - all imported libraries <br>
+- `main.html`- the page to display if the user clicks on the extension <br>
+- `css/main.css` - the main css file to style the extension
+- `scss/*` - all scss files to be complied into css
 
 
 
