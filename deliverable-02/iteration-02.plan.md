@@ -45,7 +45,7 @@ Hongyu Wang
 Jeff Lin
 
 - Responsible for adding endpoints to add and remove persistent data from firebase
-- Also responible for checking database inserts
+- Also responsible for checking database inserts
 
 Team 3 (Extension): 
 
@@ -65,13 +65,13 @@ Online meetings will be held on Thursdays and Sunday evenings, while in-person m
     - You state the current progress you have on your portion of the code, if there are any problems with your portion.
     - Reassign and redistrubute new tasks that come up
     
-Monday evening meetings directly after tutorial are held to determine tasks for the next week. The group facilitates discussion to focus on our goals for the application as a whole - sample questions being "what's the most important thing for the next week", or questions about the infrastructure of our application and how each team's products should communicate with the other (ie, local server vs one online server.)
+Monday evening meetings directly after tutorial are held to determine tasks for the next week. The group facilitates discussion to focus on our goals for the application as a whole - sample questions being "what's the most important thing for the next week", or questions about the infrastructure of our application and how each team's products should communicate with the other (i.e, local server vs one online server.)
 They will be held directly after tutorial meetings so that the feedback from the TA is fresh in our minds, so we can incorporate it into our goals for the next sprint.
 
 Thursday meetings act as a mid-week checkup. Everyone will give an update on the work they've done so far during the week, and then we'll revise our tasks as seen (if some tasks are seen to be harder than others, or require more manpower), or reallocate people to different tasks to make sure it's going to be done.
 These meetings will be shorter than the other two for the most part; they serve mainly to update the group on progress, and less so about the overall structure of the app.
 
-Sunday meetings will act as a buffer to the tutorial; tasks are expected to be completed by this time, and everyone will report what's been done and we'll figure out our stategy for the tutorial - mainly what we'll talk about, and what we'll present. As well, since all tasks are complete, another group discussion is held to figure out possible takss for the next week, and based on the progress/ difficulty of the tasks completed, to re-prioritize the most important part of the app, and whether certain tasks were worth the effort or not.
+Sunday meetings will act as a buffer to the tutorial; tasks are expected to be completed by this time, and everyone will report what's been done and we'll figure out our strategy for the tutorial - mainly what we'll talk about, and what we'll present. As well, since all tasks are complete, another group discussion is held to figure out possible tasks for the next week, and based on the progress/ difficulty of the tasks completed, to re-prioritize the most important part of the app, and whether certain tasks were worth the effort or not.
 
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
