@@ -133,21 +133,26 @@ List/describe the artifacts you will produce in order to present your project id
 
 Front End:
 
-- kComponents.py: Create a library of tkinter components for the UI of the app.
-- login.py: The login frame of the application.
-- cat.py: The module containing all functionality of the cat and cat UI display.
-- monitor.py: The module which monitors system processes.
-- client.py: The list of client side endpoints and functions to interact with the server.
-- display.py: The page for selecting programs and assigning productivity levels.
-- UserModel.py: A singleton module for storing server and user information.
-- pList.txt: A list of programs to monitor.
+- `kComponents.py`: Create a library of tkinter components for the UI of the app. <br>
+- `login.py`: The login frame of the application. <br>
+- `cat.py`: The module containing all functionality of the cat and cat UI display. <br>
+- `monitor.py`: The module which monitors system processes.<br>
+- `client.py`: The list of client side endpoints and functions to interact with the server. <br>
+- `display.py`: The page for selecting programs and assigning productivity levels.<br>
+- `UserModel.py`: A singleton module for storing server and user information.<br>
+- `pList.txt`: A list of programs to monitor.<br>
 
 Server:
 
-- server.js: Express server that contains all routes required
-- user_manager.js: File that contains User class, as well as the dictionary that stores currently logged on users.
+- `server.js`: Express server that contains all routes required <br>
+- `user_manager.js`: File that contains User class, as well as the dictionary that stores currently logged on users. <br>
 
-ChromeExtension:
-post.js: All code regarding the extension
+Extension: 
+`post.js` - posts data to the server based on user input and handles UI update upon recieving result <br>
+`monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
+`import/*` - all imported libraries <br>
+`main.html`- the page to display if the user clicks on the extension <br>
+`main.css` - the main css file to style the extension
+
 
 
