@@ -89,7 +89,9 @@ List/describe the artifacts you will produce in order to organize your team.
    * How do you prioritize tasks?
    * How do tasks get assigned to team members?
 
-The main artifact we will produce is Taiga.io.
+The main artifact we will produce is Taiga.io. Sprints will be created either weekly or bi-weekly (depending on both our availability), and four user stories will be used to organize tasks (based on the teams, as well): Chrome Extension, Process Monitoring, Server, and Main Game. Each of these represents one of the four main core aspects of our app.
+Tasks are prioritized based on how important they are to the basic functionality of the app (the MVP). For the most part, this will be the most basic process monitoring, hooked up to a user system and with the chrome extension feeding information in to the desktop app, and all of this affecting the cat's affection.
+Generally, since tasks will be formulated during the Monday meetings, we will as a group discuss the most important tasks for the week (across teams as well, since each team relies on eachother for full app functionality.) Everyone will then decide which task they want to take, and once all tasks are allocated, we re-meet on the Thursday.
 
 #### Git / GitHub workflow
 
