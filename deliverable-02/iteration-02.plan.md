@@ -145,4 +145,7 @@ Server:
 - server.js: Express server that contains all routes required
 - user_manager.js: File that contains User class, as well as the dictionary that stores currently logged on users.
 
+ChromeExtension:
+post.js: All code regarding the extension
+
 
