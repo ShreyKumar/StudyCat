@@ -133,22 +133,13 @@ Front end:
 
 #### Artifacts
 
-##### Code
- 
-
-
-##### Structure
-
- * Taiga - Continued use of taiga to create and manage project tasks on Sprint 2.
- * Endpoints Text - A list of endpoints to communicate the usage of server endpoints.
-
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
-
-
 List/describe the artifacts you will produce in order to present your project idea.
+
+Front End:
+
+- kComponents.py: Create a library of tkinter components for the UI of the app.
+- login.py: The login frame of the application.
+- cat.py: The module containing all functionality of the cat and cat UI display.
 
 Server:
 

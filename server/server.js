@@ -34,9 +34,21 @@ var config = {
 firebase.initializeApp(config);
 //---------------------------------------------
 
+//enable cors
+app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type,user,password,authkey");
+  next();
+})
 
 
-//Signup endpoint
+//---------------------------------------------
+
+
+//---------------------------------------------
+//User
+//---------------------------------------------
 app.post('/sign_up', function(req, res){
 	var username = req.headers.user
 	var password = req.headers.password
@@ -45,17 +57,22 @@ app.post('/sign_up', function(req, res){
 	if (username && password) { //Assert that these are valid.
 		firebase.auth().createUserWithEmailAndPassword(username, password).then(function (fdata){
 			var person = user_manager.get_user(username, true) //auth promise for person
-			res.status(200).send("sign_up successful " + username)
+			res.status(200).send({
+        msg: "Sign up sucessful",
+        user: username,
+        authkey: person.authkey
+      })
 		}).catch(function(error) {
 		    // Handle Errors here.
 		    var errorCode = error.code;
 		    var errorMessage = error.message;
-		    
+
 
 		    res.status(400).send(errorCode)
 
 		})
-		
+
+
 	} else {
 		res.status(400).send("null username or password") //error
 	}
@@ -73,20 +90,30 @@ app.post('/login', function(req, res){
 
 		firebase.auth().signInWithEmailAndPassword(username, password).then(function (fdata){
 			var person = user_manager.get_user(username, true) //Get the user (but create if null)
+      console.log("Signed in as " + person.data.username);
 			res.status(200).send(person.authkey) //Send the auth key
 		}).catch(function(error) {
 		    // Handle Errors here.
 		    var errorCode = error.code;
 		    var errorMessage = error.message;
-		    
+
 
 		    res.status(400).send(errorCode)
 
 		})
-		
+
+
 	} else {
 		res.status(400).send("null username or password") //error
 	}
+})
+
+app.post("/sign_out", function(req, res){
+  firebase.auth().signOut().then(function(){
+    res.status(200).send("Signed out successfully");
+  }, function(){
+    res.status(400).send(error);
+  })
 })
 
 app.get('/get_data', function(req, res) {
@@ -96,8 +123,8 @@ app.get('/get_data', function(req, res) {
 
 	if (user_name && authkey){ //Assert these are valid.
 		var user = user_manager.get_user(user_name)
-		if (!user) 
-			res.status(400).send("Invalid username") 
+		if (!user)
+			res.status(400).send("Invalid username")
 		//Assert that the username exists in our list.
 
 
@@ -119,12 +146,15 @@ app.get('/get_data', function(req, res) {
 app.post('/input_data', function(req, res) {
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
-	
 
+  console.log("recieved this from client body:");
+  console.log(req.body);
 	if (user_name && authkey){
 		var user = user_manager.get_user(user_name)
-		if (!user) 
-			res.status(400).send("Invalid username") 
+    console.log("Got user!");
+    console.log(user);
+		if (!user)
+			res.status(400).send("Invalid username")
 		//Assert that the username exists in our list.
 
 		if (user.authkey === authkey){
@@ -140,4 +170,82 @@ app.post('/input_data', function(req, res) {
 
 })
 
+//---------------------------------------------
+// EXTENSION ONLY
+// white list
+app.post("/update_whitelist", function(req, res){
+  var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+  var whitelist = req.body["whitelist[]"];
 
+  console.log(whitelist);
+  firebase.database().ref("users/" + user_name).set({
+    "whitelist": whitelist
+  }).then(function(){
+    res.status(200).send("done");
+  }).catch(function(error){
+    res.status(400).send(error);
+  })
+})
+
+app.get("/get_whitelist", function(req, res){
+  var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+
+  firebase.database().ref("/users/" + user_name).once("value").then(function(snapshot) {
+    console.log("finished reading data");
+    console.log(snapshot.val());
+    if (snapshot == null || snapshot.val() == null) {
+      res.status(404).send("no data to read")
+    } else {
+      data = snapshot.val().whitelist;
+      console.log("reading data for " + user_name);
+      console.log(data);
+      res.status(200).send(data);
+    }
+  })
+
+})
+
+
+//---------------------------------------------
+
+//---------------------------------------------
+//Database endpoints
+//---------------------------------------------
+
+var database = firebase.database();
+
+
+app.post("/write_database", function(req, res) {
+	var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+	var data = req.body.data;
+
+	if (user_name && data) { // assume valid
+		database.ref("users").child(user_name).set(data).then(function() {
+			res.status(200).send("data sent");
+		});
+	} else {
+		res.status(400).send("null username and data")
+	}
+
+});
+
+app.get("/read_database", function(req, res) {
+	var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
+	var data;
+
+	if (user_name) {
+		firebase.database().ref("/users/" + user_name).once("value").then(function(snapshot) {
+			if (snapshot == null) {
+				res.status(404).send("no data to read")
+			} else {
+				data = snapshot.val();
+				res.status(200).send(data);
+			}
+		})
+	} else {
+		res.status(400).send("null username")
+	}
+
+})
+
+//---------------------------------------------
