@@ -76,7 +76,7 @@ Sunday meetings will act as a buffer to the tutorial; tasks are expected to be c
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
      
-Coding sessions, code reviews, and syncing will be done during the Thursday meetings. 
+Coding sessions, code reviews, and syncing will be done during the Thursday meetings. Since they act as a checkup meeting, it's also a good opportunity to both get everyone on the same page, and to catchup on any work that's lagging behind.
  
 
 #### Artifacts
