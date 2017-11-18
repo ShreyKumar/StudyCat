@@ -62,7 +62,7 @@ Where: Online via. Discord
 * Server that uses Firebase for user authentication
 * Having a Chrome extension to monitor active browser tabs
 
-<img src="app.png" width="250" height="600">
+<img src="app.png" width="400" height="600">
 
 <br />
 
