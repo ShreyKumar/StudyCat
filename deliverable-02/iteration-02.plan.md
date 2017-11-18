@@ -45,7 +45,7 @@ Hongyu Wang
 Jeff Lin
 
 - Responsible for adding endpoints to add and remove persistent data from firebase
-- Also responible for checking database inserts
+- Also responsible for checking database inserts
 
 Team 3 (Extension): 
 
@@ -65,11 +65,17 @@ Describe meetings (and other events) you are planning to have:
 
     - You state the current progress you have on your portion of the code, if there are any problems with your portion.
     - Reassign and redistrubute new tasks that come up
+    
+Monday evening meetings directly after tutorial are held to determine tasks for the next week. The group facilitates discussion to focus on our goals for the application as a whole - sample questions being "what's the most important thing for the next week", or questions about the infrastructure of our application and how each team's products should communicate with the other (i.e, local server vs one online server.)
+They will be held directly after tutorial meetings so that the feedback from the TA is fresh in our minds, so we can incorporate it into our goals for the next sprint.
+
+Thursday meetings act as a mid-week checkup. Everyone will give an update on the work they've done so far during the week, and then we'll revise our tasks as seen (if some tasks are seen to be harder than others, or require more manpower), or reallocate people to different tasks to make sure it's going to be done.
+These meetings will be shorter than the other two for the most part; they serve mainly to update the group on progress, and less so about the overall structure of the app.
+
+Sunday meetings will act as a buffer to the tutorial; tasks are expected to be completed by this time, and everyone will report what's been done and we'll figure out our strategy for the tutorial - mainly what we'll talk about, and what we'll present. As well, since all tasks are complete, another group discussion is held to figure out possible tasks for the next week, and based on the progress/ difficulty of the tasks completed, to re-prioritize the most important part of the app, and whether certain tasks were worth the effort or not.
 
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
-
-#### Artifacts
 
 List/describe the artifacts you will produce in order to organize your team.       
 
@@ -79,7 +85,9 @@ List/describe the artifacts you will produce in order to organize your team.
    * How do you prioritize tasks?
    * How do tasks get assigned to team members?
 
-The main artifact we will produce is Taiga.io.
+The main artifact we will produce is Taiga.io. Sprints will be created either weekly or bi-weekly (depending on both our availability), and four user stories will be used to organize tasks (based on the teams, as well): Chrome Extension, Process Monitoring, Server, and Main Game. Each of these represents one of the four main core aspects of our app.
+Tasks are prioritized based on how important they are to the basic functionality of the app (the MVP). For the most part, this will be the most basic process monitoring, hooked up to a user system and with the chrome extension feeding information in to the desktop app, and all of this affecting the cat's affection.
+Generally, since tasks will be formulated during the Monday meetings, we will as a group discuss the most important tasks for the week (across teams as well, since each team relies on eachother for full app functionality.) Everyone will then decide which task they want to take, and once all tasks are allocated, we re-meet on the Thursday.
 
 #### Git / GitHub workflow
 
@@ -103,6 +111,23 @@ The main workflow we chose was to have group work on their own branch, and then 
  * App Side Client - Creating app side endpoints to retreive and push data to the server, allowing for sign-in and communication with the chrome extension.
  * Server Endpoints - Will implement endpoints for backend server.
  * Chrome Extension - Will complete implementation of chrome extention so that chrome tabs may be monitored. Also allows transferring of data to the main app.
+
+Goals:
+
+Art:
+
+- Find an artist to draw the required art assets for the project
+    + Gifs of Cats
+    + Additional DLC
+
+Server:
+
+- Create Server endpoints in order to handle 
+    + Login endpoint
+    + Get current user data endpoint
+    + Signup endpoint
+    + Update data endpoint
+    + Database endpoints
 
 #### Artifacts
 
