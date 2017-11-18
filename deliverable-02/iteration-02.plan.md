@@ -23,7 +23,7 @@ Team 1 (Main Application):
 Kevin Kang
 
 - Responsible for process monitoring
-- Facilitate discussion in meetings
+- Faciliate discussion in meetings
 
 
 Darwin Truong
@@ -33,7 +33,7 @@ Darwin Truong
 
 Kevin Zheng
 
-- Responsible for overall UI appearance and integrating Kevin Kang and Darwin Truong's tasks
+- Responsible for overall UI appearance and integrating Kevin kang and Darwin Truong's tasks
 
 Team 2 (Server): 
 
@@ -59,7 +59,8 @@ Describe meetings (and other events) you are planning to have:
 
  * When and where? In-person or online?
 
-Online meetings will be held on Thursdays and Sunday evenings, while in-person meetings will be held in person after tutorial on Mondays.
+ We are planning to have meetings online once per week on Sunday.
+
  * What's the purpose of each meeting?
 
     - You state the current progress you have on your portion of the code, if there are any problems with your portion.
@@ -75,11 +76,6 @@ Sunday meetings will act as a buffer to the tutorial; tasks are expected to be c
 
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
-     
-Coding sessions, code reviews, and syncing will be done during the Thursday meetings. Since they act as a checkup meeting, it's also a good opportunity to both get everyone on the same page, and to catchup on any work that's lagging behind.
- 
-
-#### Artifacts
 
 List/describe the artifacts you will produce in order to organize your team.       
 
@@ -103,19 +99,18 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Don't forget to **explain why** you chose this workflow.
 
-The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The pull request will be looked over by each member of their own respective team before it is pushed onto the master branch by any member of that team. 
-
-The reason why we did this was to make sure that each branch wouldn't conflict with other branches. It would also promote more freedom between each team as we have working versions of the product protected on master. Another benefit of this is to make sure that we would always have working code on the master branch ready. This meant that during presentations on Mondays, we could be sure that we had something working and someone didn't push any code that broke our display product.
-
-
+The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The reason why we did this was to make sure that each branch wouldn't conflict with other branches. It would also promote more freedom between each user 
 
 ## Product
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+ * Fully Threaded Client - Will use structure of tutorial file to implement threaded structure.
+ * Login/Signup Page - Will create opening page for app, allowing the user to login or signup to the application.
+ * Program Selection Page - Will create page to allow users to customize and mark programs to varying levels of productivity, to be tracked by the app when it begins to run.
+ * App Side Client - Creating app side endpoints to retreive and push data to the server, allowing for sign-in and communication with the chrome extension.
+ * Server Endpoints - Will implement endpoints for backend server.
+ * Chrome Extension - Will complete implementation of chrome extention so that chrome tabs may be monitored. Also allows transferring of data to the main app.
 
 Goals:
 
@@ -138,12 +133,22 @@ Front end:
 
 #### Artifacts
 
-List/describe the artifacts you will produce in order to present your project idea.
+##### Code
+ 
+
+
+##### Structure
+
+ * Taiga - Continued use of taiga to create and manage project tasks on Sprint 2.
+ * Endpoints Text - A list of endpoints to communicate the usage of server endpoints.
 
  * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
  * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
  * Be concise, yet precise.         
    For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+
+
+List/describe the artifacts you will produce in order to present your project idea.
 
 Server:
 
