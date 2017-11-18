@@ -103,6 +103,8 @@ The main workflow we chose was to have group work on their own branch, and then 
 
 ## Product
 
+#### Goals and Tasks
+
 Art:
 
 - Find an artist to draw the required art assets for the project
