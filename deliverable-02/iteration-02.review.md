@@ -62,11 +62,11 @@ Where: Online via. Discord
 * Server that uses Firebase for user authentication
 * Having a Chrome extension to monitor active browser tabs
 
-<img src="app.png" width="300" height="600">
+<img src="app.png" width="250" height="600">
 
 <br />
 
-<img src="artifact1.PNG" width="300" height="600">
+<img src="artifact1.PNG" width="250" height="600">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
@@ -82,3 +82,10 @@ Where: Online via. Discord
 * For our next iteration we are planning on implementing the goals that we planned earlier but were not able to complete such as user data persistence, and multi-platform support. We believe that these are important features that should be implemeneted for our MVP, which we explain above.
 * For the MVP we also want to have group functionality implemented, as this was one of the key unique features of our app.
 * We also plan on adding some smaller features such as being able to customize appearance of the cat/user and adding custom user-defined productivity levels (being able create our own productivity categories).
+
+## Important Files in Chrome Extension 
+`post.js` - posts data to the server based on user input and handles UI update upon recieving result
+`monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute
+`import/*` - all imported libraries
+`main.html`- the page to display if the user clicks on the extension
+`main.css` - the main css file to style the extension
