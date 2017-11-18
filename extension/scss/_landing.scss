@@ -1,0 +1,30 @@
+html {
+  h1#header {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    .first {
+      color: $txtcolor;
+    }
+    div {
+      display: inline-block;
+      margin-left: -3px;
+    }
+  }
+  body {
+    width: 200px;
+    height: 500px;
+    padding-right: 10px;
+    padding-left: 1px;
+    font-family: $font;
+  }
+  section#login {
+    margin-bottom: 30px;
+  }
+  section {
+    h1 {
+      text-align: center;
+      color: $txtcolor;
+    }
+  }
+}

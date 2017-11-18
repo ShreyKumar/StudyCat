@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+html h1#header {
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 25px; }
+  html h1#header .first {
+    color: #ff1d1d; }
+  html h1#header div {
+    display: inline-block;
+    margin-left: -3px; }
+html body {
+  width: 200px;
+  height: 500px;
+  padding-right: 10px;
+  padding-left: 1px;
+  font-family: "Roboto", sans-serif; }
+html section#login {
+  margin-bottom: 30px; }
+html section h1 {
+  text-align: center;
+  color: #ff1d1d; }
+
+html .list {
+  background-color: #848484;
+  border-radius: 5px; }
+
+/* Global styles */
+html {
+  box-sizing: border-box; }
+  html *:focus {
+    outline: none; }
+  html input {
+    font-family: "Roboto", sans-serif;
+    height: 25px; }
+  html input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    border-width: 2px; }
+  html input[type="email"], html input[type="password"] {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    width: 100%;
+    font-size: 16px;
+    padding-left: 6px; }
+  html input[type="button"], html button {
+    width: 105%;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    background-color: #ff6262;
+    color: #fff;
+    font-weight: 100;
+    border: 0;
+    height: 30px;
+    font-size: 16px; }
+  html input[type="button"]:hover, html button:hover {
+    background-color: #ff1d1d;
+    cursor: pointer; }
+
+/*# sourceMappingURL=main.css.map */

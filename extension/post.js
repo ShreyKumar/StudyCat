@@ -33,6 +33,7 @@ $(function(){
     var user = getUser();
     console.log("whitelist");
     $("#whitelist .list").text("Retrieving your whitelist...");
+    $("#whitelist .name").text(user.email.split("@")[0]);
 
     $.ajax({
         url : prefix + '/get_whitelist',
@@ -49,7 +50,7 @@ $(function(){
         },
         error: function(err){
           //if response text is nothing still try to update list
-          if(err.responseText == "no data to read" && err.status == 200){
+          if(err.responseText == "no data to read"){
             console.log("empty list");
             updateList([]);
           } else if(err.responseText != "no data to read" && err.status == 200){
@@ -233,7 +234,7 @@ $(function(){
     if(site){
       if(isURL(site)){
         $("#whitelist .error").text("");
-        
+
         //change in whitelist
         for(var i = 0; i < whitelist.length; i++){
           if(whitelist[i] == originalSite){

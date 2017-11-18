@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="main.css" rel="stylesheet" media="screen" />
+    <link href="css/main.css" rel="stylesheet" media="screen" />
   </head>
   <body>
+    <h1 id="header">
+      <div class="first">Study</div>
+      <div class="second">Cat</div>
+    </h1>
     <section id="login">
       <h1>Login</h1>
       <form>
@@ -32,7 +36,8 @@
       <!-- After each url, add a remove button -->
       <a href="#" id="signout">Sign out</a>
 
-      <p>Welcome! This is your whitelist</p>
+      <p>Welcome <span class="name"></span>!</p>
+      <p>Your blacklist:</p>
       <div class="list"></div>
 
       <button class="mark">New site</button><br />
