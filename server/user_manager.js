@@ -20,7 +20,7 @@ function generate_auth_key(){
 function user(username){
 	//The auth key
 	this.authkey = generate_auth_key()
-
+  
 	//The data object.
 	this.data = {
 		username: username,
@@ -65,7 +65,6 @@ function user(username){
 
 
 module.exports = {
-
 	get_user: function(username, init){
 		if (!this.data_container)
 			this.data_container = {}
