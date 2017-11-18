@@ -83,9 +83,3 @@ Where: Online via. Discord
 * For the MVP we also want to have group functionality implemented, as this was one of the key unique features of our app.
 * We also plan on adding some smaller features such as being able to customize appearance of the cat/user and adding custom user-defined productivity levels (being able create our own productivity categories).
 
-## Important Files in Chrome Extension 
-`post.js` - posts data to the server based on user input and handles UI update upon recieving result <br>
-`monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
-`import/*` - all imported libraries <br>
-`main.html`- the page to display if the user clicks on the extension <br>
-`main.css` - the main css file to style the extension
