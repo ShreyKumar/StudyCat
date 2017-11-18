@@ -1,0 +1,38 @@
+IDEAS FOR VIDEO
+
+Guidelines for the demo video
+
+Maximum 3 minutes!
+
+Roughly follows this format:
+Introduction (30-45 seconds)
+Give the audience some context
+Tell the audience what they are about to watch
+Demo (1½ - 2 minutes)
+Demonstrate your product
+Present it from the user’s perspective, and guide the audience through the most common user flow.
+Final discussion (30-45 seconds)
+Summarize what we saw
+Briefly discuss what you’re planning to do next
+
+---
+
+Problem: University Students procrastinate a lot, and have bad tastes in cartoons
+
+Lots of distractions both on the internet and on your computer (games, websites)
+
+We made an app that combines the fun of procrastinating with the grind of a good days worth of hard work
+
+(gamifying procrastination)
+
+Demo:
+- Start at login screen
+- Register user
+- Setup programs (select EXEs and their category)
+- Start application, begin monitoring and updating cat affection
+
+- Also show off chrome extension, updating cat affection
+
+Final discussion:  
+- Saw the flow of our app: your process data and your browser data help keep the cat alive
+- Future: group functionality, improved visuals, selecting processes from currently running ones, 
