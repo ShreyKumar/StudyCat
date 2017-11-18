@@ -134,6 +134,8 @@ Server:
     + Update data endpoint
     + Database endpoints
 
+Front end:
+
 #### Artifacts
 
 List/describe the artifacts you will produce in order to present your project idea.
@@ -142,3 +144,10 @@ List/describe the artifacts you will produce in order to present your project id
  * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
  * Be concise, yet precise.         
    For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
+
+Server:
+
+- server.js: Express server that contains all routes required
+- user_manager.js: File that contains User class, as well as the dictionary that stores currently logged on users.
+
+
