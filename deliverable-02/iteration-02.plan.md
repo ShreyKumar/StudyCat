@@ -140,6 +140,11 @@ Front End:
 - kComponents.py: Create a library of tkinter components for the UI of the app.
 - login.py: The login frame of the application.
 - cat.py: The module containing all functionality of the cat and cat UI display.
+- monitor.py: The module which monitors system processes.
+- client.py: The list of client side endpoints and functions to interact with the server.
+- display.py: The page for selecting programs and assigning productivity levels.
+- UserModel.py: A singleton module for storing server and user information.
+- pList.txt: A list of programs to monitor.
 
 Server:
 
