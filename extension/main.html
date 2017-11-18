@@ -10,8 +10,8 @@
         <input type="email" id="email" placeholder="Email" />
         <input type="password" id="password" placeholder="Password" />
 
-        <input type="submit" id="login_bt" value="Login" />
-        <span id="error"></span>
+        <input type="button" id="login_bt" value="Login" />
+        <span class="error"></span>
       </form>
     </section>
     <section id="signup">
@@ -21,12 +21,33 @@
         <input type="password" id="password" placeholder="Password" />
         <input type="password" id="confirm" placeholder="Confirm Password" />
 
-        <input type="submit" id="register" value="Register" />
+        <input type="button" id="register" value="Register" />
 
-        <span id="error"></span>
+        <span class="error"></span>
       </form>
     </section>
+
+    <section id="whitelist">
+      <!-- Perform get on white list -->
+      <!-- After each url, add a remove button -->
+      <a href="#" id="signout">Sign out</a>
+
+      <p>Welcome! This is your whitelist</p>
+      <div class="list"></div>
+
+      <button class="mark">New site</button><br />
+      <span class="error"></span>
+    </section>
+
+
     <script type="text/javascript" src="import/jquery.min.js"></script>
+    <!-- https://cdnjs.com/libraries/crypto-js -->
+    <script type="text/javascript" src="import/crypto.js"></script>
+
+
+    <!--[if lt IE 9]>
+      <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <script type="text/javascript" src="post.js"></script>
   </body>
 </html>
