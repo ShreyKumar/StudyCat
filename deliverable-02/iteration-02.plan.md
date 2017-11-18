@@ -23,7 +23,7 @@ Team 1 (Main Application):
 Kevin Kang
 
 - Responsible for process monitoring
-- Faciliate discussion in meetings
+- Facilitate discussion in meetings
 
 
 Darwin Truong
@@ -33,7 +33,7 @@ Darwin Truong
 
 Kevin Zheng
 
-- Responsible for overall UI appearance and integrating Kevin kang and Darwin Truong's tasks
+- Responsible for overall UI appearance and integrating Kevin Kang and Darwin Truong's tasks
 
 Team 2 (Server): 
 
@@ -91,7 +91,9 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Don't forget to **explain why** you chose this workflow.
 
-The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The reason why we did this was to make sure that each branch wouldn't conflict with other branches. It would also promote more freedom between each user 
+The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The reason why we did this was to make sure that each branch wouldn't conflict with other branches. 
+
+It would also promote more freedom between each team as we have working versions of the product protected on master.
 
 ## Product
 
