@@ -97,21 +97,22 @@ The main workflow we chose was to have group work on their own branch, and then 
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- * Order the items from most to least important.
- * Feel free (but not obligated) to specify some/all tasks as user stories.
+ * Fully Threaded Client - Will use structure of tutorial file to implement threaded structure.
+ * Login/Signup Page - Will create opening page for app, allowing the user to login or signup to the application.
+ * Program Selection Page - Will create page to allow users to customize and mark programs to varying levels of productivity, to be tracked by the app when it begins to run.
+ * App Side Client - Creating app side endpoints to retreive and push data to the server, allowing for sign-in and communication with the chrome extension.
+ * Server Endpoints - Will implement endpoints for backend server.
+ * Chrome Extension - Will complete implementation of chrome extention so that chrome tabs may be monitored. Also allows transferring of data to the main app.
 
 #### Artifacts
 
- * Fully Threaded Client - Will use structure of tutorial file to implement threaded structure.
- - See in desktop folder: asyncTkinter_example.py, DesktopApp.py
- * Server Endpoints - Will implement endpoints for backend server.
- - See in server folder: endpoints.txt, server.js
- * 
+##### Code
+ 
+
+
+##### Structure
+
+ * Taiga - Continued use of taiga to create and manage project tasks on Sprint 2.
+ * Endpoints Text - A list of endpoints to communicate the usage of server endpoints.
 
 List/describe the artifacts you will produce in order to present your project idea.
-
- * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
- * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
- * Be concise, yet precise.         
-   For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
