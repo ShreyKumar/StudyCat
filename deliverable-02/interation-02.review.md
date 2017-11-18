@@ -66,7 +66,7 @@ Where: Online via. Discord
 
 <br />
 
-<img src="artifact1.png" width="300" height="600">
+<img src="artifact1.PNG" width="300" height="600">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
