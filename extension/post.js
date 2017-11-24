@@ -118,6 +118,21 @@ $(function(){
 
   changeViews();
 
+  function closeWhiteList(){
+    chrome.windows.getAll({populate:true},function(windows){
+      var activeTabs = [];
+      windows.forEach(function(window){
+        window.tabs.forEach(function(tab){
+          if(tab.url.includes("whitelist.html")){
+            chrome.tabs.remove(tab.id, function(){
+              console.log("closed");
+            })
+          }
+        });
+      });
+    });
+  }
+
   //signout
   $("#whitelist #signout").click(function(){
     $.ajax({
@@ -129,6 +144,7 @@ $(function(){
           localStorage.removeItem("authkey");
           changeViews();
           clearWhiteList(true);
+          closeWhiteList();
           console.log("Signed out");
         },
         error: function(err){
@@ -137,6 +153,7 @@ $(function(){
             localStorage.removeItem("authkey");
             changeViews();
             clearWhiteList(true);
+            closeWhiteList();
             console.log("Signed out");
           } else {
             alert("An error occurred! Check console");
@@ -394,5 +411,11 @@ $(function(){
 
 
   })
+
+  //single page whitelist window
+  $("#add-site").click(function(){
+    console.log($("#site-data .slider").children(".active").index())
+  })
+
 
 })

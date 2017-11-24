@@ -1,19 +1,61 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-$font: 'Roboto', sans-serif;
-$btcolor: #ff6262;
-$bthover: #ff1d1d;
-$txtcolor: #ff1d1d;
-$bttext: #fff;
-
+@import "vars";
 @import "landing";
-@import "whitelist";
 
 /* Global styles */
 html {
   box-sizing: border-box;
   *:focus {
     outline: none;
+  }
+  #whitelist {
+    #welcome {
+      float: left;
+    }
+    #welcome, #signout {
+      display: inline-block;
+    }
+    #signout {
+      float: right;
+      margin-top: 11.5px;
+    }
+    #site-data {
+      display: inline-block;
+      width: 100%;
+
+      .label {
+        color: $txtcolor;
+      }
+
+      .slider {
+        border: 1px solid #000;
+        height: 20px;
+        border-radius: 20px;
+        width: 100%;
+        background-color: #000;
+        .slide {
+          display: block;
+          width: calc(20% - 1px);
+          height: 100%;
+          float: left;
+          background-color: #fff;
+          border-right: 1px #000 solid;
+        }
+        .slide:first-child {
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+        }
+        .slide:last-child {
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
+          border-right: none;
+        }
+
+        .slide.active, .slide:hover {
+          background-color: #000;
+          cursor: pointer;
+        }
+      }
+    }
   }
   h1#header {
     text-align: center;
@@ -63,6 +105,17 @@ html {
   input[type="button"]:hover, button:hover {
     background-color: $bthover;
     cursor: pointer;
+  }
+
+  footer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: grey;
+    font-weight: bold;
+    .version {
+      font-weight: 100;
+      font-size: 10px;
+    }
   }
 
 }

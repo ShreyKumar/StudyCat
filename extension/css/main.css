@@ -4,54 +4,49 @@ html section#login {
 html section h1 {
   text-align: center;
   color: #ff1d1d; }
-
-html .list {
-  background-color: #848484;
-  border-radius: 5px; }
-  html .list .list-item {
-    height: 30px;
-    padding: 5px;
-    margin-top: 3px;
-    border-bottom: 1px #383838 solid; }
-html #whitelist #welcome {
-  float: left; }
-html #whitelist #welcome, html #whitelist #signout {
-  display: inline-block; }
-html #whitelist #signout {
-  float: right; }
-html #whitelist #site-data {
-  display: inline-block;
-  width: 100%; }
-  html #whitelist #site-data .label {
-    color: #ff1d1d; }
-  html #whitelist #site-data .slider {
-    border: 1px solid #000;
-    height: 20px;
-    border-radius: 20px; }
-    html #whitelist #site-data .slider .slide {
-      display: block;
-      width: 20%;
-      height: 100%;
-      float: left;
-      border-right: 1px #000 solid; }
-    html #whitelist #site-data .slider .slide:first-child {
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px; }
-    html #whitelist #site-data .slider .slide:last-child {
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-right-style: none;
-      border-right-width: 1px;
-      border-right-color: none; }
-    html #whitelist #site-data .slider .slide.active, html #whitelist #site-data .slider .slide:hover {
-      background-color: #000;
-      cursor: pointer; }
+html footer {
+  text-align: center; }
 
 /* Global styles */
 html {
   box-sizing: border-box; }
   html *:focus {
     outline: none; }
+  html #whitelist #welcome {
+    float: left; }
+  html #whitelist #welcome, html #whitelist #signout {
+    display: inline-block; }
+  html #whitelist #signout {
+    float: right;
+    margin-top: 11.5px; }
+  html #whitelist #site-data {
+    display: inline-block;
+    width: 100%; }
+    html #whitelist #site-data .label {
+      color: #ff1d1d; }
+    html #whitelist #site-data .slider {
+      border: 1px solid #000;
+      height: 20px;
+      border-radius: 20px;
+      width: 100%;
+      background-color: #000; }
+      html #whitelist #site-data .slider .slide {
+        display: block;
+        width: calc(20% - 1px);
+        height: 100%;
+        float: left;
+        background-color: #fff;
+        border-right: 1px #000 solid; }
+      html #whitelist #site-data .slider .slide:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px; }
+      html #whitelist #site-data .slider .slide:last-child {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-right: none; }
+      html #whitelist #site-data .slider .slide.active, html #whitelist #site-data .slider .slide:hover {
+        background-color: #000;
+        cursor: pointer; }
   html h1#header {
     text-align: center;
     margin-bottom: 25px;
@@ -92,5 +87,13 @@ html {
   html input[type="button"]:hover, html button:hover {
     background-color: #ff1d1d;
     cursor: pointer; }
+  html footer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: grey;
+    font-weight: bold; }
+    html footer .version {
+      font-weight: 100;
+      font-size: 10px; }
 
 /*# sourceMappingURL=main.css.map */

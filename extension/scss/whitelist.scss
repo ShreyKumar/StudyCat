@@ -1,0 +1,22 @@
+@import "vars";
+
+//extra vars
+$listbg: #848484;
+
+html {
+  body {
+    width: 100%;
+    height: 100%;
+    .list {
+      background-color: $listbg;
+      border-radius: 5px;
+      .list-item {
+        height: 30px;
+        padding: 5px;
+        margin-top: 3px;
+        border-bottom: 1px #383838 solid;
+      }
+    }
+
+  }
+}

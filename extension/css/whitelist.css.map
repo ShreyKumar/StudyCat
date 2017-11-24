@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,6DAAqD;ACM3D,SAAK;EACH,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,eAAM;IACJ,gBAAgB,EAPb,OAAO;IAQV,aAAa,EAAE,GAAG;IAClB,0BAAW;MACT,MAAM,EAAE,IAAI;MACZ,OAAO,EAAE,GAAG;MACZ,UAAU,EAAE,GAAG;MACf,aAAa,EAAE,iBAAiB",
+"sources": ["../scss/_vars.scss","../scss/whitelist.scss"],
+"names": [],
+"file": "whitelist.css"
+}
