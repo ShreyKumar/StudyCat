@@ -23,8 +23,9 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Exclude sass cache
+# Exclude sass cache and any map files
 extension/.sass-cache
+extension/css/*.css.map
 
 # Bower dependency directory (https://bower.io/)
 bower_components
