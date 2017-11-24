@@ -4,6 +4,10 @@
 $listbg: #848484;
 
 html {
+  input[type="button"], button {
+    width: 150px;
+  }
+
   h1#header {
     .first, .second {
       font-size: $biglogo;
@@ -12,14 +16,31 @@ html {
   body {
     width: 100%;
     height: 100%;
-    .list {
-      background-color: $listbg;
-      border-radius: 5px;
-      .list-item {
-        height: 30px;
-        padding: 5px;
-        margin-top: 3px;
-        border-bottom: 1px #383838 solid;
+    margin: 0;
+    #whitelist {
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      .title {
+        margin-top: 40px;
+        .mark {
+          float: right;
+          margin-top: -37px;
+        }
+      }
+      .list {
+        background-color: $listbg;
+        border-radius: 5px;
+        .list-item {
+          height: 50px;
+          padding: 5px;
+          margin-top: 3px;
+          padding-top: 15px;
+          padding-left: 45px;
+        }
+        .list-item:not(:last-child) {
+          border-bottom: 1px #383838 solid;
+        }
       }
     }
 

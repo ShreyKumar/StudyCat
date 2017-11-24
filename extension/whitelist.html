@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Your blacklist</title>
     <link href="css/main.css" rel="stylesheet" media="screen" />
     <link href="css/whitelist.css" rel="stylesheet" media="screen" />
   </head>
@@ -10,16 +11,21 @@
       <div class="second">Cat</div>
     </h1>
 
+    <a href="#" id="signout">Sign out</a>
+
+    <p id="welcomemsg">Welcome <span class="name"></span>!</p>
+
     <section id="whitelist">
       <!-- Perform get on white list -->
       <!-- After each url, add a remove button -->
-      <a href="#" id="signout">Sign out</a>
-
-      <p>Welcome <span class="name"></span>!</p>
-      <p>Your blacklist:</p>
+      <div class="title">
+        <div class="label">
+          <h2>Your blacklist:</h2>
+        </div>
+        <button class="mark">New site</button><br />
+      </div>
       <div class="list"></div>
 
-      <button class="mark">New site</button><br />
       <span class="error"></span>
     </section>
 

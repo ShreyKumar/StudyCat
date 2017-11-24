@@ -40,7 +40,7 @@ $(function(){
     var user = getUser();
     console.log("whitelist");
     $("#whitelist .list").text("Retrieving your whitelist...");
-    $("#whitelist .name").text(user.email.split("@")[0]);
+    $("#welcomemsg .name").text(user.email.split("@")[0]);
 
     $.ajax({
         url : prefix + '/get_whitelist',
