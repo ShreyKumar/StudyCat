@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+html h1#header .first, html h1#header .second {
+  font-size: 35px; }
 html body {
   width: 100%;
   height: 100%; }
