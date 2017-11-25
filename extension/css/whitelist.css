@@ -2,6 +2,30 @@
 *, *:before, *:after {
   box-sizing: border-box; }
 
+.slider {
+  border: 1px solid #000;
+  height: 20px;
+  border-radius: 20px;
+  width: 100%;
+  background-color: #000; }
+  .slider .slide {
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #fff;
+    border-right: 1px #000 solid; }
+  .slider .slide:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; }
+  .slider .slide:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: none; }
+  .slider .slide.active, .slider .slide:hover {
+    background-color: #000;
+    cursor: pointer; }
+
 html input[type="button"], html button {
   width: 150px; }
 html h1#header .first, html h1#header .second {
@@ -23,11 +47,26 @@ html body {
       background-color: #848484;
       border-radius: 5px; }
       html body #whitelist .list .list-item {
-        height: 50px;
+        height: 65px;
         padding: 5px;
         margin-top: 3px;
         padding-top: 15px;
-        padding-left: 45px; }
+        padding-left: 45px;
+        font-size: 13px;
+        position: relative; }
+        html body #whitelist .list .list-item .control-btns {
+          display: inline-block;
+          position: absolute;
+          right: 45px; }
+          html body #whitelist .list .list-item .control-btns a {
+            margin-right: 5px; }
+          html body #whitelist .list .list-item .control-btns a:visited, html body #whitelist .list .list-item .control-btns a:hover {
+            color: #000; }
+        html body #whitelist .list .list-item .slider {
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 25px; }
       html body #whitelist .list .list-item:not(:last-child) {
         border-bottom: 1px #383838 solid; }
 

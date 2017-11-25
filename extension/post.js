@@ -176,27 +176,51 @@ $(function(){
     if(lst.length == 0){
       $("#whitelist .list").text("Nothing to show");
     } else {
+
+      var slider = '';
+      slider += '<div class="slider">';
+      slider += '<div class="slide"></div>';
+      slider += '<div class="slide"></div>';
+      slider += '<div class="slide active"></div>';
+      slider += '<div class="slide"></div>';
+      slider += '<div class="slide"></div>';
+      slider += '</div>';
+
+      var ctrlbtns = '';
+      ctrlbtns += "<div class='control-btns'>"
+      ctrlbtns += "<a href='#' class='unmark'><i class='fa fa-trash-o'></i></a>";
+      ctrlbtns += "<a href='#' class='edit-site'><i class='fa fa-pencil'></i></a>";
+      ctrlbtns += "</div>";
+
       for(var i = 0; i < lst.length; i++){
         var item = "";
         item += "<div class='list-item'>";
         item += "<span class='text'>" + lst[i] + "</span>";
-        item += "<a href='#' class='unmark'><i class='fa fa-trash-o'></i></a>";
-        item += "<a href='#' class='edit-site'><i class='fa fa-pencil'></i></a>";
-        item += "</div>";
+        item += ctrlbtns;
 
-        $("#whitelist .list").append(item);
+        item += slider + "</div>";
 
+        $("#whitelist .list").prepend(item);
       }
+
+      //find a better way to do this later
+      //add dummy
+      var dummy = "";
+      dummy += "<div class='list-item new-site-dummy'>";
+      dummy += "<input type='text' id='name' placeholder='Enter your site'>";
+      dummy += ctrlbtns;
+      dummy += slider;
+      dummy += "</div>";
+      $("#whitelist .list").append(dummy);
+
+      //$("#whitelist .list .new-site-dummy").hide();
 
       //properly add unmark listeners
-      listeners = document.getElementsByClassName("unmark");
-
-      for(var i = 0; i < listeners.length; i++){
-        listeners[i].addEventListener("click", unMark);
-      }
+      listeners = $(".list-item .control-btns .unmark i");
+      listeners.click(unMark);
 
       //properly add edit listeners
-      var editlisteners = document.getElementsByClassName("edit-site");
+      var editlisteners = $(".list-item .control-btns .edit-site i");
 
       for(var i = 0; i < editlisteners.length; i++){
         editlisteners[i].addEventListener("click", editSite);
@@ -207,7 +231,7 @@ $(function(){
   }
 
   function unMark(){
-    var thisItem = $(this).parent().children(".text").text();
+    var thisItem = $(this).parents(".list-item").children(".text").text();
 
     for(var i = 0; i < whitelist.length; i++){
       if(whitelist[i] == thisItem){
@@ -254,7 +278,7 @@ $(function(){
   }
 
   function editSite(){
-    var originalSite = $(this).parent().children(".text").text();
+    var originalSite = $(this).parents(".list-item").children(".text").text();
     var site = prompt("Enter your site", originalSite);
 
     if(site){
@@ -308,7 +332,7 @@ $(function(){
 
   })
 
-  $("#whitelist .unmark").click(function(){
+  $("#whitelist .unmark i").click(function(){
     //remove this site
     console.log("clicked this site");
     console.log($(this));

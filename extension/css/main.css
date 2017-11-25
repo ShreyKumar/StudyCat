@@ -2335,6 +2335,30 @@ html section h1 {
 html footer {
   text-align: center; }
 
+.slider {
+  border: 1px solid #000;
+  height: 20px;
+  border-radius: 20px;
+  width: 100%;
+  background-color: #000; }
+  .slider .slide {
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #fff;
+    border-right: 1px #000 solid; }
+  .slider .slide:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; }
+  .slider .slide:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: none; }
+  .slider .slide.active, .slider .slide:hover {
+    background-color: #000;
+    cursor: pointer; }
+
 /* Global styles */
 html *:focus {
   outline: none; }
@@ -2351,29 +2375,6 @@ html #whitelist .label h1, html #whitelist .label h2, html #whitelist .label h3,
 html #whitelist #site-data {
   display: inline-block;
   width: 100%; }
-  html #whitelist #site-data .slider {
-    border: 1px solid #000;
-    height: 20px;
-    border-radius: 20px;
-    width: 100%;
-    background-color: #000; }
-    html #whitelist #site-data .slider .slide {
-      display: block;
-      width: 20%;
-      height: 100%;
-      float: left;
-      background-color: #fff;
-      border-right: 1px #000 solid; }
-    html #whitelist #site-data .slider .slide:first-child {
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px; }
-    html #whitelist #site-data .slider .slide:last-child {
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-right: none; }
-    html #whitelist #site-data .slider .slide.active, html #whitelist #site-data .slider .slide:hover {
-      background-color: #000;
-      cursor: pointer; }
 html h1#header {
   text-align: center;
   margin-bottom: 25px;
