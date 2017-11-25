@@ -40,8 +40,10 @@ $(function(){
     var user = getUser();
     console.log("whitelist");
     $("#whitelist .list").text("Retrieving your whitelist...");
-    $("#welcomemsg .name").text(user.email.split("@")[0]);
 
+    //update on both views
+    $("#whitelist #welcome").text("Welcome " + user.email.split("@")[0] + "!");
+    $("#welcomemsg .name").text(user.email.split("@")[0]);
     $.ajax({
         url : prefix + '/get_whitelist',
         type: 'GET',
@@ -178,8 +180,8 @@ $(function(){
         var item = "";
         item += "<div class='list-item'>";
         item += "<span class='text'>" + lst[i] + "</span>";
-        item += "<a href='#' class='unmark'>Unmark</a>";
-        item += "<a href='#' class='edit-site'>Edit</a>";
+        item += "<a href='#' class='unmark'><i class='fa fa-trash-o'></i></a>";
+        item += "<a href='#' class='edit-site'><i class='fa fa-pencil'></i></a>";
         item += "</div>";
 
         $("#whitelist .list").append(item);
