@@ -443,5 +443,4 @@ $(function(){
     console.log($("#site-data .slider").children(".active").index())
   })
 
-
 })
