@@ -34,6 +34,27 @@ html body {
   width: 100%;
   height: 100%;
   margin: 0; }
+  html body #welcome-links {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    height: 22px; }
+    html body #welcome-links .welcome-container {
+      display: inline-block;
+      width: 50%;
+      height: 22px;
+      position: absolute; }
+      html body #welcome-links .welcome-container a, html body #welcome-links .welcome-container p {
+        width: 100%;
+        height: 100%;
+        display: block; }
+      html body #welcome-links .welcome-container a {
+        text-align: right; }
+      html body #welcome-links .welcome-container p {
+        margin: 0; }
+    html body #welcome-links .welcome-container:last-child {
+      right: 0; }
   html body #whitelist {
     width: 75%;
     margin-left: auto;
@@ -57,9 +78,12 @@ html body {
         html body #whitelist .list .list-item .control-btns {
           display: inline-block;
           position: absolute;
-          right: 45px; }
+          right: 45px;
+          margin-top: -3px; }
           html body #whitelist .list .list-item .control-btns a {
             margin-right: 5px; }
+            html body #whitelist .list .list-item .control-btns a i {
+              font-size: 20px; }
           html body #whitelist .list .list-item .control-btns a:visited, html body #whitelist .list .list-item .control-btns a:hover {
             color: #000; }
         html body #whitelist .list .list-item .slider {

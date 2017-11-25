@@ -18,6 +18,33 @@ html {
     width: 100%;
     height: 100%;
     margin: 0;
+    #welcome-links {
+      width: 75%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      height: 22px;
+      .welcome-container {
+        display: inline-block;
+        width: 50%;
+        height: 22px;
+        position: absolute;
+        a, p {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+        a {
+          text-align: right;
+        }
+        p {
+          margin: 0;
+        }
+      }
+      .welcome-container:last-child {
+        right: 0;
+      }
+    }
     #whitelist {
       width: 75%;
       margin-left: auto;
@@ -44,8 +71,12 @@ html {
             display: inline-block;
             position: absolute;
             right: 45px;
+            margin-top: -3px;
             a {
               margin-right: 5px;
+              i {
+                font-size: 20px;
+              }
             }
             a:visited, a:hover {
               color: #000;
