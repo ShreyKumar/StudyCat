@@ -238,7 +238,6 @@ $(function(){
   }
 
   function unMark(){
-    alert("unmark");
     var thisItem = $(this).parents(".list-item").children(".text").text();
 
     for(var i = 0; i < whitelist.length; i++){
@@ -322,10 +321,9 @@ $(function(){
     })
 
     function getSelectedSlide(parent){
-      return parent.children(".slider").children(".slide.active").index();
     }
 
-    function changeLocally(originalSite, newVal){
+    function changeLocally(whitelist, originalSite, newVal){
       //change in whitelist
       for(var i = 0; i < whitelist.length; i++){
         if(whitelist[i]["site"] == originalSite){
@@ -356,7 +354,7 @@ $(function(){
       //hide and set slider
       originalEntry.children(".slider").hide();
 
-      var newRating = getSelectedSlide(originalEntry);
+      var newRating = originalEntry.children(".slider").children(".slide.active").index();
       newRating++; // now its 1 indexed
 
 
@@ -366,8 +364,12 @@ $(function(){
           "site": newSite,
           "rating": newRating
         };
+        console.log(newEntry);
+
         var oldSite = $(".list-item.on-edit .text").text();
-        changeLocally(oldSite, newEntry);
+        changeLocally(whitelist, oldSite, newEntry);
+        console.log("updated list");
+        console.log(whitelist);
         updateList(whitelist);
 
         //send data
@@ -386,6 +388,12 @@ $(function(){
     })
 
   }, 250);
+
+  //new thread
+  setTimeout(function(){
+
+  }, 250);
+
 
   function editSite(){
     var originalSite = $(this).parents(".list-item").children(".text").text();
@@ -409,7 +417,7 @@ $(function(){
 
   }
 
-  $("#whitelist .mark").click(function(){
+  $("#whitelist .mark").click(function(e){
     var site = prompt("Enter your site");
     if(site){
       if(isURL(site)){
