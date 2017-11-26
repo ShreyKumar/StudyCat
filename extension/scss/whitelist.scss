@@ -67,6 +67,20 @@ html {
           padding-left: 45px;
           font-size: 13px;
           position: relative;
+          .text {
+            display: inline-block;
+            width: 200px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+          .rating {
+            display: inline-block;
+            width: 156px;
+            text-align: center;
+            position: absolute;
+            top: 14px;
+          }
           .control-btns {
             display: inline-block;
             position: absolute;
@@ -87,6 +101,19 @@ html {
             margin-left: auto;
             margin-right: auto;
             margin-bottom: 25px;
+            display: none; //use js to trigger this
+          }
+        }
+        .list-item.new-site-dummy {
+          height: 83px;
+          /* input support */
+          input {
+            padding-left: 6.5px;
+              margin-bottom: 8px;
+          }
+
+          .slider {
+            display: block;
           }
         }
         .list-item:not(:last-child) {

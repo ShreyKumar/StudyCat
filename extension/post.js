@@ -187,15 +187,23 @@ $(function(){
       slider += '</div>';
 
       var ctrlbtns = '';
-      ctrlbtns += "<div class='control-btns'>"
+      ctrlbtns += "<div class='control-btns'>";
       ctrlbtns += "<a href='#' class='unmark'><i class='fa fa-trash-o'></i></a>";
       ctrlbtns += "<a href='#' class='edit-site'><i class='fa fa-pencil'></i></a>";
       ctrlbtns += "</div>";
 
+      var addbtns = '';
+      addbtns += "<div class='control-btns'>";
+      addbtns += "<a href='#' class='reset'><i class='fa fa-times'></i></a>";
+      addbtns += "<a href='#' class='mark'><i class='fa fa-check'></i></a>";
+      addbtns += "</div>";
+
+
       for(var i = 0; i < lst.length; i++){
         var item = "";
         item += "<div class='list-item'>";
-        item += "<span class='text'>" + lst[i] + "</span>";
+        item += "<div class='text'>" + lst[i] + "</div>";
+        item += "<div class='rating'>Rating: <span class='num'></span></div>";
         item += ctrlbtns;
 
         item += slider + "</div>";
@@ -208,10 +216,10 @@ $(function(){
       var dummy = "";
       dummy += "<div class='list-item new-site-dummy'>";
       dummy += "<input type='text' id='name' placeholder='Enter your site'>";
-      dummy += ctrlbtns;
+      dummy += addbtns;
       dummy += slider;
       dummy += "</div>";
-      $("#whitelist .list").append(dummy);
+      $("#whitelist .list").prepend(dummy);
 
       //$("#whitelist .list .new-site-dummy").hide();
 
@@ -283,7 +291,6 @@ $(function(){
 
     if(site){
       if(isURL(site)){
-        $("#whitelist .error").text("");
 
         //change in whitelist
         for(var i = 0; i < whitelist.length; i++){
@@ -299,11 +306,11 @@ $(function(){
         //send to server
         sendServer(whitelist);
       } else {
-        $("#whitelist .error").text("Invalid Site");
+        alert("Invalid Site");
       }
 
     } else {
-      $("#whitelist .error").text("Please enter a site name");
+      alert("Please enter a site name");
     }
 
   }
@@ -312,7 +319,6 @@ $(function(){
     var site = prompt("Enter your site");
     if(site){
       if(isURL(site)){
-        $("#whitelist .error").text("");
 
         //add to whitelist
         whitelist.push(site);
@@ -323,11 +329,11 @@ $(function(){
         //send to server
         sendServer(whitelist);
       } else {
-        $("#whitelist .error").text("Invalid Site");
+        alert("Invalid Site");
       }
 
     } else {
-      $("#whitelist .error").text("Please enter a site name");
+      alert("Please enter a site name");
     }
 
   })
