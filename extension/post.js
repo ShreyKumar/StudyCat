@@ -190,6 +190,7 @@ $(function(){
       ctrlbtns += "<div class='control-btns'>";
       ctrlbtns += "<a href='#' class='unmark'><i class='fa fa-trash-o'></i></a>";
       ctrlbtns += "<a href='#' class='edit-site'><i class='fa fa-pencil'></i></a>";
+      ctrlbtns += "<a href='#' class='confirm'><i class='fa fa-check'></i></a>";
       ctrlbtns += "</div>";
 
       var addbtns = '';
@@ -202,8 +203,12 @@ $(function(){
       for(var i = 0; i < lst.length; i++){
         var item = "";
         item += "<div class='list-item'>";
-        item += "<div class='text'>" + lst[i] + "</div>";
-        item += "<div class='rating'>Rating: <span class='num'></span></div>";
+        item += "<div class='text'>" + lst[i]["site"] + "</div>";
+
+        //add fields
+        item += "<input type='text' class='confirm-edit' value='' />";
+
+        item += "<div class='rating'>Rating: <span class='num'>" + lst[i]["rating"] + "</span></div>";
         item += ctrlbtns;
 
         item += slider + "</div>";
@@ -214,8 +219,9 @@ $(function(){
       //find a better way to do this later
       //add dummy
       var dummy = "";
-      dummy += "<div class='list-item new-site-dummy'>";
+      dummy += "<div class='list-item new-site-dummy on-edit'>";
       dummy += "<input type='text' id='name' placeholder='Enter your site'>";
+      dummy += "<div class='rating'>Rating: <span class='num'>3</span></div>";
       dummy += addbtns;
       dummy += slider;
       dummy += "</div>";
@@ -226,13 +232,6 @@ $(function(){
       //properly add unmark listeners
       listeners = $(".list-item .control-btns .unmark i");
       listeners.click(unMark);
-
-      //properly add edit listeners
-      var editlisteners = $(".list-item .control-btns .edit-site i");
-
-      for(var i = 0; i < editlisteners.length; i++){
-        editlisteners[i].addEventListener("click", editSite);
-      }
 
     }
 
@@ -285,6 +284,106 @@ $(function(){
     return url.match(regex);
   }
 
+  // load synchronously after auto generating elements
+  setTimeout(function(){
+    $(".list-item .control-btns .edit-site i").click(function(){
+      var originalEntry = $(this).parents(".list-item");
+      originalEntry.addClass("on-edit");
+
+      var originalSiteElement = originalEntry.children(".text");
+      var originalSite = originalSiteElement.text();
+
+      var originalRatingElement = originalEntry.children(".num");
+      var originalRating = originalRatingElement.text();
+
+      //name
+      originalEntry.children(".confirm-edit").show();
+      originalEntry.children(".confirm-edit").val(originalSite);
+      originalEntry.children(".text").hide();
+
+      //check mark
+      var btns = $(this).parents(".list-item").children(".control-btns");
+      btns.children(".edit-site").hide();
+      btns.children(".confirm").show();
+
+      //show slider
+      originalEntry.children(".slider").show();
+
+      //set slider
+      var numRating = originalEntry.children(".rating").children(".num").text();
+
+      var selectedSlide = originalEntry.children(".slider").children(".slide:nth-child(" + numRating + ")");
+      selectedSlide.parents(".slider").children(".slide").removeClass("active");
+      selectedSlide.addClass("active");
+
+    })
+
+    function getSelectedSlide(parent){
+      return parent.children(".slider").children(".slide.active").index();
+    }
+
+    function changeLocally(originalSite, newVal){
+      //change in whitelist
+      for(var i = 0; i < whitelist.length; i++){
+        if(whitelist[i]["site"] == originalSite){
+          whitelist[i] = newVal;
+        }
+      }
+    }
+
+    $(".list-item .control-btns .confirm i").click(function(){
+      //check mark
+      var btns = $(this).parents(".list-item").children(".control-btns");
+      btns.children(".confirm").hide();
+      btns.children(".edit-site").show();
+
+      //set site
+      var originalEntry = $(this).parents(".list-item");
+      var newSite = originalEntry.children(".confirm-edit").val();
+
+      //edit
+      originalEntry.removeClass("on-edit");
+
+      originalEntry.children(".confirm-edit").hide();
+      originalEntry.children(".confirm-edit").val("");
+
+      originalEntry.children(".text").show();
+      originalEntry.children(".text").text(newSite);
+
+      //hide and set slider
+      originalEntry.children(".slider").hide();
+
+      var newRating = getSelectedSlide(originalEntry);
+      newRating++; // now its 1 indexed
+
+
+      //change global array
+      if(newSite != "" && isURL(newSite)){
+        var newEntry = {
+          "site": newSite,
+          "rating": newRating
+        };
+        var oldSite = $(".list-item.on-edit .text").text();
+        changeLocally(oldSite, newEntry);
+        updateList(whitelist);
+
+        //send data
+        sendServer(whitelist);
+        console.log(whitelist);
+      } else {
+        alert("Invalid Site");
+      }
+
+
+    })
+
+    $(".list-item .slider .slide").click(function(){
+      var newSelected = $(this).index()+1;
+      $(this).parents(".list-item").children(".rating").children(".num").text(newSelected);
+    })
+
+  }, 250);
+
   function editSite(){
     var originalSite = $(this).parents(".list-item").children(".text").text();
     var site = prompt("Enter your site", originalSite);
@@ -292,19 +391,11 @@ $(function(){
     if(site){
       if(isURL(site)){
 
-        //change in whitelist
-        for(var i = 0; i < whitelist.length; i++){
-          if(whitelist[i] == originalSite){
-            whitelist[i] = site;
-          }
-        }
+
 
         //update list
         console.log("update array");
-        console.log(whitelist);
-        updateList(whitelist);
         //send to server
-        sendServer(whitelist);
       } else {
         alert("Invalid Site");
       }
