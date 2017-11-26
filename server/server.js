@@ -170,9 +170,13 @@ app.post('/input_data', function(req, res) {
 //---------------------------------------------
 // EXTENSION ONLY
 // white list
+/* DISABLED PERMANENTLY
 app.post("/update_whitelist", function(req, res){
   var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
-  var whitelist = req.body["whitelist[]"];
+  //var whitelist = req.body["whitelist[]"];
+  console.log("line 177");
+  var whitelist = req.body;
+  //console.log(req.body);
 
   console.log(whitelist);
   firebase.database().ref("users/" + user_name).set({
@@ -183,6 +187,7 @@ app.post("/update_whitelist", function(req, res){
     res.status(400).send(error);
   })
 })
+*/
 
 app.get("/get_whitelist", function(req, res){
   var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
@@ -215,6 +220,30 @@ var database = firebase.database();
 app.post("/write_database", function(req, res) {
 	var user_name = req.headers.user.split("@")[0]; //asume user is sent as email
 	var data = req.body.data;
+
+
+  //chrome extension fix for blacklist
+  var kyz = Object.keys(req.body);
+  if(kyz[0].includes("whitelist")){
+    var whitelist = [];
+    var tempData = req.body
+
+    var box = {}
+    for(var i = 0; i < kyz.length; i++){
+      if(kyz[i].includes("rating")){
+        box["rating"] = tempData[kyz[i]];
+      }
+      if(kyz[i].includes("site")){
+        box["site"] = tempData[kyz[i]];
+        whitelist.push(box); //pack it
+        box = {}; //new box
+      }
+    }
+
+    data = {
+      "whitelist": whitelist
+    }
+  }
 
 	if (user_name && data) { // assume valid
 		database.ref("users").child(user_name).set(data).then(function() {

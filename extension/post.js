@@ -238,10 +238,11 @@ $(function(){
   }
 
   function unMark(){
+    alert("unmark");
     var thisItem = $(this).parents(".list-item").children(".text").text();
 
     for(var i = 0; i < whitelist.length; i++){
-      if(whitelist[i] == thisItem){
+      if(whitelist[i]["site"] == thisItem){
         whitelist.splice(i, 1);
         updateList(whitelist);
         sendServer(whitelist);
@@ -256,14 +257,16 @@ $(function(){
     var user = getUser();
 
     $.ajax({
-        url : prefix + '/update_whitelist',
+        url : prefix + '/write_database',
         type: 'POST',
         dataType : "json",
         headers: {
           "user": user.email
         },
         data: {
-          "whitelist": lst
+          "data": {
+            "whitelist": lst
+          }
         },
         success: function(data){
           console.log(data);

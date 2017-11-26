@@ -90,7 +90,7 @@ html body {
           text-align: center;
           position: absolute;
           top: 16px;
-          left: calc(100% - 393px); }
+          left: 45%; }
         html body #whitelist .list .list-item .control-btns {
           display: inline-block;
           position: absolute;
