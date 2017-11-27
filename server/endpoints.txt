@@ -14,9 +14,9 @@ Current PORT: 3000
     header: user, authkey (from login)
     body: chrome_data, process_data, current_cat_state
 
-/write_database: POST
+/write_database/(extension/desktop/android): POST
 	header: user (email)
 	body: data (JSON)
 
-/read_database: GET
+/read_database/(extension/desktop/android): GET
 	header: user (email)
