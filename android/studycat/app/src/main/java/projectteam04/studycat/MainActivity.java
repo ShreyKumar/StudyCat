@@ -1,4 +1,4 @@
-package com.example.darwin.studycat;
+package projectteam04.studycat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

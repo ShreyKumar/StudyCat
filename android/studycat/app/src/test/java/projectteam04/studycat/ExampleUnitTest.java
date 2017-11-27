@@ -1,4 +1,4 @@
-package com.example.darwin.studycat;
+package projectteam04.studycat;
 
 import org.junit.Test;
 
