@@ -62,4 +62,3 @@ typings/
 
 # Ignores idea folder.
 .idea/*
-*.xml
