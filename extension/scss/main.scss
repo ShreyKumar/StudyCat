@@ -20,6 +20,13 @@ html {
   a:active, a:visited {
     color: #000;
   }
+  //global label style
+  .label {
+    h1, h2, h3, h4, h5, h6 {
+      color: $txtcolor;
+      text-align: left;
+    }
+  }
   #whitelist {
     #welcome {
       float: left;
@@ -31,16 +38,18 @@ html {
       float: right;
       margin-top: 11.5px;
     }
-    //global label style
-    .label {
-      h1, h2, h3, h4, h5, h6 {
-        color: $txtcolor;
-        text-align: left;
-      }
-    }
     #site-data {
       display: inline-block;
       width: 100%;
+      .site-url {
+        display: inline-block;
+        max-height: 50px;
+        width: 199px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: break-word;
+      }
     }
   }
   h1#header {

@@ -23,6 +23,10 @@ $(function(){
       chrome.tabs.getSelected(null, function(tab){
         currentTab = tab.url;
         $("#site-data .site-url").text(currentTab);
+
+        //check if current tab is in whitelist
+
+        //if it is, then only show edit site, and view blacklist
       });
     }
   }

@@ -2369,6 +2369,9 @@ html a:hover {
   text-decoration: underline; }
 html a:active, html a:visited {
   color: #000; }
+html .label h1, html .label h2, html .label h3, html .label h4, html .label h5, html .label h6 {
+  color: #ff1d1d;
+  text-align: left; }
 html #whitelist #welcome {
   float: left; }
 html #whitelist #welcome, html #whitelist #signout {
@@ -2376,12 +2379,17 @@ html #whitelist #welcome, html #whitelist #signout {
 html #whitelist #signout {
   float: right;
   margin-top: 11.5px; }
-html #whitelist .label h1, html #whitelist .label h2, html #whitelist .label h3, html #whitelist .label h4, html #whitelist .label h5, html #whitelist .label h6 {
-  color: #ff1d1d;
-  text-align: left; }
 html #whitelist #site-data {
   display: inline-block;
   width: 100%; }
+  html #whitelist #site-data .site-url {
+    display: inline-block;
+    max-height: 50px;
+    width: 199px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: break-word; }
 html h1#header {
   text-align: center;
   margin-bottom: 25px;
