@@ -17,7 +17,6 @@ class Monitor:
         self.processLists = []
         self.processLists = listFile
         self.usageInfo = {}
-        #self.readList(listFile)
         self.modifier = [-5, -2, 1, 2, 5]
         self.affection = 50
 

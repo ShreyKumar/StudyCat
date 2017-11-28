@@ -4,7 +4,7 @@ from tkinter.filedialog import *
 
 white = "#ffffff"
 myFont = "Roboto 10"
-style = {"font":myFont,"relief":"flat", "bg":"#ff6262", "fg":"#ffffff"}
+style = {"font":myFont,"relief":"flat", "bg":"#ff6262", "fg":"#ffffff", "width":20}
 pady=5
 
 class programDisplay(Frame):
@@ -29,9 +29,12 @@ class MainFrame(Frame):
         self.category.set("Neutral")
         self.categories = ["Very Unproductive", "Unproductive", "Neutral", "Productive", "Very Productive"]
 
-        self.programDisplayText = StringVar(master)
-        self.updateDisplayedPrograms(None)
+        #self.programDisplayText = StringVar(master)
+
+        self.programDisplayFrame = Frame(self)
+
         self.create_widgets()
+        self.updateDisplayedPrograms(None)
 
     def readList(self, file):
 
@@ -66,15 +69,37 @@ class MainFrame(Frame):
         self.startMonitoring.configure(style)
         self.startMonitoring.pack(side="top",pady=pady)
 
-
-
-        self.programDisplay = Label(self, textvariable=self.programDisplayText,bg=white, borderwidth=1)
-        self.programDisplay.configure(font=myFont, relief="groove", pady=20)
-
-        self.programDisplay.pack(pady=pady)
+        #self.programDisplay = Label(self, textvariable=self.programDisplayText,bg=white, borderwidth=1)
+        #self.programDisplay.configure(font=myFont, relief="groove", pady=20)
+        # self.programDisplay.pack(pady=pady)
 
     def updateDisplayedPrograms(self, event):
-        self.programDisplayText.set(self.category.get() + " Programs\n" + "\n".join(self.productivityList[self.categories.index(self.category.get())]))
+        self.programDisplayFrame.destroy()
+        self.programDisplayFrame = Frame(self)
+        i = 1
+        Label(self.programDisplayFrame, text=self.category.get()).grid(row=0, column=0)
+        for program in self.productivityList[self.categories.index(self.category.get())]:
+            textLabel = Label(self.programDisplayFrame, text=program)
+            #deleteButton.configure(style)
+
+            textLabel.configure(width=20,pady=5)
+            deleteButton = Button(self.programDisplayFrame, text="X", command=lambda: self.removeProgram(program,
+                                                                                          self.categories.index(
+                                                                                              self.category.get())))
+            deleteButton.configure(style, width=5)
+            deleteButton.grid(row = i, column = 1)
+            textLabel.grid(row = i, column = 0)
+            i+=1
+
+        self.programDisplayFrame.pack(side="top")
+
+
+        #self.programDisplayText.set(self.category.get() + " Programs\n" + "\n".join(self.productivityList[self.categories.index(self.category.get())]))
+
+    def removeProgram(self, program, level):
+        self.productivityList[level].remove(program)
+        self.updateDisplayedPrograms(None)
+        print(self.productivityList)
 
     def addProgram(self):
         if self.currEXE.get() != "No Program Selected":
