@@ -286,9 +286,24 @@ $(function(){
     return url.match(regex);
   }
 
+  function changeLocally(whitelist, originalSite, newVal){
+    //change in whitelist
+    for(var i = 0; i < whitelist.length; i++){
+      if(whitelist[i]["site"] == originalSite){
+        whitelist[i] = newVal;
+      }
+      console.log("changed into:");
+      console.log(whitelist);
+    }
+  }
+
+  function addLocally(whitelist, newVal){
+    whitelist.push(newVal);
+  }
+
   // load synchronously after auto generating elements
   setTimeout(function(){
-    $(".list-item .control-btns .edit-site i").click(function(){
+    $(document).on("click", ".list-item .control-btns .edit-site", function(){
       var originalEntry = $(this).parents(".list-item");
       originalEntry.addClass("on-edit");
 
@@ -317,28 +332,16 @@ $(function(){
       var selectedSlide = originalEntry.children(".slider").children(".slide:nth-child(" + numRating + ")");
       selectedSlide.parents(".slider").children(".slide").removeClass("active");
       selectedSlide.addClass("active");
+    });
 
-    })
-
-    function getSelectedSlide(parent){
-    }
-
-    function changeLocally(whitelist, originalSite, newVal){
-      //change in whitelist
-      for(var i = 0; i < whitelist.length; i++){
-        if(whitelist[i]["site"] == originalSite){
-          whitelist[i] = newVal;
-        }
-      }
-    }
-
-    $(".list-item .control-btns .confirm i").click(function(){
+    $(document).on("click", ".list-item .control-btns .confirm", function(){
       //check mark
       var btns = $(this).parents(".list-item").children(".control-btns");
       btns.children(".confirm").hide();
       btns.children(".edit-site").show();
 
       //set site
+      var oldSite = $(this).parents(".list-item").children(".text").text();
       var originalEntry = $(this).parents(".list-item");
       var newSite = originalEntry.children(".confirm-edit").val();
 
@@ -361,12 +364,11 @@ $(function(){
       //change global array
       if(newSite != "" && isURL(newSite)){
         var newEntry = {
-          "site": newSite,
-          "rating": newRating
+          "rating": newRating.toString(),
+          "site": newSite
         };
         console.log(newEntry);
 
-        var oldSite = $(".list-item.on-edit .text").text();
         changeLocally(whitelist, oldSite, newEntry);
         console.log("updated list");
         console.log(whitelist);
@@ -382,69 +384,33 @@ $(function(){
 
     })
 
-    $(".list-item .slider .slide").click(function(){
-      var newSelected = $(this).index()+1;
-      $(this).parents(".list-item").children(".rating").children(".num").text(newSelected);
-    })
+    $(document).on("click", ".list-item .slider .slide", slider);
 
-  }, 250);
+  }, 500);
 
-  //new thread
-  setTimeout(function(){
+  //adding new sites
+  $(document).on("click", ".new-site-dummy .mark", function(){
+    var newSite = $(".new-site-dummy #name").val();
+    var newRating = $(".new-site-dummy .slider .slide.active").index()+1;
+    console.log(newRating);
 
-  }, 250);
+    if(newSite != "" && isURL(newSite)){
+      var newEntry = {
+        "rating": newRating.toString(),
+        "site": newSite
+      };
+      console.log("new entry");
+      console.log(newEntry);
+      addLocally(whitelist, newEntry);
 
-
-  function editSite(){
-    var originalSite = $(this).parents(".list-item").children(".text").text();
-    var site = prompt("Enter your site", originalSite);
-
-    if(site){
-      if(isURL(site)){
-
-
-
-        //update list
-        console.log("update array");
-        //send to server
-      } else {
-        alert("Invalid Site");
-      }
-
+      updateList(whitelist);
+      sendServer(whitelist);
     } else {
-      alert("Please enter a site name");
-    }
-
-  }
-
-  $("#whitelist .mark").click(function(e){
-    var site = prompt("Enter your site");
-    if(site){
-      if(isURL(site)){
-
-        //add to whitelist
-        whitelist.push(site);
-        //update list
-        console.log("update array");
-        console.log(whitelist);
-        updateList(whitelist);
-        //send to server
-        sendServer(whitelist);
-      } else {
-        alert("Invalid Site");
-      }
-
-    } else {
-      alert("Please enter a site name");
+      alert("Please enter a valid site URL");
     }
 
   })
 
-  $("#whitelist .unmark i").click(function(){
-    //remove this site
-    console.log("clicked this site");
-    console.log($(this));
-  })
 
 
   var same = false;
@@ -535,6 +501,8 @@ $(function(){
               changeViews();
             } else if(msg == "auth/wrong-password"){
               $("#login .error").text("The password you entered is wrong");
+            } else if(msg == "auth/user-not-found"){
+              $("#login .error").text("This user doesn't exist");
             } else {
               $("#login .error").text("Some other error occurred. Check console");
             }
