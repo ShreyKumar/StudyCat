@@ -1,22 +1,17 @@
+import json
+from threading import Thread, Lock
+from time import sleep
 from tkinter import *  # Importing the Tkinter (tool box) library
 
-from Monitor import monitor
-
-from time import sleep
-
-from threading import Thread, Lock
-
-from Monitor import display
+from cat import Cat, CatDisplay
+from login import LoginScreen
 
 from Monitor import UserModel
-
+from Monitor import display
+from Monitor import monitor
 from Monitor.client import Client
-
 from Monitor.client import register as signup
 
-from cat import Cat, CatDisplay
-
-from login import LoginScreen
 
 class DesktopApp:
     def __init__(self):
@@ -41,7 +36,7 @@ class DesktopApp:
 
         self.GUI = CatDisplay(container, self.cat, self.pauseMonitoring)
         self.mainFrame = display.MainFrame(container, self.productivityList, self.startMonitoring)
-        self.loginFrame = LoginScreen(container, self.loginPage, self.register)
+        self.loginFrame = LoginScreen(container, self.loginPage, self.register, self.mainFrame)
 
         self.GUI.grid(row=0, column=0, stick="nsew")
         self.mainFrame.grid(row=0, column=0, stick="nsew")
@@ -104,11 +99,12 @@ class DesktopApp:
             sleep(2)
 
 
-    def register(self, user, password):
-        signup(user, password)
+    def register(self, user, password, cb):
+        registerThread = Thread(target=signup, args=[user, password, cb])
+        registerThread.start()
 
-    def loginPage(self, user, password):
-        loginThread = Thread(target=self.login, args=[user, password, self.mainFrame.tkraise])
+    def loginPage(self, user, password, cb):
+        loginThread = Thread(target=self.login, args=[user, password, cb])
         loginThread.start()
         #self.mainFrame.tkraise()
 
@@ -121,6 +117,12 @@ class DesktopApp:
         self.client = Client(self.user)
         self.client.login(cb)
 
+    def killme(self, r):
+        data = json.loads(r.text)
+
+        if(data.chrome_data is not None):
+
+
     def syncWithServer(self):
         while self.running:
             if (self.client and self.client.auth()):
@@ -128,6 +130,7 @@ class DesktopApp:
                 print("UPDATING WITH SERVER")
                 self.user.setActive(self.monitor.pollMostUsed())
                 self.client.postDataToServer()
+                self.client.getDataFromServer()
             sleep(5)
 
     def updateAffection(self):

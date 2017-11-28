@@ -5,10 +5,12 @@ from kComponents import prettyButton
 
 
 class LoginScreen(Frame):
-    def __init__(self, master, startCommand, registerFunc):
+    def __init__(self, master, startCommand, registerFunc, landingPage):
         Frame.__init__(self, master, bg="#FFFFFF")
         self.startCommand = startCommand
         self.registerFunc = registerFunc
+        self.landingPage = landingPage
+
         self.logo = ImageTk.PhotoImage(Image.open("image.png").resize((250, 250), Image.ANTIALIAS))
         self.font = "Roboto"
 
@@ -43,8 +45,38 @@ class LoginScreen(Frame):
         self.block2.pack()
 
     def register(self):
-        self.registerFunc(self.username.get(), self.password.get())
+        self.returnText.configure(text="Registering...", fg="blue")
+        self.registerFunc(self.username.get(), self.password.get(), self.handleRegister)
 
     def login(self):
-        self.startCommand(self.username.get(), self.password.get())
+        self.returnText.configure(text="Authenticating...", fg="blue")
+        self.startCommand(self.username.get(), self.password.get(), self.handleLogin)
 
+    def handleLogin(self, r):
+        code = r.status_code
+
+        text = ""
+        color = ""
+        if(code == 200):
+            text = "Login Sucessful!"
+            color = "green"
+            self.landingPage.tkraise()
+        else:
+            text = r.text
+            color = "red"
+
+        self.returnText.configure(text=text, fg=color)
+
+    def handleRegister(self, r):
+        code = r.status_code
+
+        text = ""
+        color = ""
+        if (code == 200):
+            text = "Register Sucessful!"
+            color = "green"
+        else:
+            text = r.text
+            color = "red"
+
+        self.returnText.configure(text=text, fg=color)

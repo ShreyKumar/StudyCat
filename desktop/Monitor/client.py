@@ -30,17 +30,18 @@ class Client:
         print(r.text)
 
     # TODO: find out what we should expect from the server
-    def getDataFromServer(self, cb):
+    def getDataFromServer(self, cb=None):
 
         if (self._model.auth() is None):
             print("YOU MUST GET AN AUTH KEY BEFORE USING getDataFromServer")
             return
 
-        r = requests.get(base_url + '/get_data', headers={'user': self._model.user(), 'auth': self._model.auth()})
+        r = requests.get(base_url + '/get_data', headers={'user': self._model.user(), 'authKey': self._model.auth()})
 
-        cb()
+        if(cb is not None):
+            cb(r)
         print(r.status_code)
-        print(r)
+        print(r.text)
 
     # Recieve a code to use as authentication
     def login(self, cb):
@@ -51,15 +52,22 @@ class Client:
 
         r = requests.post(base_url + '/login', headers={'user': self._model.user(), 'password': self._model.password()})
 
-        cb()
-        print(r.status_code)
-        print(r.text)
-        self._model.setAuth(r.text)
+        #Callback initiated.
+        cb(r)
+
+        if(r.status_code == 200):
+            self._model.setAuth(r.text)
+            return
+        else:
+            print("LOGIN FAILED: ", r.status_code)
+            print(r.text)
 
 # TODO: test this
-def register(user, password):
+def register(user, password, cb):
 
     r = requests.post(base_url + '/sign_up', headers={'user': user, 'password': password})
+
+    cb(r)
 
     print(r.status_code)
     print(r.text)
