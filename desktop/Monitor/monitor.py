@@ -70,3 +70,14 @@ class Monitor:
 
         for line in lines:
             self.processLists.append(line.strip("\n").split(","))
+
+    def updateAffectionUsingProcess(self, process, whitelist, time=60):
+        for i in range(0, len(whitelist)):
+            if process in whitelist[i]:
+                if self.record[i] is not None:
+                    self.record[i] += datetime.timedelta(0, time)
+                else:
+                    self.record[i] = datetime.timedelta(0, time)
+
+                return 1
+        return 0
