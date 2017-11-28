@@ -121,7 +121,7 @@ class DesktopApp:
         data = json.loads(r.text)
 
         if(data.chrome_data is not None):
-
+            print(data.chrome_data)
 
     def syncWithServer(self):
         while self.running:
@@ -130,7 +130,7 @@ class DesktopApp:
                 print("UPDATING WITH SERVER")
                 self.user.setActive(self.monitor.pollMostUsed())
                 self.client.postDataToServer()
-                self.client.getDataFromServer()
+                self.client.getDataFromServer(self.killme)
             sleep(5)
 
     def updateAffection(self):
