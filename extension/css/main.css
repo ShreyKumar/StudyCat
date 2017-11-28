@@ -2362,6 +2362,13 @@ html footer {
 /* Global styles */
 html *:focus {
   outline: none; }
+html a {
+  text-decoration: none;
+  color: blue; }
+html a:hover {
+  text-decoration: underline; }
+html a:active, html a:visited {
+  color: #000; }
 html #whitelist #welcome {
   float: left; }
 html #whitelist #welcome, html #whitelist #signout {

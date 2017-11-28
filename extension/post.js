@@ -135,8 +135,8 @@ $(function(){
     });
   }
 
-  //signout
-  $("#whitelist #signout").click(function(){
+  //signout for both pages
+  $("#whitelist #signout, #welcome-links #signout").click(function(){
     $.ajax({
         url : prefix + '/sign_out',
         type: 'POST',
