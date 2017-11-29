@@ -2333,7 +2333,11 @@ html section h1 {
   text-align: center;
   color: #ff1d1d; }
 html footer {
-  text-align: center; }
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -72px; }
 
 .slider {
   border: 1px solid #000;
@@ -2418,7 +2422,7 @@ html input[type="email"], html input[type="password"] {
   font-size: 16px;
   padding-left: 6px; }
 html input[type="button"], html button {
-  width: 105%;
+  width: 189px;
   margin-top: 12px;
   margin-bottom: 10px;
   background-color: #ff6262;

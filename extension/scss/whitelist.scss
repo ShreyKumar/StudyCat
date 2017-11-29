@@ -5,6 +5,11 @@
 $listbg: #848484;
 
 html {
+  footer {
+    position: relative;
+    margin-left: 0;
+    left: 0;
+  }
   input[type="button"], button {
     width: 150px;
   }
@@ -53,6 +58,11 @@ html {
       margin-right: auto;
       .title {
         margin-top: 40px;
+        .label {
+          h4 {
+            color: #000;
+          }
+        }
       }
       .list {
         background-color: $listbg;

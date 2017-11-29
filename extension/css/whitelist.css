@@ -26,6 +26,10 @@
     background-color: #000;
     cursor: pointer; }
 
+html footer {
+  position: relative;
+  margin-left: 0;
+  left: 0; }
 html input[type="button"], html button {
   width: 150px; }
 html h1#header .first, html h1#header .second {
@@ -63,6 +67,8 @@ html body {
     margin-right: auto; }
     html body #whitelist .title {
       margin-top: 40px; }
+      html body #whitelist .title .label h4 {
+        color: #000; }
     html body #whitelist .list {
       background-color: #848484;
       border-radius: 5px; }
