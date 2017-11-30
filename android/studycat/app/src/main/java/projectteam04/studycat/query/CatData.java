@@ -55,6 +55,16 @@ public class CatData {
         });
     }
 
+    public static void getAndroidStatus(AsyncHttpResponseHandler res){
+
+        client.removeAllHeaders();
+
+        client.addHeader("user", userName);
+        client.addHeader("authkey", auth);
+        client.get(baseURL.append("/get_data").toString(), res);
+    }
+
+
     public static void pushAndroidStatus(String status, AsyncHttpResponseHandler res){
         assert userName != null;
         assert auth != null;
