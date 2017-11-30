@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import projectteam04.studycat.query.CatData;
+
 public class MainActivity extends AppCompatActivity {
 
     private final int NOTIFICATION_ID = 0;
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.button);
         c = 0;
         //notifBuilder = new Notification.Builder(this);
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
