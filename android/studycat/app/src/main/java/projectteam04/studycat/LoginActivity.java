@@ -32,7 +32,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectteam04.studycat.query.CatData;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -68,7 +67,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        new CatData().execute("fuck");
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
