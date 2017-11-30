@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startMonitor() {
         monitorService = new Intent(this, BackgroundMonitorService.class);
+        monitorService.putExtra("test", "im an extra");
         this.startService(monitorService);
     }
 

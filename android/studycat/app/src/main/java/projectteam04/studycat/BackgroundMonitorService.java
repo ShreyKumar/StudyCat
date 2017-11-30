@@ -29,6 +29,7 @@ public class BackgroundMonitorService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         System.out.println("Hi im onHandleIntent pls notice me");
+        System.out.println(intent.getStringExtra("test"));
         showNotification();
 
         while (true) {
