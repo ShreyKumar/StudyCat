@@ -206,7 +206,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                        mPasswordView.setError("Something went wrong with Login haha xD");
+                        mPasswordView.setError(new String(responseBody));
                         mPasswordView.requestFocus();
                         showProgress(false);
                     }
@@ -230,7 +230,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
                 });
             }
-
         }
     }
 
