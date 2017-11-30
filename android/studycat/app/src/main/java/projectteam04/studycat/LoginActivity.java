@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-    private static String ip = "http://10.0.2.2:3000";
+    private String ip = "http://127.0.0.1:3000";
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptLogin(false);
                     return true;
                 }
                 return false;
@@ -88,7 +89,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptLogin(false);
+            }
+        });
+
+        Button signUpButton = (Button) findViewById(R.id.register_button);
+        signUpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptLogin(true);
             }
         });
 
@@ -145,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptLogin(boolean signup) {
 
         // Reset errors.
         mEmailView.setError(null);
@@ -186,23 +195,41 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             CatData.init(ip);
-            CatData.login(email, password, new AsyncHttpResponseHandler() {
+            if (!signup) {
+                CatData.login(email, password, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        System.out.println(Arrays.toString(responseBody));
+                        showProgress(false);
+                        startMonitor();
+                    }
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    System.out.println(Arrays.toString(responseBody));
-                    showProgress(false);
-                    startMonitor();
-                }
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        mPasswordView.setError(new String(responseBody));
+                        mPasswordView.requestFocus();
+                        showProgress(false);
+                    }
+                });
+            } else {
+                CatData.signUp(email, password, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        System.out.println(Arrays.toString(responseBody));
+                        showProgress(false);
+                        Toast.makeText(LoginActivity.this,
+                                "Registration Successful, you can now login",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-                    mPasswordView.setError(new String(responseBody));
-                    mPasswordView.requestFocus();
-                    showProgress(false);
-                }
-            });
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        mPasswordView.setError("Something went wrong with Login haha xD");
+                        mPasswordView.requestFocus();
+                        showProgress(false);
+                    }
+                });
+            }
         }
     }
 
