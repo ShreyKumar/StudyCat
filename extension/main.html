@@ -34,15 +34,43 @@
     <section id="whitelist">
       <!-- Perform get on white list -->
       <!-- After each url, add a remove button -->
-      <a href="#" id="signout">Sign out</a>
 
-      <p>Welcome <span class="name"></span>!</p>
-      <p>Your blacklist:</p>
-      <div class="list"></div>
+      <div class="header">
+        <p id="welcome">Welcome <span class="name"></span>!</p>
+        <a href="#" id="signout">Sign out</a>
+      </div>
+      <div id="site-data">
+        <div class="label">
+          <h4>URL:</h4>
+        </div>
+        <div class="site-url"></div>
+        <div class="label">
+          <h4>Rating:</h4>
+        </div>
+        <div class="slider">
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide active"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+        </div>
 
-      <button class="mark">New site</button><br />
-      <span class="error"></span>
+        <input type="button" id="remove-page" value="Remove page" />
+        <input type="button" id="update-page" value="Edit page" />
+        <input type="button" id="add-page" value="Add page" />
+
+        <input type="button" id="remove-site" value="Remove site" />
+        <input type="button" id="update-site" value="Update site" />
+        <input type="button" id="add-site" value="Add site" />
+      </div>
+
+
+      <input type="button" id="view-blacklist" value="View Blacklist" />
     </section>
+
+    <footer>
+      Copyright &copy; StudyCat 2017 <div class="version">Version 1.0</div>
+    </footer>
 
 
     <script type="text/javascript" src="import/jquery.min.js"></script>
@@ -53,6 +81,8 @@
     <!--[if lt IE 9]>
       <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/extension.js"></script>
     <script type="text/javascript" src="post.js"></script>
   </body>
 </html>

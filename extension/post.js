@@ -17,6 +17,17 @@ $(function(){
       $("#signup, #login").hide();
       console.log("changing to whitelist view");
       populateWhiteList();
+
+      //show current tab
+      var currentTab;
+      chrome.tabs.getSelected(null, function(tab){
+        currentTab = tab.url;
+        $("#site-data .site-url").text(currentTab);
+
+        //check if current tab is in whitelist
+
+        //if it is, then only show edit site, and view blacklist
+      });
     }
   }
 
@@ -33,8 +44,10 @@ $(function(){
     var user = getUser();
     console.log("whitelist");
     $("#whitelist .list").text("Retrieving your whitelist...");
-    $("#whitelist .name").text(user.email.split("@")[0]);
 
+    //update on both views
+    $("#whitelist #welcome").text("Welcome " + user.email.split("@")[0] + "!");
+    $("#welcomemsg .name").text(user.email.split("@")[0]);
     $.ajax({
         url : prefix + '/get_whitelist',
         type: 'GET',
@@ -111,8 +124,23 @@ $(function(){
 
   changeViews();
 
-  //signout
-  $("#whitelist #signout").click(function(){
+  function closeWhiteList(){
+    chrome.windows.getAll({populate:true},function(windows){
+      var activeTabs = [];
+      windows.forEach(function(window){
+        window.tabs.forEach(function(tab){
+          if(tab.url.includes("whitelist.html")){
+            chrome.tabs.remove(tab.id, function(){
+              console.log("closed");
+            })
+          }
+        });
+      });
+    });
+  }
+
+  //signout for both pages
+  $("#whitelist #signout, #welcome-links #signout").click(function(){
     $.ajax({
         url : prefix + '/sign_out',
         type: 'POST',
@@ -122,6 +150,7 @@ $(function(){
           localStorage.removeItem("authkey");
           changeViews();
           clearWhiteList(true);
+          closeWhiteList();
           console.log("Signed out");
         },
         error: function(err){
@@ -130,6 +159,7 @@ $(function(){
             localStorage.removeItem("authkey");
             changeViews();
             clearWhiteList(true);
+            closeWhiteList();
             console.log("Signed out");
           } else {
             alert("An error occurred! Check console");
@@ -150,41 +180,72 @@ $(function(){
     if(lst.length == 0){
       $("#whitelist .list").text("Nothing to show");
     } else {
+
+      var slider = '';
+      slider += '<div class="slider">';
+      slider += '<div class="slide"></div>';
+      slider += '<div class="slide"></div>';
+      slider += '<div class="slide active"></div>';
+      slider += '<div class="slide"></div>';
+      slider += '<div class="slide"></div>';
+      slider += '</div>';
+
+      var ctrlbtns = '';
+      ctrlbtns += "<div class='control-btns'>";
+      ctrlbtns += "<a href='#' class='unmark'><i class='fa fa-trash-o'></i></a>";
+      ctrlbtns += "<a href='#' class='edit-site'><i class='fa fa-pencil'></i></a>";
+      ctrlbtns += "<a href='#' class='confirm'><i class='fa fa-check'></i></a>";
+      ctrlbtns += "</div>";
+
+      var addbtns = '';
+      addbtns += "<div class='control-btns'>";
+      addbtns += "<a href='#' class='reset'><i class='fa fa-times'></i></a>";
+      addbtns += "<a href='#' class='mark'><i class='fa fa-check'></i></a>";
+      addbtns += "</div>";
+
+
       for(var i = 0; i < lst.length; i++){
         var item = "";
         item += "<div class='list-item'>";
-        item += "<span class='text'>" + lst[i] + "</span>";
-        item += "<a href='#' class='unmark'>Unmark</a>";
-        item += "<a href='#' class='edit-site'>Edit</a>";
-        item += "</div>";
+        item += "<div class='text'>" + lst[i]["site"] + "</div>";
 
-        $("#whitelist .list").append(item);
+        //add fields
+        item += "<input type='text' class='confirm-edit' value='' />";
 
+        item += "<div class='rating'>Rating: <span class='num'>" + lst[i]["rating"] + "</span></div>";
+        item += ctrlbtns;
+
+        item += slider + "</div>";
+
+        $("#whitelist .list").prepend(item);
       }
+
+      //find a better way to do this later
+      //add dummy
+      var dummy = "";
+      dummy += "<div class='list-item new-site-dummy on-edit'>";
+      dummy += "<input type='text' id='name' placeholder='Enter your site'>";
+      dummy += "<div class='rating'>Rating: <span class='num'>3</span></div>";
+      dummy += addbtns;
+      dummy += slider;
+      dummy += "</div>";
+      $("#whitelist .list").prepend(dummy);
+
+      //$("#whitelist .list .new-site-dummy").hide();
 
       //properly add unmark listeners
-      listeners = document.getElementsByClassName("unmark");
-
-      for(var i = 0; i < listeners.length; i++){
-        listeners[i].addEventListener("click", unMark);
-      }
-
-      //properly add edit listeners
-      var editlisteners = document.getElementsByClassName("edit-site");
-
-      for(var i = 0; i < editlisteners.length; i++){
-        editlisteners[i].addEventListener("click", editSite);
-      }
+      listeners = $(".list-item .control-btns .unmark i");
+      listeners.click(unMark);
 
     }
 
   }
 
   function unMark(){
-    var thisItem = $(this).parent().children(".text").text();
+    var thisItem = $(this).parents(".list-item").children(".text").text();
 
     for(var i = 0; i < whitelist.length; i++){
-      if(whitelist[i] == thisItem){
+      if(whitelist[i]["site"] == thisItem){
         whitelist.splice(i, 1);
         updateList(whitelist);
         sendServer(whitelist);
@@ -199,14 +260,16 @@ $(function(){
     var user = getUser();
 
     $.ajax({
-        url : prefix + '/update_whitelist',
+        url : prefix + '/write_database',
         type: 'POST',
         dataType : "json",
         headers: {
           "user": user.email
         },
         data: {
-          "whitelist": lst
+          "data": {
+            "whitelist": lst
+          }
         },
         success: function(data){
           console.log(data);
@@ -227,66 +290,131 @@ $(function(){
     return url.match(regex);
   }
 
-  function editSite(){
-    var originalSite = $(this).parent().children(".text").text();
-    var site = prompt("Enter your site", originalSite);
-
-    if(site){
-      if(isURL(site)){
-        $("#whitelist .error").text("");
-
-        //change in whitelist
-        for(var i = 0; i < whitelist.length; i++){
-          if(whitelist[i] == originalSite){
-            whitelist[i] = site;
-          }
-        }
-
-        //update list
-        console.log("update array");
-        console.log(whitelist);
-        updateList(whitelist);
-        //send to server
-        sendServer(whitelist);
-      } else {
-        $("#whitelist .error").text("Invalid Site");
+  function changeLocally(whitelist, originalSite, newVal){
+    //change in whitelist
+    for(var i = 0; i < whitelist.length; i++){
+      if(whitelist[i]["site"] == originalSite){
+        whitelist[i] = newVal;
       }
-
-    } else {
-      $("#whitelist .error").text("Please enter a site name");
+      console.log("changed into:");
+      console.log(whitelist);
     }
-
   }
 
-  $("#whitelist .mark").click(function(){
-    var site = prompt("Enter your site");
-    if(site){
-      if(isURL(site)){
-        $("#whitelist .error").text("");
+  function addLocally(whitelist, newVal){
+    whitelist.push(newVal);
+  }
 
-        //add to whitelist
-        whitelist.push(site);
-        //update list
-        console.log("update array");
+  // load synchronously after auto generating elements
+  setTimeout(function(){
+    $(document).on("click", ".list-item .control-btns .edit-site", function(){
+      var originalEntry = $(this).parents(".list-item");
+      originalEntry.addClass("on-edit");
+
+      var originalSiteElement = originalEntry.children(".text");
+      var originalSite = originalSiteElement.text();
+
+      var originalRatingElement = originalEntry.children(".num");
+      var originalRating = originalRatingElement.text();
+
+      //name
+      originalEntry.children(".confirm-edit").show();
+      originalEntry.children(".confirm-edit").val(originalSite);
+      originalEntry.children(".text").hide();
+
+      //check mark
+      var btns = $(this).parents(".list-item").children(".control-btns");
+      btns.children(".edit-site").hide();
+      btns.children(".confirm").show();
+
+      //show slider
+      originalEntry.children(".slider").show();
+
+      //set slider
+      var numRating = originalEntry.children(".rating").children(".num").text();
+
+      var selectedSlide = originalEntry.children(".slider").children(".slide:nth-child(" + numRating + ")");
+      selectedSlide.parents(".slider").children(".slide").removeClass("active");
+      selectedSlide.addClass("active");
+    });
+
+    $(document).on("click", ".list-item .control-btns .confirm", function(){
+      //check mark
+      var btns = $(this).parents(".list-item").children(".control-btns");
+      btns.children(".confirm").hide();
+      btns.children(".edit-site").show();
+
+      //set site
+      var oldSite = $(this).parents(".list-item").children(".text").text();
+      var originalEntry = $(this).parents(".list-item");
+      var newSite = originalEntry.children(".confirm-edit").val();
+
+      //edit
+      originalEntry.removeClass("on-edit");
+
+      originalEntry.children(".confirm-edit").hide();
+      originalEntry.children(".confirm-edit").val("");
+
+      originalEntry.children(".text").show();
+      originalEntry.children(".text").text(newSite);
+
+      //hide and set slider
+      originalEntry.children(".slider").hide();
+
+      var newRating = originalEntry.children(".slider").children(".slide.active").index();
+      newRating++; // now its 1 indexed
+
+
+      //change global array
+      if(newSite != "" && isURL(newSite)){
+        var newEntry = {
+          "rating": newRating.toString(),
+          "site": newSite
+        };
+        console.log(newEntry);
+
+        changeLocally(whitelist, oldSite, newEntry);
+        console.log("updated list");
         console.log(whitelist);
         updateList(whitelist);
-        //send to server
+
+        //send data
         sendServer(whitelist);
+        console.log(whitelist);
       } else {
-        $("#whitelist .error").text("Invalid Site");
+        alert("Invalid Site");
       }
 
+
+    })
+
+    $(document).on("click", ".list-item .slider .slide", slider);
+
+  }, 500);
+
+  //adding new sites
+  $(document).on("click", ".new-site-dummy .mark", function(){
+    var newSite = $(".new-site-dummy #name").val();
+    var newRating = $(".new-site-dummy .slider .slide.active").index()+1;
+    console.log(newRating);
+
+    if(newSite != "" && isURL(newSite)){
+      var newEntry = {
+        "rating": newRating.toString(),
+        "site": newSite
+      };
+      console.log("new entry");
+      console.log(newEntry);
+      addLocally(whitelist, newEntry);
+
+      updateList(whitelist);
+      sendServer(whitelist);
     } else {
-      $("#whitelist .error").text("Please enter a site name");
+      alert("Please enter a valid site URL");
     }
 
   })
 
-  $("#whitelist .unmark").click(function(){
-    //remove this site
-    console.log("clicked this site");
-    console.log($(this));
-  })
 
 
   var same = false;
@@ -377,6 +505,8 @@ $(function(){
               changeViews();
             } else if(msg == "auth/wrong-password"){
               $("#login .error").text("The password you entered is wrong");
+            } else if(msg == "auth/user-not-found"){
+              $("#login .error").text("This user doesn't exist");
             } else {
               $("#login .error").text("Some other error occurred. Check console");
             }
@@ -386,6 +516,11 @@ $(function(){
     }
 
 
+  })
+
+  //single page whitelist window
+  $("#add-site").click(function(){
+    console.log($("#site-data .slider").children(".active").index())
   })
 
 })
