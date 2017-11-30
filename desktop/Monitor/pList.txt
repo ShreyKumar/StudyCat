@@ -1,5 +1,5 @@
 firefox.exe,DDLC.exe
 Discord.exe
 chrome.exe
-notepad++.exe,notepad.exe
+notepad++.exe,notepad.exe,wmplayer.exe
 pycharm.exe,pycharm64.exe

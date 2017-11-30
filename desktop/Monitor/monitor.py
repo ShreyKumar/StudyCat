@@ -2,8 +2,6 @@ from win32gui import GetForegroundWindow
 from win32process import GetWindowThreadProcessId
 from psutil import Process, NoSuchProcess
 import datetime
-import operator
-
 
 class Monitor:
     def __init__(self, listFile):
@@ -81,3 +79,13 @@ class Monitor:
 
                 return 1
         return 0
+
+    def updateAffectionByCategory(self, category, time=60):
+        if category not in self.categories:
+            return
+        index = self.categories.index(category)
+        if self.record[index] is not None:
+            self.record[index] += datetime.timedelta(0, time)
+        else:
+            self.record[index] = datetime.timedelta(0, time)
+            
