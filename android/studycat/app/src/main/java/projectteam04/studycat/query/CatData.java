@@ -1,15 +1,7 @@
 package projectteam04.studycat.query;
 
-import android.os.AsyncTask;
-import android.util.Log;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -21,6 +13,7 @@ import cz.msebera.android.httpclient.Header;
 public class CatData {
     private static AsyncHttpClient client;
     private static StringBuilder baseURL;
+    private static String userName;
     private static String auth;
     private static final String TAG = "ASYNC";
     public static void init(String ip){
@@ -39,7 +32,7 @@ public class CatData {
 
         client.post(baseURL.append("/sign_up").toString(), res);    }
 
-    public static void login(String user, String pass, final AsyncHttpResponseHandler res){
+    public static void login(final String user, String pass, final AsyncHttpResponseHandler res){
         client.removeAllHeaders();
         if (client == null) client = new AsyncHttpClient();
 
@@ -50,6 +43,7 @@ public class CatData {
         client.post(baseURL.append("/login").toString(), new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                userName = user;
                 auth = new String(responseBody);
                 res.onSuccess(statusCode, headers, responseBody);
             }
@@ -60,6 +54,19 @@ public class CatData {
             }
         });
     }
+
+    public static void pushAndroidStatus(String status, AsyncHttpResponseHandler res){
+        assert userName != null;
+        assert auth != null;
+
+        client.removeAllHeaders();
+
+        client.addHeader("user", userName);
+        client.addHeader("authkey", auth);
+        client.addHeader("android_data", status);
+        client.post(baseURL.append("/input_data_android").toString(), res);
+    }
+
 
     private CatData(){
     }

@@ -12,7 +12,7 @@ Current PORT: 3000
 
 /input_data: POST
     header: user, authkey (from login)
-    body: chrome_data, process_data, current_cat_state
+    body: chrome_data, process_data, android_data, current_cat_state
 
 /write_database: POST
 	header: user (email)

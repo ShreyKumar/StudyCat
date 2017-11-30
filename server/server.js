@@ -146,6 +146,31 @@ app.get('/get_data', function(req, res) {
 })
 
 
+app.post('/input_data_android', function(req, res){
+	var user_name = req.headers.user
+	var authkey = req.headers.authkey
+	if (user_name && authkey){
+		var user = user_manager.get_user(user_name)
+ 		data = {
+ 			android_data: req.headers.android_data
+ 		}
+		if (!user)
+			res.status(400).send("Invalid username")
+		//Assert that the username exists in our list.
+
+		if (user.authkey === authkey){
+			var c = user.update_data(data)
+			res.status(200).send("successfully updated " + c + " values")
+		} else{
+			res.status(400).send("Wrong authkey for username")
+		}
+	}else {
+		res.status(400).send("null username or authkey")
+	}
+
+
+})
+
 
 app.post('/input_data', function(req, res) {
 	console.log("Got input_data")
