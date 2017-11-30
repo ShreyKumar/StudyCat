@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "StudyCat",
+  "description": "A Chrome extension that helps you procrastinate less by gamifying productivity",
+  "version": "0.1",
+  "browser_action": {
+    "default_popup": "main.html"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["import/crypto.js", "import/jquery.min.js", "monitor.js"]
+  }
+}

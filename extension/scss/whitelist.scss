@@ -1,0 +1,131 @@
+@import "vars";
+@import "slider";
+
+//extra vars
+$listbg: #848484;
+
+html {
+  input[type="button"], button {
+    width: 150px;
+  }
+
+  h1#header {
+    .first, .second {
+      font-size: $biglogo;
+    }
+  }
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    #welcome-links {
+      width: 75%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      height: 22px;
+      .welcome-container {
+        display: inline-block;
+        width: 50%;
+        height: 22px;
+        position: absolute;
+        a, p {
+          width: 100%;
+          height: 100%;
+          display: inline;
+        }
+        a {
+          text-align: right;
+          color: $lnkcolor;
+        }
+        p {
+          margin: 0;
+        }
+      }
+      .welcome-container:last-child {
+        right: 0;
+        text-align: right;
+      }
+    }
+    #whitelist {
+      width: 75%;
+      margin-left: auto;
+      margin-right: auto;
+      .title {
+        margin-top: 40px;
+      }
+      .list {
+        background-color: $listbg;
+        border-radius: 5px;
+        .list-item {
+          height: 65px;
+          padding: 5px;
+          margin-top: 3px;
+          padding-top: 15px;
+          padding-left: 45px;
+          font-size: 13px;
+          position: relative;
+          input {
+            padding-left: 6.5px;
+            margin-bottom: 8px;
+          }
+          .text {
+            display: inline-block;
+            width: 200px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+          .rating {
+            display: inline-block;
+            width: 156px;
+            text-align: center;
+            position: absolute;
+            top: 16px;
+            left: 42%;
+          }
+          .control-btns {
+            display: inline-block;
+            position: absolute;
+            right: 45px;
+            margin-top: -3px;
+            a {
+              margin-right: 5px;
+              i {
+                font-size: 20px;
+              }
+            }
+            .confirm {
+              display: none;
+            }
+            a:visited, a:hover {
+              color: #000;
+            }
+          }
+          .slider {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 25px;
+            display: none; //use js to trigger this
+          }
+          .confirm-edit {
+            display: none;
+          }
+        }
+        .list-item.on-edit {
+          height: 83px;
+        }
+        .list-item.new-site-dummy {
+          .slider {
+            display: block;
+          }
+        }
+        .list-item:not(:last-child) {
+          border-bottom: 1px #383838 solid;
+        }
+      }
+    }
+
+  }
+}

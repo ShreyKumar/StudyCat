@@ -1,0 +1,29 @@
+.slider {
+  border: 1px solid #000;
+  height: 20px;
+  border-radius: 20px;
+  width: 100%;
+  background-color: #000;
+  .slide {
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #fff;
+    border-right: 1px #000 solid;
+  }
+  .slide:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .slide:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: none;
+  }
+
+  .slide.active, .slide:hover {
+    background-color: #000;
+    cursor: pointer;
+  }
+}
