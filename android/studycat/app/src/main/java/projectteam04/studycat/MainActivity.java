@@ -2,6 +2,7 @@ package projectteam04.studycat;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private final int NOTIFICATION_ID = 0;
-    NotificationManager nManager;
-    Notification.Builder notifBuilder;
+
     Intent monitorService;
     Button btn;
     int c;
@@ -24,33 +24,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btn = findViewById(R.id.button);
         c = 0;
-        notifBuilder = new Notification.Builder(this);
+        //notifBuilder = new Notification.Builder(this);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateNotification();
+                //updateNotification();
+                startMonitor();
                 c++;
             }
         });
 
-        // Set up the background process
+    }
+
+    private void startMonitor() {
         monitorService = new Intent(this, BackgroundMonitorService.class);
         this.startService(monitorService);
     }
 
-    private void showNotification() {
-        nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Notification n = notifBuilder
-                .setContentTitle("Hi")
-                .setContentText("notification btw")
-                .setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .build();
-        nManager.notify(NOTIFICATION_ID, n);
-    }
 
-    private void updateNotification() {
+/*    private void updateNotification() {
 
         if (nManager == null) {
             showNotification();
@@ -60,5 +53,5 @@ public class MainActivity extends AppCompatActivity {
 
         nManager.notify(NOTIFICATION_ID,
                 notifBuilder.build());
-    }
+    }*/
 }
