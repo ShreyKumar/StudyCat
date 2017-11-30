@@ -50,6 +50,8 @@ app.use(function(req, res, next){
 //User
 //---------------------------------------------
 app.post('/sign_up', function(req, res){
+	console.log("Got SIGNUP")
+
 	var username = req.headers.user
 	var password = req.headers.password
 	//Requires username and password
@@ -81,7 +83,7 @@ app.post('/sign_up', function(req, res){
 
 app.post('/login', function(req, res){
 
-
+	console.log("Got LOGIN")
 	var username = req.headers.user
 	var password = req.headers.password
 	//Requires username and password
@@ -117,6 +119,8 @@ app.post("/sign_out", function(req, res){
 })
 
 app.get('/get_data', function(req, res) {
+	console.log("Got GETDATA")
+
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
 	//Requires username and authkey
@@ -144,6 +148,8 @@ app.get('/get_data', function(req, res) {
 
 
 app.post('/input_data', function(req, res) {
+	console.log("Got input_data")
+
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
 
