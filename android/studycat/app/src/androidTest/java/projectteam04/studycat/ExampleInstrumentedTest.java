@@ -25,24 +25,13 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     @Before
     public void initialize(){
-        CatData.init("localhost:3000");
 
     }
 
 
     @Test
     public void testSignUp() throws Exception {
-        CatData.signUp("lul@test.ca", "haha", new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-            }
-        });
     }
 
 }
