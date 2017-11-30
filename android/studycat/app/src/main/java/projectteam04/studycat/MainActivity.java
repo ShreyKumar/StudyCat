@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import projectteam04.studycat.query.CatData;
-
+@Deprecated
 public class MainActivity extends AppCompatActivity {
 
     private final int NOTIFICATION_ID = 0;

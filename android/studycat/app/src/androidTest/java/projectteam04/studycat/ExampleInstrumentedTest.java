@@ -4,8 +4,15 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import cz.msebera.android.httpclient.Header;
+import projectteam04.studycat.query.CatData;
 
 import static org.junit.Assert.*;
 
@@ -16,11 +23,26 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+    @Before
+    public void initialize(){
+        CatData.init("localhost:3000");
 
-        assertEquals("projectteam04.studycat", appContext.getPackageName());
     }
+
+
+    @Test
+    public void testSignUp() throws Exception {
+        CatData.signUp("lul@test.ca", "haha", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+
 }
