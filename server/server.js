@@ -32,6 +32,7 @@ var config = {
 };
 
 firebase.initializeApp(config);
+//---------------------------------------------
 
 //enable cors
 app.use(function(req, res, next){
@@ -71,6 +72,7 @@ app.post('/sign_up', function(req, res){
 
 		})
 
+
 	} else {
 		res.status(400).send("null username or password") //error
 	}
@@ -99,6 +101,7 @@ app.post('/login', function(req, res){
 		    res.status(400).send(errorCode)
 
 		})
+
 
 	} else {
 		res.status(400).send("null username or password") //error
