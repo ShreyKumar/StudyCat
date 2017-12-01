@@ -70,7 +70,6 @@ public class BackgroundMonitorService extends IntentService {
         while (true) {
             try {
                 Thread.sleep(500);
-                updateNotification();
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -98,8 +97,11 @@ public class BackgroundMonitorService extends IntentService {
         startForeground(1, n);
     }
 
-    private void updateNotification() {
-        nb.setContentText(Integer.toString(c++));
+    private void updateNotification(double curr_state) {
+
+
+
+        nb.setContentText(Double.toString(curr_state));
 
         startForeground(1, nb.build());
     }
@@ -122,7 +124,7 @@ public class BackgroundMonitorService extends IntentService {
                 if (curr_state == null) {
                     curr_state = 3.0;
                 }
-
+                updateNotification(curr_state);
                 counter = (curr_state.intValue() - 1)%5;
             }
 
