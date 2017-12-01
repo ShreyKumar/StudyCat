@@ -1,7 +1,11 @@
 package projectteam04.studycat;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.app.Activity;
@@ -45,44 +49,39 @@ public class CatDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cat_display);
 
-        Intent intent = getIntent();
         catImage = (ImageView) findViewById(R.id.catImageView);
-
-        doStuff();
-        catImage.setImageResource(imageArray[counter]);
-    }
-
-    public void doStuff() {
-
-        CatData.getAndroidStatus(new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Gson gson = new Gson();
-                String jsonInString = null;
-                try {
-                    jsonInString = new JSONObject(new String(responseBody)).toString();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(jsonInString);
-                Map<String, Object> data = new Gson().fromJson(jsonInString, Map.class);
-                Double curr_state = (Double) data.get("current_cat_state");
-                if (curr_state == null) {
-                    curr_state = 2.0;
-                }
-
-                counter = (curr_state.intValue() - 1)%5;
-                System.out.println(counter);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                System.out.println("sigh.");
-            }
-
-        });
+        startMonitor();
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        counter = intent.getIntExtra(BackgroundMonitorService.EXTRA_COUNTER, 3);
+                        catImage.setImageResource(imageArray[counter]);
+                    }
+                }, new IntentFilter(BackgroundMonitorService.ACTION_BACKGROUND)
+        );
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startService(new Intent(this, BackgroundMonitorService.class));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopService(new Intent(this, BackgroundMonitorService.class));
+    }
+
+
+    private void startMonitor() {
+        Intent catStateService = new Intent(this, BackgroundMonitorService.class);
+        catStateService.putExtra("test", ":thinking:");
+        this.startService(catStateService);
+    }
+
 
 
 }
