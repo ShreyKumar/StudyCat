@@ -188,7 +188,7 @@ app.post('/input_data', function(req, res) {
 			res.status(400).send("Invalid username")
 		//Assert that the username exists in our list.
 
-		if (user.authkey === authkey){
+		if (user.authkey === user.authkey){
 			var c = user.update_data(req.body)
 			res.status(200).send("successfully updated " + c + " values")
 		} else{

@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
-    private String ip = "http://127.0.0.1:3000";
+    private String ip = "http://10.0.2.2:3000";
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -63,6 +63,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mIPView;
     private View mProgressView;
     private View mLoginFormView;
+
+    // Jeff's ass code
+    Intent catDisplayIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +106,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        catDisplayIntent = new Intent(this, CatDisplayActivity.class);
     }
 
     private void populateAutoComplete() {
@@ -202,6 +207,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         System.out.println(Arrays.toString(responseBody));
                         showProgress(false);
                         startMonitor();
+                        startActivity(catDisplayIntent);
                     }
 
                     @Override
