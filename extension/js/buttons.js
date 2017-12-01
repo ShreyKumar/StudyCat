@@ -242,6 +242,76 @@ $(function(){
 
     removeURL(newEntry);
     displayButtons("");
+  });
+
+  function updateRating(entry){
+    user = getUser();
+    console.log(entry);
+    var whitelist;
+    $.ajax({
+      url: prefix + "/get_whitelist",
+      type: "GET",
+      dataType: "json",
+      headers: {
+        user: user.email
+      },
+      success: function(data){
+        whitelist = data;
+        console.log(whitelist);
+      },
+      error: function(err){
+        console.log(err);
+      }
+    })
+
+    var whitelistLoaded = setInterval(function(){
+      if(whitelist){
+        console.log("whitelist loaded");
+
+        for(var i = 0; i < whitelist.length; i++){
+          console.log("Comparing " + whitelist[i]["site"] + " and " + removeProtocol(entry["site"]));
+          console.log(removeProtocol(whitelist[i]["site"]) == removeProtocol(entry["site"]));
+          if(whitelist[i]["site"] == removeProtocol(entry["site"])){
+            //update rating
+            whitelist[i]["rating"] = entry["rating"];
+          }
+        }
+        console.log("updated item");
+        console.log(whitelist);
+
+        sendServer(whitelist);
+
+        clearTimeout(whitelistLoaded);
+      }
+    }, 100)
+
+  }
+
+  $("#update-page, #update-site").click(function(){
+    var domain = $("#site-data .site-url").text();
+    var rating = parseInt($("#site-data .slider").children(".slide.active").index())+1;
+
+    var newEntry = {
+      "rating": rating.toString(),
+      "site": domain
+    };
+
+    if($(this)[0]["id"] == "update-page"){
+      var newEntry = {
+        "rating": rating.toString(),
+        "site": removeProtocol(domain)
+      };
+    } else {
+      var newEntry = {
+        "rating": rating.toString(),
+        "site": removeProtocol(extractDomain(domain))
+      };
+    }
+
+    updateRating(newEntry);
+    console.log($(this));
+
+
   })
 
 
