@@ -12,12 +12,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class CatData {
     private static AsyncHttpClient client;
-    private static StringBuilder baseURL;
+    private static String baseURL;
     private static String userName;
     private static String auth;
     private static final String TAG = "ASYNC";
     public static void init(String ip){
-        baseURL = new StringBuilder(ip);
+        baseURL = ip;
 
         client = new AsyncHttpClient();
     }
@@ -30,7 +30,7 @@ public class CatData {
         client.addHeader("password", pass);
 
 
-        client.post(baseURL.append("/sign_up").toString(), res);    }
+        client.post(baseURL + "/sign_up".toString(), res);    }
 
     public static void login(final String user, String pass, final AsyncHttpResponseHandler res){
         client.removeAllHeaders();
@@ -61,7 +61,7 @@ public class CatData {
 
         client.addHeader("user", userName);
         client.addHeader("authkey", auth);
-        client.get(baseURL.append("/get_data").toString(), res);
+        client.get(baseURL + "/get_data", res);
     }
 
 
@@ -74,7 +74,7 @@ public class CatData {
         client.addHeader("user", userName);
         client.addHeader("authkey", auth);
         client.addHeader("android_data", status);
-        client.post(baseURL.append("/input_data_android").toString(), res);
+        client.post(baseURL + "/input_data_android", res);
     }
 
 
