@@ -8,10 +8,10 @@ $(function(){
       console.log("Comparing" + whitelist[i]["site"] + " and " + url);
       console.log(whitelist[i]["site"] == url || url.includes(whitelist[i]["site"]));
       if(whitelist[i]["site"] == url){
-        return true;
+        return whitelist[i];
       }
     }
-    return false;
+    return null;
   }
 
   function extractDomain(domain){
@@ -27,18 +27,39 @@ $(function(){
 
     return hostname;
   }
+  function removeProtocol(url){
+    var splitted = url.split("//");
+    return splitted[1];
+  }
+
+  function displayRating(rating){
+    $("#site-data .slider .slide").removeClass("active");
+    $("#site-data .slider .slide:nth-child(" + rating + ")").addClass("active");
+  }
+
 
   function loadButtons(whitelist, currentURL){
     var domain = extractDomain(currentURL);
-    console.log("URL recieved: " + currentURL);
+    var url = removeProtocol(currentURL);
+
+    console.log("URL recieved: " + url);
+    console.log("domain extracted" + domain);
 
     console.log("contains domain");
     console.log(containsURL(whitelist, domain));
 
     console.log("contains url");
-    console.log(containsURL(whitelist, currentURL));
+    console.log(containsURL(whitelist, url));
 
-    if(containsURL(whitelist, domain) && !containsURL(whitelist, currentURL)){
+    var containsDomain = containsURL(whitelist, domain);
+    var containsHostName = containsURL(whitelist, url);
+
+    if(containsDomain){
+      var rating = containsDomain["rating"];
+      displayRating(rating);
+    }
+
+    if(containsDomain && !containsHostName){
       //contains the entire domain but not this page
       $("#site-data #add-site").hide();
       $("#site-data #add-site").removeClass("modify-page-to-site");
@@ -49,7 +70,8 @@ $(function(){
       $("#site-data #update-site").show();
       $("#site-data #remove-site").show();
 
-    } else if(containsURL(whitelist, domain) && containsURL(whitelist, currentURL)){
+
+    } else if(containsDomain && containsHostName){
       //only this page exists, give option to add entire site
       $("#site-data #add-site").show();
       $("#site-data #add-site").addClass("modify-page-to-site"); // if has class, replace current entry url to domain
@@ -91,35 +113,25 @@ $(function(){
       console.log("changing to whitelist view");
       populateWhiteList();
 
-      /*
-      setInterval(function(){
-        console.log("recieved yet?");
-        console.log(whitelist);
-      }, 400)
-      */
-      //if(whitelist != null){
-        //show current tab
         var currentTab;
         chrome.tabs.getSelected(null, function(tab){
           currentTab = tab.url;
-
         });
 
-        var isTabSet = setInterval(function(){
-          if(currentTab != null){
-            $("#site-data .site-url").text(currentTab);
+      var isTabSet = setInterval(function(){
+        if(currentTab != null){
+          $("#site-data .site-url").text(currentTab);
 
-            console.log("using whitelist");
-            console.log(whitelist);
+          console.log("using whitelist");
+          console.log(whitelist);
 
-            console.log("loading buttons");
-            loadButtons(whitelist, currentTab);
+          console.log("loading buttons");
+          loadButtons(whitelist, currentTab);
 
-            clearInterval(isTabSet);
-          }
-        }, 300);
+          clearInterval(isTabSet);
+        }
+      }, 100);
 
-      //}
     }
   }
 
@@ -630,11 +642,6 @@ $(function(){
     }
 
 
-  })
-
-  //single page whitelist window
-  $("#add-site").click(function(){
-    console.log($("#site-data .slider").children(".active").index())
   })
 
 })
