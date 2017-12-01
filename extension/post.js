@@ -5,9 +5,11 @@ $(function(){
 
   function containsURL(whitelist, url){
     for(var i = 0; i < whitelist.length; i++){
-      console.log("Comparing" + whitelist[i]["site"] + " and " + url);
-      console.log(whitelist[i]["site"] == url || url.includes(whitelist[i]["site"]));
+      console.log("Comparing " + whitelist[i]["site"] + " and " + url);
+      console.log(whitelist[i]["site"] == url);
       if(whitelist[i]["site"] == url){
+        console.log("Found one!");
+        console.log(whitelist[i]);
         return whitelist[i];
       }
     }
@@ -28,8 +30,12 @@ $(function(){
     return hostname;
   }
   function removeProtocol(url){
-    var splitted = url.split("//");
-    return splitted[1];
+    if(url.includes("http")){
+      var splitted = url.split("://");
+      return splitted[1];
+    } else {
+      return url;
+    }
   }
 
   function displayRating(rating){
@@ -39,17 +45,8 @@ $(function(){
 
 
   function loadButtons(whitelist, currentURL){
-    var domain = extractDomain(currentURL);
+    var domain = removeProtocol(extractDomain(currentURL));
     var url = removeProtocol(currentURL);
-
-    console.log("URL recieved: " + url);
-    console.log("domain extracted" + domain);
-
-    console.log("contains domain");
-    console.log(containsURL(whitelist, domain));
-
-    console.log("contains url");
-    console.log(containsURL(whitelist, url));
 
     var containsDomain = containsURL(whitelist, domain);
     var containsHostName = containsURL(whitelist, url);
@@ -57,12 +54,26 @@ $(function(){
     if(containsDomain){
       var rating = containsDomain["rating"];
       displayRating(rating);
+    } else if(containsHostName){
+      var rating = containsHostName["rating"];
+      displayRating(rating);
     }
+
+    console.log("Contains only domain?");
+    console.log(containsDomain);
+
+    console.log("Contains only hostname?");
+    console.log(containsHostName);
+
+    console.log("Contains entire domain?")
+    console.log(containsDomain != null && containsHostName == null);
+
+    console.log("Contains entire hostname?");
+    console.log(containsDomain != null && containsHostName != null);
 
     if(containsDomain && !containsHostName){
       //contains the entire domain but not this page
       $("#site-data #add-site").hide();
-      $("#site-data #add-site").removeClass("modify-page-to-site");
 
       $("#site-data #remove-page").hide();
       $("#site-data #add-page").hide();
@@ -71,10 +82,9 @@ $(function(){
       $("#site-data #remove-site").show();
 
 
-    } else if(containsDomain && containsHostName){
+    } else if(!containsDomain && containsHostName){
       //only this page exists, give option to add entire site
       $("#site-data #add-site").show();
-      $("#site-data #add-site").addClass("modify-page-to-site"); // if has class, replace current entry url to domain
 
       $("#site-data #remove-page").show();
       $("#site-data #add-page").hide();
@@ -85,7 +95,6 @@ $(function(){
     } else {
       //doesnt contain any page or site
       $("#site-data #add-site").show();
-      $("#site-data #add-site").removeClass("modify-page-to-site"); // if has class, replace current entry url to domain
 
       $("#site-data #remove-page").hide();
       $("#site-data #add-page").show();
