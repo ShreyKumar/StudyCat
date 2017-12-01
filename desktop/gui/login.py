@@ -24,7 +24,7 @@ class LoginScreen(Frame):
         self.passText = Label(self, text="Password", font=(self.font, 16),bg="#FFFFFF")
         self.passText.pack()
 
-        self.password = Entry(self)
+        self.password = Entry(self, show="*")
         self.password.pack()
 
         self.returnText = Label(self, text="", font=(self.font, 8), bg="#FFFFFF")
