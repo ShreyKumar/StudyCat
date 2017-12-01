@@ -32,7 +32,7 @@ public class BackgroundMonitorService extends IntentService {
             ACTION_BACKGROUND = BackgroundMonitorService.class.getName() + "BackgroundMonitorBroadcast",
             EXTRA_COUNTER = "extra_counter";
     private Handler mHandler;
-    public static final long DEFAULT_SYNC_INTERVAL = 15 * 1000;
+    public static final long DEFAULT_SYNC_INTERVAL = 5 * 1000;
     private int counter;
     // need to use runnable cuz dis thing wouldnt work in the while block
     private Runnable runnableService = new Runnable() {
@@ -120,7 +120,7 @@ public class BackgroundMonitorService extends IntentService {
                 Map<String, Object> data = new Gson().fromJson(jsonInString, Map.class);
                 Double curr_state = (Double) data.get("current_cat_state");
                 if (curr_state == null) {
-                    curr_state = 2.0;
+                    curr_state = 3.0;
                 }
 
                 counter = (curr_state.intValue() - 1)%5;

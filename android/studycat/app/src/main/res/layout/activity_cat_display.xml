@@ -7,20 +7,21 @@
     android:layout_height="match_parent"
     tools:context="projectteam04.studycat.CatDisplayActivity">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/catImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/ic_launcher_foreground"
         android:contentDescription="@string/cat_state_display"
+        android:cropToPadding="false"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cat_2" />
+        app:srcCompat="@drawable/cat_happy" />
 
 </android.support.constraint.ConstraintLayout>
