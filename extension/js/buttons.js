@@ -75,7 +75,7 @@ function sendServer(lst){
 
 
 /* HANDLES ALL BUTTONS AT THE FRONT OF THE PAGE */
-function addURL(entry){
+function addURL(entry, isSite){
   user = getUser();
   console.log(entry);
   var whitelist;
@@ -97,6 +97,12 @@ function addURL(entry){
 
   var whitelistLoaded = setInterval(function(){
     if(whitelist){
+      console.log(whitelist);
+      for(var i = 0; i < whitelist.length; i++){
+        if(whitelist[i]["site"].includes(entry["site"])){
+          whitelist.splice(i, 1);
+        }
+      }
       whitelist.push(entry);
 
       sendServer(whitelist);
@@ -191,7 +197,6 @@ $(function(){
   $("#whitelist #site-data .slider .slide").click(slider);
 
   $("#add-site").click(function(){
-    //alert("add site");
     var domain = extractDomain($("#site-data .site-url").text());
     var rating = parseInt($("#site-data .slider").children(".slide.active").index())+1;
 
@@ -201,7 +206,7 @@ $(function(){
     };
 
 
-    addURL(newEntry);
+    addURL(newEntry, true);
     displayButtons("site-added");
   })
 
@@ -214,7 +219,7 @@ $(function(){
       "site": domain
     };
 
-    addURL(newEntry);
+    addURL(newEntry, false);
     displayButtons("page-added");
   })
 
