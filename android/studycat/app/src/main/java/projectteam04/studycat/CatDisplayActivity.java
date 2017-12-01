@@ -42,7 +42,8 @@ public class CatDisplayActivity extends AppCompatActivity {
     // UI references.
     ImageView catImage;
     Button button;
-    int counter = 2;
+    BroadcastReceiver receiver;
+    int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,36 +51,34 @@ public class CatDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cat_display);
 
         catImage = (ImageView) findViewById(R.id.catImageView);
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                counter = intent.getIntExtra(BackgroundMonitorService.EXTRA_COUNTER, 2);
+                catImage.setImageResource(imageArray[counter]);
+            }
+        };
+
         startMonitor();
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        counter = intent.getIntExtra(BackgroundMonitorService.EXTRA_COUNTER, 3);
-                        catImage.setImageResource(imageArray[counter]);
-                    }
-                }, new IntentFilter(BackgroundMonitorService.ACTION_BACKGROUND)
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(this).registerReceiver((receiver),
+                new IntentFilter(BackgroundMonitorService.ACTION_BACKGROUND)
         );
-
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        startService(new Intent(this, BackgroundMonitorService.class));
+    protected void onStop() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+        super.onStop();
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopService(new Intent(this, BackgroundMonitorService.class));
-    }
-
 
     private void startMonitor() {
-        Intent catStateService = new Intent(this, BackgroundMonitorService.class);
-        catStateService.putExtra("test", ":thinking:");
-        this.startService(catStateService);
+        Intent backgroundService = new Intent(this, BackgroundMonitorService.class);
+        backgroundService.putExtra("test", ":thinking:");
+        this.startService(backgroundService);
     }
 
 

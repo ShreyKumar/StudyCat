@@ -32,7 +32,11 @@
 
         <service
             android:name=".CatStateService"
-            android:exported="false"></service>
+            android:exported="false" />
+        <service
+            android:name=".CatDisplayService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

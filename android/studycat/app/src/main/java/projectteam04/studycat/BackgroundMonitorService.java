@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
@@ -30,19 +31,33 @@ public class BackgroundMonitorService extends IntentService {
     public static final String
             ACTION_BACKGROUND = BackgroundMonitorService.class.getName() + "BackgroundMonitorBroadcast",
             EXTRA_COUNTER = "extra_counter";
+    private Handler mHandler;
+    public static final long DEFAULT_SYNC_INTERVAL = 15 * 1000;
+    private int counter;
+    // need to use runnable cuz dis thing wouldnt work in the while block
+    private Runnable runnableService = new Runnable() {
+        @Override
+        public void run() {
+            updateCatState();
+            sendBroadcastMessage(counter);
+            mHandler.postDelayed(runnableService, DEFAULT_SYNC_INTERVAL);
+        }
+    };
 
     private Notification.Builder nb;
     private int c;
     public BackgroundMonitorService() {
         super("BackgroundMonitorService");
     }
-    private int counter;
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         nb = new Notification.Builder(this);
         c = 0;
         counter = 2;
+        mHandler = new Handler();
+        mHandler.post(runnableService);
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -54,13 +69,13 @@ public class BackgroundMonitorService extends IntentService {
 
         while (true) {
             try {
-                updateCatState();
-                Thread.sleep(5000);
+                Thread.sleep(500);
                 updateNotification();
-                sendBroadcastMessage(counter);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
 
     }
@@ -95,7 +110,6 @@ public class BackgroundMonitorService extends IntentService {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
-                System.out.println("uh");
                 Gson gson = new Gson();
                 String jsonInString = null;
                 try {
@@ -103,7 +117,6 @@ public class BackgroundMonitorService extends IntentService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                System.out.println(jsonInString);
                 Map<String, Object> data = new Gson().fromJson(jsonInString, Map.class);
                 Double curr_state = (Double) data.get("current_cat_state");
                 if (curr_state == null) {
@@ -111,7 +124,6 @@ public class BackgroundMonitorService extends IntentService {
                 }
 
                 counter = (curr_state.intValue() - 1)%5;
-                System.out.println(counter);
             }
 
             @Override
