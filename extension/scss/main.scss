@@ -5,6 +5,10 @@
 @import "landing";
 @import "slider";
 
+html.not-loaded {
+  //display: none;
+}
+
 /* Global styles */
 html {
   *:focus {
@@ -87,7 +91,7 @@ html {
     padding-left: 6px;
   }
   input[type="button"], button {
-    width: 105%;
+    width: 189px;
     margin-top: 12px;
     margin-bottom: 10px;
     background-color: $btcolor;

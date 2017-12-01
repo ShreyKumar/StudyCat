@@ -3,7 +3,111 @@ $(function(){
   var loggedIn = false;
   var prefix = "http://localhost:3000";
 
+  function containsURL(whitelist, url){
+    for(var i = 0; i < whitelist.length; i++){
+      console.log("Comparing " + whitelist[i]["site"] + " and " + url);
+      console.log(whitelist[i]["site"] == url);
+      if(whitelist[i]["site"] == url){
+        console.log("Found one!");
+        console.log(whitelist[i]);
+        return whitelist[i];
+      }
+    }
+    return null;
+  }
+
+  function extractDomain(domain){
+    var hostname;
+    if (domain.indexOf("://") > -1) {
+        hostname = domain.split('/')[2];
+    } else {
+        hostname = domain.split('/')[0];
+    }
+
+    hostname = hostname.split(':')[0];
+    hostname = hostname.split('?')[0];
+
+    return hostname;
+  }
+  function removeProtocol(url){
+    if(url.includes("http")){
+      var splitted = url.split("://");
+      return splitted[1];
+    } else {
+      return url;
+    }
+  }
+
+  function displayRating(rating){
+    $("#site-data .slider .slide").removeClass("active");
+    $("#site-data .slider .slide:nth-child(" + rating + ")").addClass("active");
+  }
+
+
+  function loadButtons(whitelist, currentURL){
+    var domain = removeProtocol(extractDomain(currentURL));
+    var url = removeProtocol(currentURL);
+
+    var containsDomain = containsURL(whitelist, domain);
+    var containsHostName = containsURL(whitelist, url);
+
+    if(containsDomain){
+      var rating = containsDomain["rating"];
+      displayRating(rating);
+    } else if(containsHostName){
+      var rating = containsHostName["rating"];
+      displayRating(rating);
+    }
+
+    console.log("Contains only domain?");
+    console.log(containsDomain);
+
+    console.log("Contains only hostname?");
+    console.log(containsHostName);
+
+    console.log("Contains entire domain?")
+    console.log(containsDomain != null && containsHostName == null);
+
+    console.log("Contains entire hostname?");
+    console.log(containsDomain != null && containsHostName != null);
+
+    if(containsDomain && !containsHostName){
+      //contains the entire domain but not this page
+      $("#site-data #add-site").hide();
+
+      $("#site-data #remove-page").hide();
+      $("#site-data #add-page").hide();
+      $("#site-data #update-page").hide();
+      $("#site-data #update-site").show();
+      $("#site-data #remove-site").show();
+
+
+    } else if(!containsDomain && containsHostName){
+      //only this page exists, give option to add entire site
+      $("#site-data #add-site").show();
+
+      $("#site-data #remove-page").show();
+      $("#site-data #add-page").hide();
+      $("#site-data #update-page").show();
+
+      $("#site-data #update-site").hide();
+      $("#site-data #remove-site").hide();
+    } else {
+      //doesnt contain any page or site
+      $("#site-data #add-site").show();
+
+      $("#site-data #remove-page").hide();
+      $("#site-data #add-page").show();
+      $("#site-data #update-page").hide();
+
+      $("#site-data #update-site").hide();
+      $("#site-data #remove-site").hide();
+    }
+  }
+
+
   function changeViews(){
+    window.updated = false;
     if(localStorage.getItem("user") === null && localStorage.getItem("authkey") === null){
       //not logged in
       console.log("not logged in");
@@ -18,16 +122,25 @@ $(function(){
       console.log("changing to whitelist view");
       populateWhiteList();
 
-      //show current tab
-      var currentTab;
-      chrome.tabs.getSelected(null, function(tab){
-        currentTab = tab.url;
-        $("#site-data .site-url").text(currentTab);
+        var currentTab;
+        chrome.tabs.getSelected(null, function(tab){
+          currentTab = tab.url;
+        });
 
-        //check if current tab is in whitelist
+      var isTabSet = setInterval(function(){
+        if(currentTab != null){
+          $("#site-data .site-url").text(currentTab);
 
-        //if it is, then only show edit site, and view blacklist
-      });
+          console.log("using whitelist");
+          console.log(whitelist);
+
+          console.log("loading buttons");
+          loadButtons(whitelist, currentTab);
+
+          clearInterval(isTabSet);
+        }
+      }, 100);
+
     }
   }
 
@@ -48,6 +161,9 @@ $(function(){
     //update on both views
     $("#whitelist #welcome").text("Welcome " + user.email.split("@")[0] + "!");
     $("#welcomemsg .name").text(user.email.split("@")[0]);
+
+    //global ifupdated
+    window.updated = false;
     $.ajax({
         url : prefix + '/get_whitelist',
         type: 'GET',
@@ -60,6 +176,7 @@ $(function(){
           updateList(whitelist);
           console.log(data);
           console.log("updated list");
+          window.updated = true;
         },
         error: function(err){
           //if response text is nothing still try to update list
@@ -71,6 +188,7 @@ $(function(){
             console.log("1 item");
             whitelist = [err.responseText];
             updateList(whitelist);
+            window.updated = true;
           } else {
             console.log(err);
             console.log("error");
@@ -79,6 +197,17 @@ $(function(){
         }
 
       })
+
+      var checking = setInterval(function(){
+        if(window.updated){
+          console.log("new whitelist after update:");
+          console.log(whitelist);
+          //stop checking
+          clearInterval(checking);
+        }
+      }, 500);
+
+
   }
 
   function setUser(email, key){
@@ -170,12 +299,18 @@ $(function(){
       })
   })
 
+  function updateGlobally(wl, lst){
+    wl = lst;
+  }
 
   //get request on current white list here
 
   function updateList(lst){
     //clear list
     clearWhiteList(false);
+
+    //update global array
+    updateGlobally(whitelist, lst);
 
     if(lst.length == 0){
       $("#whitelist .list").text("Nothing to show");
@@ -516,11 +651,6 @@ $(function(){
     }
 
 
-  })
-
-  //single page whitelist window
-  $("#add-site").click(function(){
-    console.log($("#site-data .slider").children(".active").index())
   })
 
 })

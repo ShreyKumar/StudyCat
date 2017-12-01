@@ -6,3 +6,13 @@ function slider(){
   $(this).parent().children(".active").removeClass("active");
   $(this).addClass("active");
 }
+
+/* Only load DOM after jquery is loaded */
+/* Fix this later
+$(function(){
+  $(window).on("load", function(){
+    alert("loaded");
+    $("html").removeClass("not-loaded");
+  });
+})
+*/

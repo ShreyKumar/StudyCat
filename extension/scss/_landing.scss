@@ -10,5 +10,9 @@ html {
   }
   footer {
     text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -72px;
   }
 }
