@@ -30,7 +30,7 @@ public class CatData {
         client.addHeader("password", pass);
 
 
-        client.post(baseURL + "/sign_up".toString(), res);    }
+        client.post(baseURL + "/sign_up", res);    }
 
     public static void login(final String user, String pass, final AsyncHttpResponseHandler res){
         client.removeAllHeaders();
@@ -40,7 +40,7 @@ public class CatData {
         client.addHeader("password", pass);
 
 
-        client.post(baseURL.append("/login").toString(), new AsyncHttpResponseHandler() {
+        client.post(baseURL + "/login", new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 userName = user;
