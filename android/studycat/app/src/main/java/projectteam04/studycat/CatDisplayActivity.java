@@ -35,7 +35,7 @@ public class CatDisplayActivity extends AppCompatActivity {
     // Image references
     int[] imageArray = { R.drawable.cat_0,
             R.drawable.cat_1,
-            R.drawable.cat_2,
+            R.drawable.cat_happy,
             R.drawable.cat_3,
             R.drawable.cat_4};
 
