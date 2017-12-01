@@ -121,7 +121,10 @@ class DesktopApp:
         data = json.loads(r.text)
 
         if(data.chrome_data is not None):
-            print(data.chrome_data)
+            self.monitor.updateAffectionByCategory(data.chrome_data)
+        if(data.android_data is not None):
+            if(data.android_data):
+                self.monitor.updateAffectionByCategory("Unproductive")
 
     def syncWithServer(self):
         while self.running:
