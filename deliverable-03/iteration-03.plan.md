@@ -99,7 +99,7 @@ These meetings will be shorter than the other two for the most part; they serve 
 
 Sunday meetings will act as a buffer to the tutorial; tasks are expected to be completed by this time, and everyone will report what's been done and we'll figure out our strategy for the tutorial - mainly what we'll talk about, and what we'll present. As well, since all tasks are complete, another group discussion is held to figure out possible tasks for the next week, and based on the progress/ difficulty of the tasks completed, to re-prioritize the most important part of the app, and whether certain tasks were worth the effort or not.
 
-For the most part, the meeting plan has stayed the same as previous sessions. We found it quite productive, and it was a good process to continue on with. For this last iteration we hosted a few more meetings in preparation for the tutorial, deliverable 3, and the final demo.
+For the most part, the meeting plan will stay the same as previous sessions. We found it quite productive, and it was a good process to continue on with. Mid week checks along with cumulative and meaningful end of week meetings allowed us to meet our deadlines and understand our goals for the next week. For this last iteration we will host a more meetings between our standard 3 in preparation for the tutorial, deliverable 3, and the final demo, to discuss our game plan and specifics. It will be necessary to reconvene and reconfirm details/ discuss our goals more and more as the final demo is approaching.
 
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
@@ -116,7 +116,7 @@ The main artifact we will produce is Taiga.io. Sprints will be created either we
 Tasks are prioritized based on how important they are to the basic functionality of the app (the MVP). For the most part, this will be the most basic process monitoring, hooked up to a user system and with the chrome extension feeding information in to the desktop app, and all of this affecting the cat's affection.
 Generally, since tasks will be formulated during the Monday meetings, we will as a group discuss the most important tasks for the week (across teams as well, since each team relies on eachother for full app functionality.) Everyone will then decide which task they want to take, and once all tasks are allocated, we re-meet on the Thursday.
 
-Again, the process stays the same. The process continues to be successful - Taiga tracks our progress and or tasks, while Github actually hosts our code and gives us visual feedback on contributions and the codebase.
+Again, the process will stay the same, with some minor additions. The process continues to be successful - Taiga tracks our progress and or tasks, while Github actually hosts our code and gives us visual feedback on contributions and the codebase. Google Drive was also added to the mix moreso than last deliverables in order to host meeting minutes and other potentially important files (such as video demo related planning, or other note taking / idea jotting related to the game and infrastructure of our project).
 
 #### Git / GitHub workflow
 
@@ -178,10 +178,8 @@ Front End:
 - `UserModel.py`: A singleton module for storing server and user information.<br>
 - `pList.txt`: A list of programs to monitor.<br>
 
-Screenshots of the desktop application: <br>
-<img src="desktopmain.png" width="250px" height="250px" />
-<img src="desktoplogin.png" width="250px" height="250px" />
-<img src="desktopprograms.png" width="250px" height="250px" />
+Screenshots of the desktop application <br>
+
 
 Server:
 
@@ -197,10 +195,7 @@ Extension:
 - `css/*` - the main css file to style the extension
 - `scss/*` - all scss files to be complied into css
 
-Screenshots of the extension: <br>
-<img src="chrome-login.PNG"/>
-<img src="chrome-main.PNG"/>
-<img src="chrome-blacklist.PNG"/>
+Screenshots of the extension <br>
 
 Android:
 
@@ -210,8 +205,3 @@ Most code for the android section is stored within the android/studycat/app/src/
 - `MainActivity.java` - Deprecated starter code, here for reference
 - `CatDisplayActivity.java` - Displays the cat on a seperate page for the android app
 - `Query\CataData.java` - A series of callbacks serving as an interface between the server and the phone
-
-Screenshots of the Android: <br>
-<img src="androidlogin.png" width="250px" height="500px" />
-<img src="androidcat.png" width="250px" height="500px" />
-<img src="androidnotif.png" width="250px" height="500px" />
