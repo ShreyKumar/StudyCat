@@ -15,18 +15,8 @@ Where: Online via. Discord
 * Started work on android app. 
 * Deciding to take one or two days off this project to fully rest and deliver on time with effeciency. 
 
-<img src="taigamain.png" width="640" height="480">
+<img src="sprint4taiga.png" width="640" height="480">
 
-<br /> 
-<br /> 
-<img src="extensiontaskboard.png" width="640" height="320">
-
-
-
-<br /> 
-<br /> 
-
-<img src="taskexample.png" width="640" height="600">
 
 
 <br /> 
