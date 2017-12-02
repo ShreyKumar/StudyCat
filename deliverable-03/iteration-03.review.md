@@ -62,6 +62,12 @@ Front End:
 Android App:
 * Created fully functioning android app which interfaces with the server and the desktop app for on the go updates on your productivity level.
 
+Chrome extension: 
+* Fully developed front end which is now compatible with back end. 
+* Slightly altered data sent to server from monitoring tabs due to a miscommunication earlier.
+* Simplified server code a bit so its more effecient when communicating with the extension.
+* Fixed numerous UI and functionality bugs which were unnoticed in the last iteration. 
+
 <img src="desktopmain.png" width="250px" height="250px" />
 
 <br />
