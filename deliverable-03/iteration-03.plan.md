@@ -178,8 +178,10 @@ Front End:
 - `UserModel.py`: A singleton module for storing server and user information.<br>
 - `pList.txt`: A list of programs to monitor.<br>
 
-Screenshots of the desktop application <br>
-
+Screenshots of the desktop application: <br>
+<img src="desktopmain.png" width="250px" height="250px" />
+<img src="desktoplogin.png" width="250px" height="250px" />
+<img src="desktopprograms.png" width="250px" height="250px" />
 
 Server:
 
@@ -195,7 +197,10 @@ Extension:
 - `css/*` - the main css file to style the extension
 - `scss/*` - all scss files to be complied into css
 
-Screenshots of the extension <br>
+Screenshots of the extension: <br>
+<img src="chrome-login.PNG"/>
+<img src="chrome-main.PNG"/>
+<img src="chrome-blacklist.PNG"/>
 
 Android:
 
@@ -205,3 +210,8 @@ Most code for the android section is stored within the android/studycat/app/src/
 - `MainActivity.java` - Deprecated starter code, here for reference
 - `CatDisplayActivity.java` - Displays the cat on a seperate page for the android app
 - `Query\CataData.java` - A series of callbacks serving as an interface between the server and the phone
+
+Screenshots of the Android: <br>
+<img src="androidlogin.PNG" width="250px" height="500px" />
+<img src="androidcat.PNG" width="250px" height="500px" />
+<img src="androidnotif.PNG" width="250px" height="500px" />
