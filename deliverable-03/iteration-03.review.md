@@ -30,15 +30,15 @@ Where: Online via. Discord
 * Some internal deadlines were not hit by everyone, as such we should have been more realistic in setting these deadlines
 * A lot more unexpected bugs were encountered this time than before, which delayed progress in our overall process 
 * Some code could have been better structured. (For the chrome extension)
-* Did not have the time to test out both chrome extension and desktop app synchronously.
+* Did not have the time to properly test out both chrome extension and desktop app synchronously.
 
 #### Planned Changes
 
-In order to show a complete working product in 4 days time for the demo, we believe the following would be realistic changes to have:
+In order to show a complete working product in the given time span for the demo, we believe the following would be realistic changes to have:
 * UI improvements
     - Visuals of the desktop application could still use some improvements
     - A few UI bugs on chrome extension that need be fixed.
-* Test Android, Chrome extension and Desktop to see if they work synchronously with each other. Check if data is maintained accross all three devices. Debug if necessary. 
+* Test Android, Chrome extension and Desktop to see if they work synchronously with each other, <i>at all times</i>. Check if data is maintained accross all three devices. Debug if necessary. 
  
 ## Product - Review
 
@@ -68,15 +68,7 @@ Chrome extension:
 * Simplified server code a bit so its more effecient when communicating with the extension.
 * Fixed numerous UI and functionality bugs which were unnoticed in the last iteration. 
 
-<img src="desktopmain.png" width="250px" height="250px" />
 
-<br />
-
-<img src="androidcat.png" width="250px" height="500px" />
-
-<br />
-
-<img src="chrome-main.PNG">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
@@ -89,7 +81,4 @@ Chrome extension:
 
 ## Meeting Highlights
 
-* For our next iteration we are planning on implementing the goals that we planned earlier but were not able to complete such as user data persistence, and multi-platform support. We believe that these are important features that should be implemeneted for our MVP, which we explain above.
-* For the MVP we also want to have group functionality implemented, as this was one of the key unique features of our app.
-* We also plan on adding some smaller features such as being able to customize appearance of the cat/user and adding custom user-defined productivity levels (being able create our own productivity categories).
-
+* For the remaining time we have our team aims to polish our product even further, focusing our efforts on the features that we have completed thus far.
