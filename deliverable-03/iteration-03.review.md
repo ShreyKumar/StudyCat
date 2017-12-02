@@ -60,11 +60,11 @@ Server:
 Front End:
 * Having a Chrome extension to monitor active browser tabs
 
-<img src="desktopmain.png" width="400" height="300">
+<img src="desktopmain.png">
 
 <br />
 
-<img src="chrome-main.PNG" width="250" height="600">
+<img src="chrome-main.PNG">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
