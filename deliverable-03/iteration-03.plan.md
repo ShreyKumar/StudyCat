@@ -179,9 +179,9 @@ Front End:
 - `pList.txt`: A list of programs to monitor.<br>
 
 Screenshots of the desktop application <br>
-<img src="desktoplogin.png" width="250px" height="250px" />
-<img src="app.png" width="250px" height="250px" />
-<img src="desktopprograms.png" width="250px" height="250px" />
+<img src="desktoplogin.png" width="250px" height="400px" />
+<img src="app.png" width="250px" height="400px" />
+<img src="desktopprograms.png" width="250px" height="400px" />
 
 Server:
 
@@ -202,7 +202,7 @@ Screenshots of the extension <br>
 <img src="chrome-main.PNG" />
 <img src="chrome-blacklist.PNG" />
 
-Screenshots of the Android application:
+Screenshots of the Android application: <br>
 <img src="androidlogin.png" width="250px" height="500px" />
 <img src="androidcat.png" width="250px" height="500px" />
 <img src="androidnotif.png" width="250px" height="500px" />
