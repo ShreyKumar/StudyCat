@@ -1,0 +1,23 @@
+Current PORT: 3000
+
+#Routes
+/sign_up: POST
+    header: user, password
+
+/login: POST
+    header: user, password
+    
+/get_data: GET
+    header: user, authkey (from login)
+
+/input_data: POST
+    header: user, authkey (from login)
+    body: chrome_data, process_data, android_data, current_cat_state
+
+/write_database: POST
+	header: user (email)
+	body: data (JSON)
+
+/read_database: GET
+	header: user (email)
+  

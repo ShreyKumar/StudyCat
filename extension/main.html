@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/main.css" rel="stylesheet" media="screen" />
+  </head>
+  <body>
+    <h1 id="header">
+      <div class="first">Study</div>
+      <div class="second">Cat</div>
+    </h1>
+    <section id="login">
+      <h1>Login</h1>
+      <form>
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+
+        <input type="button" id="login_bt" value="Login" />
+        <span class="error"></span>
+      </form>
+    </section>
+    <section id="signup">
+      <h1>Sign up</h1>
+      <form>
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <input type="password" id="confirm" placeholder="Confirm Password" />
+
+        <input type="button" id="register" value="Register" />
+
+        <span class="error"></span>
+      </form>
+    </section>
+
+    <section id="whitelist">
+      <!-- Perform get on white list -->
+      <!-- After each url, add a remove button -->
+
+      <div class="header">
+        <p id="welcome">Welcome <span class="name"></span>!</p>
+        <a href="#" id="signout">Sign out</a>
+      </div>
+      <div id="site-data">
+        <div class="label">
+          <h4>URL:</h4>
+        </div>
+        <div class="site-url"></div>
+        <div class="label">
+          <h4>Rating:</h4>
+        </div>
+        <div class="slider">
+          <div class="slide"></div>
+          <div class="slide"></div>
+          <div class="slide active"></div>
+          <div class="slide"></div>
+          <div class="slide"></div>
+        </div>
+
+        <input type="button" id="remove-page" value="Remove page" />
+        <input type="button" id="update-page" value="Update Rating" />
+        <input type="button" id="add-page" value="Add page" />
+
+        <input type="button" id="remove-site" value="Remove site" />
+        <input type="button" id="update-site" value="Update Rating" />
+        <input type="button" id="add-site" value="Add site" />
+      </div>
+
+
+      <input type="button" id="view-blacklist" value="View Blacklist" />
+    </section>
+
+    <footer>
+      Copyright &copy; StudyCat 2017 <div class="version">Version 1.0</div>
+    </footer>
+
+
+    <script type="text/javascript" src="import/jquery.min.js"></script>
+    <!-- https://cdnjs.com/libraries/crypto-js -->
+    <script type="text/javascript" src="import/crypto.js"></script>
+
+
+    <!--[if lt IE 9]>
+      <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/buttons.js"></script>
+    <script type="text/javascript" src="post.js"></script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.slider {
+  border: 1px solid #000;
+  height: 20px;
+  border-radius: 20px;
+  width: 100%;
+  background-color: #000; }
+  .slider .slide {
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #fff;
+    border-right: 1px #000 solid; }
+  .slider .slide:first-child {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; }
+  .slider .slide:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: none; }
+  .slider .slide.active, .slider .slide:hover {
+    background-color: #000;
+    cursor: pointer; }
+
+html footer {
+  position: relative;
+  margin-left: 0;
+  left: 0; }
+html input[type="button"], html button {
+  width: 150px; }
+html h1#header .first, html h1#header .second {
+  font-size: 35px; }
+html body {
+  width: 100%;
+  height: 100%;
+  margin: 0; }
+  html body #welcome-links {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    height: 22px; }
+    html body #welcome-links .welcome-container {
+      display: inline-block;
+      width: 50%;
+      height: 22px;
+      position: absolute; }
+      html body #welcome-links .welcome-container a, html body #welcome-links .welcome-container p {
+        width: 100%;
+        height: 100%;
+        display: inline; }
+      html body #welcome-links .welcome-container a {
+        text-align: right;
+        color: blue; }
+      html body #welcome-links .welcome-container p {
+        margin: 0; }
+    html body #welcome-links .welcome-container:last-child {
+      right: 0;
+      text-align: right; }
+  html body #whitelist {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto; }
+    html body #whitelist .title {
+      margin-top: 40px; }
+      html body #whitelist .title .label h4 {
+        color: #000; }
+    html body #whitelist .list {
+      background-color: #848484;
+      border-radius: 5px; }
+      html body #whitelist .list .list-item {
+        height: 65px;
+        padding: 5px;
+        margin-top: 3px;
+        padding-top: 15px;
+        padding-left: 45px;
+        font-size: 13px;
+        position: relative; }
+        html body #whitelist .list .list-item input {
+          padding-left: 6.5px;
+          margin-bottom: 8px; }
+        html body #whitelist .list .list-item .text {
+          display: inline-block;
+          width: 200px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap; }
+        html body #whitelist .list .list-item .rating {
+          display: inline-block;
+          width: 156px;
+          text-align: center;
+          position: absolute;
+          top: 16px;
+          left: 42%; }
+        html body #whitelist .list .list-item .control-btns {
+          display: inline-block;
+          position: absolute;
+          right: 45px;
+          margin-top: -3px; }
+          html body #whitelist .list .list-item .control-btns a {
+            margin-right: 5px; }
+            html body #whitelist .list .list-item .control-btns a i {
+              font-size: 20px; }
+          html body #whitelist .list .list-item .control-btns .confirm {
+            display: none; }
+          html body #whitelist .list .list-item .control-btns a:visited, html body #whitelist .list .list-item .control-btns a:hover {
+            color: #000; }
+        html body #whitelist .list .list-item .slider {
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 25px;
+          display: none; }
+        html body #whitelist .list .list-item .confirm-edit {
+          display: none; }
+      html body #whitelist .list .list-item.on-edit {
+        height: 83px; }
+      html body #whitelist .list .list-item.new-site-dummy .slider {
+        display: block; }
+      html body #whitelist .list .list-item:not(:last-child) {
+        border-bottom: 1px #383838 solid; }
+
+/*# sourceMappingURL=whitelist.css.map */

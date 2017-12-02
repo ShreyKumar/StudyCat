@@ -7,7 +7,6 @@ base_url = 'http://localhost:3000'
 
 class Client:
     # model : UserModel
-    # data : TODO determine what data to send to server.. (probably a combination of Cat and Process)
     def __init__(self, usermodel):
         self._model = usermodel
 
@@ -29,7 +28,6 @@ class Client:
         print(r.status_code)
         print(r.text)
 
-    # TODO: find out what we should expect from the server
     def getDataFromServer(self, cb=None):
 
         if (self._model.auth() is None):
@@ -72,9 +70,3 @@ def register(user, password, cb):
     print(r.status_code)
     print(r.text)
 
-
-# if __name__ == '__main__':
-#     user = UserModel("lamr@dodabiz.com", "kaiismynigga2017")
-#     #register("lamr@dodabiz.com", "kaiismynigga2017")
-#     client = Client(user)
-#     client.login()
