@@ -179,7 +179,9 @@ Front End:
 - `pList.txt`: A list of programs to monitor.<br>
 
 Screenshots of the desktop application <br>
-
+<img src="desktoplogin.png" width="250px" height="250px" />
+<img src="app.png" width="250px" height="250px" />
+<img src="desktopprograms.png" width="250px" height="250px" />
 
 Server:
 
@@ -196,8 +198,14 @@ Extension:
 - `scss/*` - all scss files to be complied into css
 
 Screenshots of the extension <br>
+<img src="chrome-login.PNG" />
+<img src="chrome-main.PNG" />
+<img src="chrome-blacklist.PNG" />
 
-Android:
+Screenshots of the Android application:
+<img src="androidlogin.png" width="250px" height="500px" />
+<img src="androidcat.png" width="250px" height="500px" />
+<img src="androidnotif.png" width="250px" height="500px" />
 
 Most code for the android section is stored within the android/studycat/app/src/main folder.
 
