@@ -53,6 +53,7 @@ Team 3 (Extension):
 Shrey Kumar
 
 - Responsible for coding the chrome extension
+- Responsible for doing front end for app. 
 
 Team 4 (Android App):
 
@@ -173,7 +174,7 @@ Extension:
 - `monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
 - `import/*` - all imported libraries <br>
 - `main.html`- the page to display if the user clicks on the extension <br>
-- `css/main.css` - the main css file to style the extension
+- `css/*` - the main css file to style the extension
 - `scss/*` - all scss files to be complied into css
 
 
