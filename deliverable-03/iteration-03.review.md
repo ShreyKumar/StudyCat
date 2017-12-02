@@ -34,17 +34,11 @@ Where: Online via. Discord
 
 #### Planned Changes
 
-* Changing from a single-platform process monitor to a interface that allows support for multiple operating systems
-    - We believe that it is important to support multiple operating systems since even during development we ran into issues with not being able to run the app on Unix based systems.
-    - Considering that a significant portion of people are not exclusively using Windows, we would be losing a lot of potential users by restricting the type of operating system
+In order to show a complete working product in 4 days time for the demo, we believe the following would be realistic changes to have:
 * UI improvements
     - Visuals of the desktop application could still use some improvements
     - A few UI bugs on chrome extension that need be fixed.
-* Effeciency issues
-    - Some parts of the extension are still glitchy, although the functionality works. 
-* Group Functionality
-    - We plan on adding a feature that allows for multiple users to join a group where each user will have a certain score, therefore incentivizing the group members to be more productive.
-    - This unique feature will make our app stand out compared to other productivity apps
+* Test Android, Chrome extension and Desktop to see if they work synchronously with each other. Check if data is maintained accross all three devices. Debug if necessary. 
  
 ## Product - Review
 
@@ -68,11 +62,15 @@ Front End:
 Android App:
 * Created fully functioning android app which interfaces with the server and the desktop app for on the go updates on your productivity level.
 
-<img src="app.png" width="400" height="300">
+<img src="desktopmain.png" width="250px" height="250px" />
 
 <br />
 
-<img src="artifact1.PNG" width="250" height="600">
+<img src="androidcat.png" width="250px" height="500px" />
+
+<br />
+
+<img src="chrome-main.PNG">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
