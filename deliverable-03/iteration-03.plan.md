@@ -23,11 +23,17 @@ List the most significant changes you made to your process (if any).
  > *Note:* If you are not making any changes to your process, it means that you are happy with all of the decisions you made in the previous iterations.
  > In this case, list what you consider to be the most significant process decisions your team made. For each decision, explain why you consider it successful, and what success metric you are using (or could use) to assert that the decision is successful.
 
-Github Workflow
+1. Github Workflow
 
-The Github Workflow we used was the most intrinsic part of our Github workflow.
+The Github Workflow we used was very important to the success of our project. There were three main reasons for this:
 
-Taiga.io
+- First, it allowed other groups to easily create test doubles in order to test their section of the code. Since each portion was in their own branches, there was no risk of current changes affecting other members working on the code base.
+- Secondly, this allows us to always have our current versions of the current product on the master branch. This allows us to not allow last minute changes to the product to ruin things for the tutorial/demo, and to easily discard changes.
+- Finally, this was a very easy way to prevent overall merge conflicts. Since each person had their own branch on their own section of the codebase, slightly modifying files for testing became very easy.
+
+Some success metrics we used is the number of merge conflicts we got as well as the number of times for which we were blocked from testing as a result of other people's code. It was clear that due to our Github workflow, none of these things happened.
+
+2. Taiga.io
 
 
 #### Roles & responsibilities
