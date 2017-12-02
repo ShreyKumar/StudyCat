@@ -119,10 +119,10 @@ class DesktopApp:
 
     def killme(self, r):
         data = json.loads(r.text)
-
-        if(data.chrome_data is not None):
+        print(data)
+        if(data['chrome_data'] is not None):
             self.monitor.updateAffectionByCategory(data.chrome_data)
-        if(data.android_data is not None):
+        if(data['android_data'] is not None):
             if(data.android_data):
                 self.monitor.updateAffectionByCategory("Unproductive")
 
