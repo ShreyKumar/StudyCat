@@ -52,13 +52,21 @@ Where: Online via. Discord
 
 Art:
 * Received artist assets and integrated them into our UI.
+* Centralized the color schemes of our chrome extension, desktop app, and android app.
 
 Server: 
 
 * Implement transfer of chrome extension, android app, and desktop app data.
+* Modified method of data transfer to encapsulate each application's white list of processes. Server now only transfers your level of productivity rather than the processes you run.
 
 Front End:
-* Having a Chrome extension to monitor active browser tabs
+* Fully asynchronous server requests. App won't freeze during login, registration, pushes to the server, and updates.
+* Implemented system of callbacks to handle the responses from the http requests.
+* Dynamic login responses, telling the user whether their login was successful, and if it wasn't, tells them the reason for failure.
+* Fully integrated data from chrome extension, android app, and desktop app, all of which is now used to monitor productivity.
+
+Android App:
+* Created fully functioning android app which interfaces with the server and the desktop app for on the go updates on your productivity level.
 
 <img src="app.png" width="400" height="300">
 
@@ -70,7 +78,7 @@ Front End:
 
 * Having the User's data persist across devices
     - Synchronizing data between devices hasn't been implemented yet
-    - The team determined that getting the main functionality as good as possible was a higher priority than extra details such as multi device support
+    - The team determined that getting the main functionality as polished as possible was a higher priority than extra details such as multi device support
 * Multi-platform support (OSX and W10)
     - Currently the process monitoring will only work for devices using Windows as we installed the win32 packages instead of the Unix based packages
     - We plan on creating an interface which will allow the app to dynamically choose which packages to use for process monitoring. 
