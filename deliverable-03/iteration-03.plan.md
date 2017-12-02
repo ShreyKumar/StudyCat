@@ -4,10 +4,10 @@
  > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
 
 
-## Iteration 02
+## Iteration 03
 
- * Start date: October 23rd, 2017
- * End date: November 17th, 2017
+ * Start date:November 17th, 2017
+ * End date: December 1st, 2017
 
 ## Process
 
@@ -24,6 +24,7 @@ Kevin Kang
 
 - Responsible for process monitoring
 - Faciliate discussion in meetings
+- UI design of front end
 
 
 Darwin Truong
@@ -53,6 +54,15 @@ Shrey Kumar
 
 - Responsible for coding the chrome extension
 
+Team 4 (Android App):
+
+Darwin Truong
+
+Jeff Lin
+
+- Both have been shifted off their curent teams (but are still present in case of bugs/ other things that maky pop up) to create an android application
+- 
+
 #### Events
 
 Describe meetings (and other events) you are planning to have:
@@ -74,6 +84,8 @@ These meetings will be shorter than the other two for the most part; they serve 
 
 Sunday meetings will act as a buffer to the tutorial; tasks are expected to be completed by this time, and everyone will report what's been done and we'll figure out our strategy for the tutorial - mainly what we'll talk about, and what we'll present. As well, since all tasks are complete, another group discussion is held to figure out possible tasks for the next week, and based on the progress/ difficulty of the tasks completed, to re-prioritize the most important part of the app, and whether certain tasks were worth the effort or not.
 
+For the most part, the meeting plan has stayed the same as previous sessions. We found it quite productive, and it was a good process to continue on with. For this last iteration we hosted a few more meetings in preparation for the tutorial, deliverable 3, and the final demo.
+
  * Other events could be coding sessions, code reviews, quick weekly sync' meeting online, etc.
      - Coding sessions are to be done throughout the week by several individuals.
 
@@ -89,6 +101,8 @@ The main artifact we will produce is Taiga.io. Sprints will be created either we
 Tasks are prioritized based on how important they are to the basic functionality of the app (the MVP). For the most part, this will be the most basic process monitoring, hooked up to a user system and with the chrome extension feeding information in to the desktop app, and all of this affecting the cat's affection.
 Generally, since tasks will be formulated during the Monday meetings, we will as a group discuss the most important tasks for the week (across teams as well, since each team relies on eachother for full app functionality.) Everyone will then decide which task they want to take, and once all tasks are allocated, we re-meet on the Thursday.
 
+Again, the process stays the same. The process continues to be successful - Taiga tracks our progress and or tasks, while Github actually hosts our code and gives us visual feedback on contributions and the codebase.
+
 #### Git / GitHub workflow
 
 Describe your Git / GitHub workflow.     
@@ -99,7 +113,14 @@ For example, "we use pull-requests" is not a precise statement since it leaves t
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Don't forget to **explain why** you chose this workflow.
 
-The main workflow we chose was to have group work on their own branch, and then after a task is completed, we will do a pull request from their own branch onto master. The reason why we did this was to make sure that each branch wouldn't conflict with other branches. It would also promote more freedom between each user 
+
+The project is split into 5 main branches now: the desktop application, the server, the android application, the chrome extension, and the master branch. 
+
+At the beginning, the teams for the most part worked separately. While we as a group collectively decided on which technologies to use, each team decided on their own how to format their code and setup each codebase, meaning that the three original teams of : server, desktop, and extension could be independent and work in their own branches. When it came time for the deliverable, each branch could then be pull requested into master.
+
+As time went on and product integration between each team became more and more prevalent, this system still hailed to be successful. Pull requests meant that we could pull relevant code (such as server, or desktop app) into other branches and continue to test without disrupting another team's work. As well, the continued existence of the master branch meant that there was still a single database for reference of the current progress of the project.
+
+At this point in time, while work is still done in relevant branches, more and more pull requests are created into master to integrate and test the different parts of the project together. This github workflow allows our team to both work independently, and easily integrate and test out functionality with the other teams without disrupting a workflow or creating conflicts.
 
 ## Product
 
