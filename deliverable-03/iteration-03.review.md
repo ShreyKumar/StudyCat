@@ -50,8 +50,14 @@ Where: Online via. Discord
 
 #### Goals and/or tasks that were met/completed:
 
-* Getting the main process monitoring and productivity score algorithm up at working
-* Server that uses Firebase for user authentication
+Art:
+* Received artist assets and integrated them into our UI.
+
+Server: 
+
+* Implement transfer of chrome extension, android app, and desktop app data.
+
+Front End:
 * Having a Chrome extension to monitor active browser tabs
 
 <img src="app.png" width="400" height="300">
