@@ -4,12 +4,31 @@
  > It does not really make sense for you to edit this document much (if at all) while working on the project - Instead, at the end of the planning phase, you can refer back to this document and decide which parts of your plan you are happy with and which parts you would like to change.
 
 
-## Iteration 03
+## Iteration 3
 
  * Start date:November 17th, 2017
  * End date: December 1st, 2017
 
 ## Process
+
+#### Changes from previous iteration
+
+List the most significant changes you made to your process (if any).
+
+ * At most 3 items
+ * Start with the most significant change
+ * For each change, explain why you are making it and what you are hoping to achieve from it
+ * Ideally, for each change, you will define a clear success metric (i.e. something you can measure at the end of the iteration to determine whether the change you made was successful)
+
+ > *Note:* If you are not making any changes to your process, it means that you are happy with all of the decisions you made in the previous iterations.
+ > In this case, list what you consider to be the most significant process decisions your team made. For each decision, explain why you consider it successful, and what success metric you are using (or could use) to assert that the decision is successful.
+
+Github Workflow
+
+The Github Workflow we used was the most intrinsic part of our Github workflow.
+
+Taiga.io
+
 
 #### Roles & responsibilities
 
@@ -18,50 +37,38 @@ Describe the different roles on the team and the responsibilities associated wit
 
 First, we divided into three main teams:
 
-Team 1 (Main Application): 
+<b>Team 1 (Main Application) </b>: 
 
 Kevin Kang
 
 - Responsible for process monitoring
-- Faciliate discussion in meetings
 - UI design of front end
-
-
-Darwin Truong
-
-- Responsible for communication with the server
-
 
 Kevin Zheng
 
-- Responsible for overall UI appearance and integrating Kevin kang and Darwin Truong's tasks
+- Implement asynchronous functionality for server callbacks
 
-Team 2 (Server): 
-
-Hongyu Wang
-
-- Responsible for implementing server endpoints for adding and removing data about a user
-- Responsible for managing currently logged in users
-
-Jeff Lin
-
-- Responsible for adding endpoints to add and remove persistent data from firebase
-- Also responsible for checking database inserts
-
-Team 3 (Extension): 
+<b>Team 2 (Extension) </b>: 
 
 Shrey Kumar
 
-- Responsible for coding the chrome extension
+- Move blacklist functionality to another page
+- Complete chrome extension front end and back end
 
-Team 4 (Android App):
+<b>Team 3 (Android App) </b>:
 
 Darwin Truong
 
+- Login
+- Notification background service for constant cat data
+
 Jeff Lin
 
-- Both have been shifted off their curent teams (but are still present in case of bugs/ other things that maky pop up) to create an android application
-- 
+- Work on main GUI of the android application
+
+Hongyu Wang
+
+- Work on asynchronous server callbacks for android callbacks
 
 #### Events
 
@@ -120,7 +127,7 @@ At the beginning, the teams for the most part worked separately. While we as a g
 
 As time went on and product integration between each team became more and more prevalent, this system still hailed to be successful. Pull requests meant that we could pull relevant code (such as server, or desktop app) into other branches and continue to test without disrupting another team's work. As well, the continued existence of the master branch meant that there was still a single database for reference of the current progress of the project.
 
-At this point in time, while work is still done in relevant branches, more and more pull requests are created into master to integrate and test the different parts of the project together. This github workflow allows our team to both work independently, and easily integrate and test out functionality with the other teams without disrupting a workflow or creating conflicts.
+At this point in time, while work is still done in relevant branches, more and more pull requests are created into master to integrate and test the different parts of the project together. This Github workflow allows our team to both work independently, and easily integrate and test out functionality with the other teams without disrupting a workflow or creating conflicts.
 
 ## Product
 
@@ -163,18 +170,30 @@ Front End:
 - `UserModel.py`: A singleton module for storing server and user information.<br>
 - `pList.txt`: A list of programs to monitor.<br>
 
+Screenshots of the desktop application <br>
+
+
 Server:
 
 - `server.js`: Express server that contains all routes required <br>
 - `user_manager.js`: File that contains User class, as well as the dictionary that stores currently logged on users. <br>
 
-Extension: 
-- `post.js` - posts data to the server based on user input and handles UI update upon recieving result <br>
+Extension:
+
+- `post.js` - posts data to the server based on user input and handles UI update upon receiving result <br>
 - `monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
 - `import/*` - all imported libraries <br>
 - `main.html`- the page to display if the user clicks on the extension <br>
 - `css/main.css` - the main css file to style the extension
 - `scss/*` - all scss files to be complied into css
 
+Screenshots of the extension <br>
 
+Android:
 
+Most code for the android section is stored within the android/studycat/app/src/main folder.
+
+- `BackgroundMonitorService` - code for updating data about the cat from the server. Also responsible for pushing data to the server <br>
+- `MainActivity.java` - Deprecated starter code, here for reference
+- `CatDisplayActivity.java` - Displays the cat on a seperate page for the android app
+- `Query\CataData.java` - A series of callbacks serving as an interface between the server and the phone
