@@ -35,6 +35,16 @@ Some success metrics we used is the number of merge conflicts we got as well as 
 
 2. Taiga.io
 
+The other tool that we used was Taiga.io, it is a project management platform designed for agile developers
+
+Our basic workflow went as followed: 
+
+- For each sprint, post a User Story for each sub-team
+- Decide on smaller tasks that are related to the user story
+- Divide up the work between the members of the sub-team
+
+- This allowed us to easily set clear goals for each sprint as well as assign each team member with a task since we could assign a team member onto the task on Taiga
+- Taiga also supports updating each task with a status, i.e New, In progress, ready for test, completed, and needs info. Ready for test and needs info were especially useful as it is an easy way to communicate to the other members that the task needs attention. For example if one of the tasks is blocked by another task such as needing a server endpoint to the set up, the task can be placed in needs info with a small comment and it will seen by the other members.
 
 #### Roles & responsibilities
 
