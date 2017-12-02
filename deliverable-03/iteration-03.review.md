@@ -89,7 +89,4 @@ Chrome extension:
 
 ## Meeting Highlights
 
-* For our next iteration we are planning on implementing the goals that we planned earlier but were not able to complete such as user data persistence, and multi-platform support. We believe that these are important features that should be implemeneted for our MVP, which we explain above.
-* For the MVP we also want to have group functionality implemented, as this was one of the key unique features of our app.
-* We also plan on adding some smaller features such as being able to customize appearance of the cat/user and adding custom user-defined productivity levels (being able create our own productivity categories).
-
+* For the remaining time we have our team aims to polish our product even further, focusing our efforts on the features that we have completed thus far.
