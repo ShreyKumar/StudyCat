@@ -82,3 +82,8 @@ Chrome extension:
 ## Meeting Highlights
 
 * For the remaining time we have our team aims to polish our product even further, focusing our efforts on the features that we have completed thus far.
+
+* In this deliverable period, we also made the decision to create an android app to further the reach of our product. We found that with the server mostly complete and functional, it was possible to re-assign parts of the desktop and server team to create this new addition.
+
+* Much discussion was had again on technical details, specifically the data that would be sent between the chrome extension and the server, and between the server and the desktop, in order to seamlessly allow the desktop application to consume the chrome extension's productivity data. While this discussion had been going on since the start of the project, it was resolved in this deliverable, where we concretely decided what data would be sent.
+
