@@ -1,6 +1,6 @@
 # Study Cat
 
-## Iteration 2 - Review & Retrospect
+## Iteration 3 - Review & Retrospect
 
 When: Wednesday November 29
 Where: Online via. Discord
