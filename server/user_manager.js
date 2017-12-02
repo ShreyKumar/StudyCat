@@ -26,6 +26,7 @@ function user(username){
 		username: username,
 		chrome_data: null,
 		process_data: null,
+		android_data: null,
 		current_cat_state: null,
 		database_updated: true
 	}
@@ -33,6 +34,7 @@ function user(username){
 	//Setup update_data
 	this.update_data = function(data_json){
 		var chrome_data = data_json["chrome_data[]"]
+		var android_data = data_json.android_data
 		var process_data = data_json.process_data
 		var current_cat_state = data_json.current_cat_state
 		cnt = 0
@@ -53,6 +55,11 @@ function user(username){
 			this.data.current_cat_state = current_cat_state
 			cnt ++
 		}
+		if (android_data){
+			this.data.android_data = android_data
+			cnt ++
+		}
+
 		return cnt //keeps track of how many fields are not null (For client.)
 	}
 

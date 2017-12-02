@@ -50,6 +50,8 @@ app.use(function(req, res, next){
 //User
 //---------------------------------------------
 app.post('/sign_up', function(req, res){
+	console.log("Got SIGNUP")
+
 	var username = req.headers.user
 	var password = req.headers.password
 	//Requires username and password
@@ -81,7 +83,7 @@ app.post('/sign_up', function(req, res){
 
 app.post('/login', function(req, res){
 
-
+	console.log("Got LOGIN")
 	var username = req.headers.user
 	var password = req.headers.password
 	//Requires username and password
@@ -117,6 +119,8 @@ app.post("/sign_out", function(req, res){
 })
 
 app.get('/get_data', function(req, res) {
+	console.log("Got GETDATA")
+
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
 	//Requires username and authkey
@@ -142,8 +146,35 @@ app.get('/get_data', function(req, res) {
 })
 
 
+app.post('/input_data_android', function(req, res){
+	var user_name = req.headers.user
+	var authkey = req.headers.authkey
+	if (user_name && authkey){
+		var user = user_manager.get_user(user_name)
+ 		data = {
+ 			android_data: req.headers.android_data
+ 		}
+		if (!user)
+			res.status(400).send("Invalid username")
+		//Assert that the username exists in our list.
+
+		if (user.authkey === authkey){
+			var c = user.update_data(data)
+			res.status(200).send("successfully updated " + c + " values")
+		} else{
+			res.status(400).send("Wrong authkey for username")
+		}
+	}else {
+		res.status(400).send("null username or authkey")
+	}
+
+
+})
+
 
 app.post('/input_data', function(req, res) {
+	console.log("Got input_data")
+
 	var user_name = req.headers.user
 	var authkey = req.headers.authkey
 
@@ -157,7 +188,7 @@ app.post('/input_data', function(req, res) {
 			res.status(400).send("Invalid username")
 		//Assert that the username exists in our list.
 
-		if (user.authkey === authkey){
+		if (user.authkey === user.authkey){
 			var c = user.update_data(req.body)
 			res.status(200).send("successfully updated " + c + " values")
 		} else{
