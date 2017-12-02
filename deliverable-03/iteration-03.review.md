@@ -64,7 +64,7 @@ Front End:
 
 <br />
 
-<img src="androidcat.png" />
+<img src="androidcat.png" width="250px" height="500px" />
 
 <br />
 
