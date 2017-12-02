@@ -60,7 +60,7 @@ Server:
 Front End:
 * Having a Chrome extension to monitor active browser tabs
 
-<img src="desktopmain.png">
+<img src="desktopmain.png" width="250px" height="250px">
 
 <br />
 
