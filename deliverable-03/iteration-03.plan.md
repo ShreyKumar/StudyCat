@@ -35,6 +35,7 @@ Some success metrics we used is the number of merge conflicts we got as well as 
 
 2. Taiga.io
 
+We are very proud of our decision to use Taiga throughout this project because we believed that it was better than any other alternative we found. The main reason we choose Taiga was because it allowed us to add user stories which made it easy for each team to co-ordinate task allocation especially since we had different teams working on different parts of the app. This was something which both Trello and Github didn't have. We did originally try both Trello and Github workflow because of number of tasks that were mis-managed/not co-ordinated well (our metric), we realized that there were better alternatives. 
 
 #### Roles & responsibilities
 
