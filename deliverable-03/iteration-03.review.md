@@ -30,7 +30,7 @@ Where: Online via. Discord
 * Some internal deadlines were not hit by everyone, as such we should have been more realistic in setting these deadlines
 * A lot more unexpected bugs were encountered this time than before, which delayed progress in our overall process 
 * Some code could have been better structured. (For the chrome extension)
-* Did not have the time to test out both chrome extension and desktop app synchronously.
+* Did not have the time to properly test out both chrome extension and desktop app synchronously.
 
 #### Planned Changes
 
@@ -38,7 +38,7 @@ In order to show a complete working product in the given time span for the demo,
 * UI improvements
     - Visuals of the desktop application could still use some improvements
     - A few UI bugs on chrome extension that need be fixed.
-* Test Android, Chrome extension and Desktop to see if they work synchronously with each other. Check if data is maintained accross all three devices. Debug if necessary. 
+* Test Android, Chrome extension and Desktop to see if they work synchronously with each other, <i>at all times</i>. Check if data is maintained accross all three devices. Debug if necessary. 
  
 ## Product - Review
 
@@ -68,15 +68,7 @@ Chrome extension:
 * Simplified server code a bit so its more effecient when communicating with the extension.
 * Fixed numerous UI and functionality bugs which were unnoticed in the last iteration. 
 
-<img src="desktopmain.png" width="250px" height="250px" />
 
-<br />
-
-<img src="androidcat.png" width="250px" height="500px" />
-
-<br />
-
-<img src="chrome-main.PNG">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
