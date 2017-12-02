@@ -34,37 +34,49 @@ Where: Online via. Discord
 
 #### Planned Changes
 
-* Changing from a single-platform process monitor to a interface that allows support for multiple operating systems
-    - We believe that it is important to support multiple operating systems since even during development we ran into issues with not being able to run the app on Unix based systems.
-    - Considering that a significant portion of people are not exclusively using Windows, we would be losing a lot of potential users by restricting the type of operating system
+In order to show a complete working product in 4 days time for the demo, we believe the following would be realistic changes to have:
 * UI improvements
     - Visuals of the desktop application could still use some improvements
     - A few UI bugs on chrome extension that need be fixed.
-* Effeciency issues
-    - Some parts of the extension are still glitchy, although the functionality works. 
-* Group Functionality
-    - We plan on adding a feature that allows for multiple users to join a group where each user will have a certain score, therefore incentivizing the group members to be more productive.
-    - This unique feature will make our app stand out compared to other productivity apps
+* Test Android, Chrome extension and Desktop to see if they work synchronously with each other. Check if data is maintained accross all three devices. Debug if necessary. 
  
 ## Product - Review
 
 #### Goals and/or tasks that were met/completed:
 
-* Getting the main process monitoring and productivity score algorithm up at working
-* Server that uses Firebase for user authentication
-* Having a Chrome extension to monitor active browser tabs
+Art:
+* Received artist assets and integrated them into our UI.
+* Centralized the color schemes of our chrome extension, desktop app, and android app.
 
-<img src="app.png" width="400" height="300">
+Server: 
+
+* Implement transfer of chrome extension, android app, and desktop app data.
+* Modified method of data transfer to encapsulate each application's white list of processes. Server now only transfers your level of productivity rather than the processes you run.
+
+Front End:
+* Fully asynchronous server requests. App won't freeze during login, registration, pushes to the server, and updates.
+* Implemented system of callbacks to handle the responses from the http requests.
+* Dynamic login responses, telling the user whether their login was successful, and if it wasn't, tells them the reason for failure.
+* Fully integrated data from chrome extension, android app, and desktop app, all of which is now used to monitor productivity.
+
+Android App:
+* Created fully functioning android app which interfaces with the server and the desktop app for on the go updates on your productivity level.
+
+<img src="desktopmain.png" width="250px" height="250px" />
 
 <br />
 
-<img src="artifact1.PNG" width="250" height="600">
+<img src="androidcat.png" width="250px" height="500px" />
+
+<br />
+
+<img src="chrome-main.PNG">
 
 #### Goals and/or tasks that were planned but not met/completed:
 
 * Having the User's data persist across devices
     - Synchronizing data between devices hasn't been implemented yet
-    - The team determined that getting the main functionality as good as possible was a higher priority than extra details such as multi device support
+    - The team determined that getting the main functionality as polished as possible was a higher priority than extra details such as multi device support
 * Multi-platform support (OSX and W10)
     - Currently the process monitoring will only work for devices using Windows as we installed the win32 packages instead of the Unix based packages
     - We plan on creating an interface which will allow the app to dynamically choose which packages to use for process monitoring. 
