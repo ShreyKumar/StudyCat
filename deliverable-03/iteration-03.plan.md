@@ -212,6 +212,6 @@ Most code for the android section is stored within the android/studycat/app/src/
 - `Query\CataData.java` - A series of callbacks serving as an interface between the server and the phone
 
 Screenshots of the Android: <br>
-<img src="androidlogin.PNG" width="250px" height="500px" />
-<img src="androidcat.PNG" width="250px" height="500px" />
-<img src="androidnotif.PNG" width="250px" height="500px" />
+<img src="androidlogin.png" width="250px" height="500px" />
+<img src="androidcat.png" width="250px" height="500px" />
+<img src="androidnotif.png" width="250px" height="500px" />
