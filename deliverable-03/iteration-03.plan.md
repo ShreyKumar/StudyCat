@@ -55,6 +55,7 @@ Shrey Kumar
 - Move blacklist functionality to another page
 - Complete chrome extension front end and back end
 
+
 <b>Team 3 (Android App) </b>:
 
 Darwin Truong
@@ -184,7 +185,7 @@ Extension:
 - `monitor.js` - monitors background tab activity and makes a post request to the server every 1 minute <br>
 - `import/*` - all imported libraries <br>
 - `main.html`- the page to display if the user clicks on the extension <br>
-- `css/main.css` - the main css file to style the extension
+- `css/*` - the main css file to style the extension
 - `scss/*` - all scss files to be complied into css
 
 Screenshots of the extension <br>
