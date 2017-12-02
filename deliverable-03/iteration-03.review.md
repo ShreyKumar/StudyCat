@@ -34,7 +34,7 @@ Where: Online via. Discord
 
 #### Planned Changes
 
-In order to show a complete working product in 4 days time for the demo, we believe the following would be realistic changes to have:
+In order to show a complete working product in the given time span for the demo, we believe the following would be realistic changes to have:
 * UI improvements
     - Visuals of the desktop application could still use some improvements
     - A few UI bugs on chrome extension that need be fixed.
