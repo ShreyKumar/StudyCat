@@ -12,7 +12,7 @@ Where: Online via. Discord
 * Setting internal deadlines to get everything done well in advance, this fixed our procrastination issue of getting everything done just before the deadline. Also, this made sure we aren't pushing broken code for the next team to use and gave us a "grace period" in case something suddenly stopped working.
 * Starting work for this deliverable to be complete well in advance.
 * Setting good communication standards before and after code is committed to the repository, this fixed our problem from last time where communication between teams was the main problem in finishing things late.  
-* Started work on android app. 
+* Started work on android app - we started and finished the android app in time for the deadline. 
 * Deciding to take one or two days off this project to fully rest and deliver on time with effeciency. 
 
 <img src="sprint4taiga.png" width="640" height="480">
