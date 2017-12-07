@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">studycat</string>
+    <string name="app_name">StudyCat</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -18,4 +18,5 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="cat_state_display">Cat state display</string>
+    <color name="appcolor">#FF6262</color>
 </resources>
