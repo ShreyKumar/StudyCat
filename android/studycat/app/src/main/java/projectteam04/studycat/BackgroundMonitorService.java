@@ -2,6 +2,7 @@ package projectteam04.studycat;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Handler;
@@ -45,6 +46,8 @@ public class BackgroundMonitorService extends IntentService {
     };
 
     private Notification.Builder nb;
+    private Notification n;
+    private NotificationManager nm;
     private int c;
     public BackgroundMonitorService() {
         super("BackgroundMonitorService");
@@ -53,6 +56,7 @@ public class BackgroundMonitorService extends IntentService {
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         nb = new Notification.Builder(this);
+        nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         c = 0;
         counter = 2;
         mHandler = new Handler();
@@ -65,49 +69,40 @@ public class BackgroundMonitorService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         System.out.println("Hi im onHandleIntent pls notice me");
         System.out.println(intent.getStringExtra("test"));
-        showNotification();
-
-        while (true) {
-            try {
-                Thread.sleep(500);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-
     }
 
     private void showNotification() {
 
-        Intent notificationIntent = new Intent(this, BackgroundMonitorService.class);
+        Intent notificationIntent = new Intent(this, CatDisplayActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-        Notification n = nb
+        System.out.println("Hi im show notification btw");
+        n = nb
                 .setContentTitle("Hi")
                 .setContentText("notification btw")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setTicker("HI")
                 .setOngoing(true)
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .build();
 
-        startForeground(1, n);
+        nm.notify(1, n);
+        //startForeground(1, n);
     }
 
     private void updateNotification(double curr_state) {
 
+        System.out.println("Hi im update notification");
 
+        n = nb.setContentText(Double.toString(curr_state)).build();
 
-        nb.setContentText(Double.toString(curr_state));
-
-        startForeground(1, nb.build());
+        nm.notify(1, n);
     }
 
 
     public void updateCatState() {
+        if (n == null) {
+            showNotification();
+        }
         CatData.getAndroidStatus(new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
