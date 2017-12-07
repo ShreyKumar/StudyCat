@@ -10,7 +10,7 @@ textStyle = {"font":myFont,"relief" : "groove", "bg":"white", "fg": "black"}
 class Cat:
     def __init__(self):
         self.state = 50
-        self.catStates = ["cat_0.gif", "cat_1.gif", "cat_2.gif", "cat_3.jpg", "cat_4.jpg"]
+        self.catStates = ["cat_0.gif", "cat_1.gif", "cat_2.gif", "cat_3.gif", "cat_4.gif"]
         #self.catStates = [ImageTk.PhotoImage(Image.open(x).resize((250, 250), Image.ANTIALIAS)) for x in self.catStates]
         self.catText = ["navy", "deep sky blue", "rosy brown", "plum1", "green2"]
 
