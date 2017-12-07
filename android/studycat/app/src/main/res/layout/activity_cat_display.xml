@@ -1,30 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="projectteam04.studycat.CatDisplayActivity">
+    tools:context="projectteam04.studycat.CatDisplayActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/catImageView"
         android:layout_width="340dp"
         android:layout_height="340dp"
-        android:layout_marginBottom="86dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="24dp"
         android:adjustViewBounds="true"
         android:background="@drawable/ic_launcher_foreground"
         android:contentDescription="@string/cat_state_display"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cat_happy" />
+
+    <EditText
+        android:id="@+id/scoreText"
+        style="@style/AppTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:cursorVisible="false"
+        android:text="50"
+        android:textAlignment="center"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catImageView" />
 
 </android.support.constraint.ConstraintLayout>

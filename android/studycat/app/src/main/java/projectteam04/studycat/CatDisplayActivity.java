@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -41,7 +42,7 @@ public class CatDisplayActivity extends AppCompatActivity {
 
     // UI references.
     ImageView catImage;
-    Button button;
+    TextView textView;
     BroadcastReceiver receiver;
     int counter;
 
@@ -51,11 +52,20 @@ public class CatDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cat_display);
 
         catImage = (ImageView) findViewById(R.id.catImageView);
+        textView = (TextView) findViewById(R.id.scoreText);
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                counter = intent.getIntExtra(BackgroundMonitorService.EXTRA_COUNTER, 2);
-                catImage.setImageResource(imageArray[counter]);
+                counter = intent.getIntExtra(BackgroundMonitorService.EXTRA_COUNTER, 50);
+                int index = 0;
+                if (counter == 100) {
+                    index = 4;
+                } else if (counter > 0) {
+                    index = (counter)/20;
+                }
+                catImage.setImageResource(imageArray[index]);
+                textView.setText("" + counter);
+
             }
         };
 

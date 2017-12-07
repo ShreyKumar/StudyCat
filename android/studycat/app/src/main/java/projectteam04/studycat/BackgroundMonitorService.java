@@ -54,7 +54,7 @@ public class BackgroundMonitorService extends IntentService {
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         nb = new Notification.Builder(this);
         c = 0;
-        counter = 2;
+        counter = 50;
         mHandler = new Handler();
         mHandler.post(runnableService);
 
@@ -122,10 +122,10 @@ public class BackgroundMonitorService extends IntentService {
                 Map<String, Object> data = new Gson().fromJson(jsonInString, Map.class);
                 Double curr_state = (Double) data.get("current_cat_state");
                 if (curr_state == null) {
-                    curr_state = 3.0;
+                    curr_state = 50.0;
                 }
                 updateNotification(curr_state);
-                counter = (curr_state.intValue() - 1)%5;
+                counter = curr_state.intValue();
             }
 
             @Override
