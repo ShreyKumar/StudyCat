@@ -77,7 +77,7 @@ public class BackgroundMonitorService extends IntentService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         System.out.println("Hi im show notification btw");
         n = nb
-                .setContentTitle("Hi")
+                .setContentTitle("Productivity Score:")
                 .setContentText("notification btw")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.ic_launcher)
