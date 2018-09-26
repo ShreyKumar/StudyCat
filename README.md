@@ -1,6 +1,7 @@
 ## StudyCat
 Hello, welcome to this project! This was done a while ago so there may be a few vunerability issues. <br>
 This is an unreleased version as of yet since we have collectively decided as a team to not release it. <br>
+I will update this later to provide more details!
 
 ## Final Project video
 [Click me](https://drive.google.com/file/d/102P3RCA3BnYz66Zs_Y6vcsDu5NY90Az1/view)
